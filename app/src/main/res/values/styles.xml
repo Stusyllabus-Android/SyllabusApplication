@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Launcher.BG" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/launch_bg</item>
+        <item name="android:background">@drawable/launch_bg</item>
+        <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
+    </style>
+
+    <style name="AppTheme.Login.BG" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/login_bg</item>
+        <item name="android:background">@drawable/login_bg</item>
+        <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
+    </style>
 </resources>
