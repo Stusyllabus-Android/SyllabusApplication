@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="账号"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/account"
+            android:textColor="#000"
+            android:hint="校园网账号（如17xxx）"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="密码"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:textColor="#000"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="密码"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="#ffffff"
+        android:background="#e60008"
+        android:baselineAligned="false"
+        android:text="登录" />
+
+</LinearLayout>
