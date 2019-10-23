@@ -1,4 +1,4 @@
-package com.stu.syllabus.login;
+package com.stu.syllabus.login.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +17,7 @@ import com.stu.syllabus.login.login.LoginActivity;
  * yuan
  * 2019/10/22
  **/
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements SplashContract.view{
     private String TAG = this.getClass().getSimpleName();
 
     SQLiteOpenHelper dbHelper;
@@ -49,5 +49,21 @@ public class SplashActivity extends AppCompatActivity {
             SplashActivity.this.finish();
         }
         sqLiteDatabase.close();
+    }
+
+    @Override
+    public void toLoginView() {
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        SplashActivity.this.finish();
+    }
+
+    @Override
+    public void toMainView() {
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        SplashActivity.this.finish();
     }
 }
