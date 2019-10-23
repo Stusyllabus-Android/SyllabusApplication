@@ -10,9 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.stu.syllabus.DataBaseHelper;
-import com.stu.syllabus.MainActivity;
+import com.stu.syllabus.main.MainActivity;
 import com.stu.syllabus.login.login.LoginActivity;
 
+/**
+ * yuan
+ * 2019/10/22
+ **/
 public class SplashActivity extends AppCompatActivity {
     private String TAG = this.getClass().getSimpleName();
 
