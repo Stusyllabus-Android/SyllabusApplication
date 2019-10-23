@@ -1,28 +1,18 @@
 package com.stu.syllabus.bean;
 
+/**
+ * yuan
+ * 2019/10/22
+ **/
 public class Login {
     /**
      * {
-     *     "code": 200,
-     *     "message": "success",
-     *     "data": {
-     *         "token": "153257"
-     *     }
+     *     "code": "0"
      * }
      */
-    int code;
-    String message;
-    Data data;
+    String code;
 
-    public int getCode() {
+    public String getCode() {
         return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    static class Data{
-        String token;
     }
 }
