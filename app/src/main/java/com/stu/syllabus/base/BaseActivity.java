@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 import butterknife.ButterKnife;
 
+/**
+ * yuan
+ * 2019/10/22
+ **/
 public abstract class BaseActivity extends AppCompatActivity {
     public String TAG = this.getClass().getSimpleName();
 
