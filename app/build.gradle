@@ -26,10 +26,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
     implementation 'com.jakewharton:butterknife:8.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
-
-    implementation 'com.android.support:design:28.0.0'
 
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
@@ -41,4 +43,8 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    annotationProcessor "com.google.dagger:dagger-compiler:2.24" //指定注解处理器
+    implementation "com.google.dagger:dagger:2.24"  //dagger公用api
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'  //添加android缺失的部分javax注解
 }
