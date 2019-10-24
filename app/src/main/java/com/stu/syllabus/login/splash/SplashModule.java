@@ -1,5 +1,8 @@
 package com.stu.syllabus.login.splash;
 
+import com.stu.syllabus.login.ILoginModel;
+import com.stu.syllabus.login.LoginModel;
+
 import dagger.Module;
 import dagger.Provides;
 

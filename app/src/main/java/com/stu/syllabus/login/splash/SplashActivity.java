@@ -6,12 +6,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 
+import com.stu.syllabus.App;
 import com.stu.syllabus.DataBaseHelper;
+import com.stu.syllabus.R;
 import com.stu.syllabus.main.MainActivity;
 import com.stu.syllabus.login.login.LoginActivity;
+
+import javax.inject.Inject;
 
 /**
  * yuan
@@ -20,35 +26,25 @@ import com.stu.syllabus.login.login.LoginActivity;
 public class SplashActivity extends AppCompatActivity implements SplashContract.view{
     private String TAG = this.getClass().getSimpleName();
 
-    SQLiteOpenHelper dbHelper;
-    SQLiteDatabase sqLiteDatabase;
+    @Inject
+    SplashPresenter splashPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dbHelper = new DataBaseHelper(this, "user", null, 1);
-        sqLiteDatabase = dbHelper.getReadableDatabase();
-        queryUser(sqLiteDatabase);
-    }
-    private void queryUser(SQLiteDatabase sqLiteDatabase) {
-        Cursor cursor = sqLiteDatabase.query("user", new String[] {"account", "password"}, null, null, null, null, null);
-        String account = null;
-        String password = null;
-        while (cursor.moveToNext()) {
-            account = cursor.getString(cursor.getColumnIndex("account"));
-            password = cursor.getString(cursor.getColumnIndex("password"));
-            Log.d(TAG, "queryUser: " + account + " " + password);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        if (account == null && password == null) {
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            startActivity(intent);
-            SplashActivity.this.finish();
-        } else {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            SplashActivity.this.finish();
-        }
-        sqLiteDatabase.close();
+        setContentView(R.layout.activity_splash);//非必须
+
+        DaggerSplashComponent.builder()
+                .appComponent(((App) getApplication()).getAppComponent())
+                .splashModule(new SplashModule(this))
+                .build()
+                .inject(this);
+
+        splashPresenter.init();
     }
 
     @Override

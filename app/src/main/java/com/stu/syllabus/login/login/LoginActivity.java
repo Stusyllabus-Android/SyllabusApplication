@@ -1,27 +1,21 @@
 package com.stu.syllabus.login.login;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.stu.syllabus.HttpMethods;
 import com.stu.syllabus.ToastUtil;
 import com.stu.syllabus.main.MainActivity;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
-import com.stu.syllabus.bean.Login;
-import com.stu.syllabus.bean.Oauth;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 /**
  * yuan
@@ -36,15 +30,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.view{
     @BindView(R.id.loginButton)
     Button loginButton;
 
-    LoginContract.presenter mLoginPresenter;
-    SQLiteOpenHelper sqLiteOpenHelper;
-    SQLiteDatabase sqLiteDatabase;
+    @Inject
+    LoginPresenter mLoginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        mLoginPresenter = new LoginPresenter();
+
+        DaggerLoginComponent.builder()
+                .appComponent(appComponent)
+                .loginModule(new LoginModule(this))
+                .build()
+                .inject(this);
+
         mLoginPresenter.init();
     }
 
@@ -63,55 +62,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.view{
             return;
         }
         Log.d(TAG, "setLogin: ");
-        HttpMethods.getInstance().getOauth(new Observer<Oauth>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(Oauth oauth) {
-                Log.d(TAG, "onNext: " + oauth.getClient_id() + " " + oauth.getState());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
-
-        HttpMethods.getInstance().login(new Observer<Login>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(Login login) {
-                Log.d(TAG, "onNext: " + login.getCode());
-                if (login.getCode().equals("0")) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    Log.d(TAG, "onNext: " + "finish");
-                    LoginActivity.this.finish();
-                } else Toast.makeText(LoginActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }, accountEditText.getText().toString(), passwordEditText.getText().toString());
+        mLoginPresenter.login(accountEditText.getText().toString(), passwordEditText.getText().toString());
     }
 
     @Override
