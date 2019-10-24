@@ -18,6 +18,7 @@ public final class ApplicationModule {
     public ApplicationModule(Context context) {
         this.context = context;
     }
+
     @Provides
     @Singleton
     Context provideContext() {

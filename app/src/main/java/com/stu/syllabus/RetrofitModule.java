@@ -21,12 +21,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
-    OkHttpClient.Builder builder;
+    private final int TIMEOUT = 5;
+
+    private OkHttpClient.Builder builder;
 
     public RetrofitModule() {
         super();
         builder = new OkHttpClient.Builder();
-        builder.connectTimeout(5, TimeUnit.SECONDS);
+        builder.connectTimeout(TIMEOUT, TimeUnit.SECONDS);
     }
 
     @AuthRetrofit
@@ -35,7 +37,7 @@ public class RetrofitModule {
     public Retrofit provideAuthRetrofit() {
         return new Retrofit.Builder()
                 .client(builder.build())
-                .baseUrl("http://139.199.224.230:7002/")
+                .baseUrl("http://139.199.224.230:7001/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -47,7 +49,7 @@ public class RetrofitModule {
     public Retrofit provideBusinessRetrofit() {
         return new Retrofit.Builder()
                 .client(builder.build())
-                .baseUrl("http://139.199.224.230:7001/")
+                .baseUrl("http://139.199.224.230:7002/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

@@ -6,8 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+/**
+ * yuan
+ * 2019/10/22
+ **/
 public class DataBaseHelper extends SQLiteOpenHelper {
-    private static Integer Version = 1;
 
     public DataBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -15,7 +18,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table user(account varchar(64), password varchar(64))";
+        String sql = "create table skey_table(skey varchar(64))";
         db.execSQL(sql);
     }
 

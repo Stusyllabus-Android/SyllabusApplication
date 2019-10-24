@@ -15,7 +15,7 @@ import retrofit2.Retrofit;
  * 2019/10/23
  **/
 @Singleton
-@Component(modules = {ApplicationModule.class, RetrofitModule.class})
+@Component(modules = {ApplicationModule.class, RetrofitModule.class, UtilModule.class})
 public interface AppComponent {
     Context getApplicationContext();
 
