@@ -27,7 +27,6 @@ public class LoginPresenter implements LoginContract.presenter{
     Oauth mAauth;
     Login mLogin;
     Authorize mAuthorize;
-    Skey mSkey;
 
     @Inject
     public LoginPresenter(LoginContract.view view, ILoginModel iLoginModel) {
@@ -42,8 +41,6 @@ public class LoginPresenter implements LoginContract.presenter{
 
     @Override
     public void login(final String account, final String password) {
-
-        //TODO: 2019/10/23 调用model实现登录,成功则进入主界面
         mILoginModel.getOauthFromNet()
         .subscribe(new Observer<Oauth>() {
             @Override
@@ -108,9 +105,13 @@ public class LoginPresenter implements LoginContract.presenter{
 
                                                             @Override
                                                             public void onNext(Skey skey) {
-                                                                mSkey = skey;
                                                                 Log.d(TAG, "onNext: " + "getSkeyFromNet");
-                                                                if (!skey.getSkey().isEmpty()) mView.toMainView();
+                                                                if (!skey.getSkey().isEmpty()) {
+                                                                    Log.d(TAG, "onNext: " + skey.getSkey());
+                                                                    Log.d(TAG, "onNext: " + "持久化skey");
+                                                                    mILoginModel.saveSkeyToDisk(skey.getSkey(), skey.getRefresh_key());
+                                                                    mView.toMainView();
+                                                                }
                                                             }
 
                                                             @Override

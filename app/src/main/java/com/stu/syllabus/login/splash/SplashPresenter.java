@@ -32,35 +32,8 @@ public class SplashPresenter implements SplashContract.presenter {
 
     @Override
     public void init() {
-        // TODO: 2019/10/24 如果获取到的skey为空则去登录界面，否则进入主界面
-//        mLoginModel.getSkeyFromDisk()
-//                .subscribe(new Observer<Skey>() {
-//                    boolean isGet = false;
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(Skey skey) {
-//                        Log.d(TAG, "onNext: " + skey.getSkey());
-//                        if (!skey.getSkey().isEmpty()) {
-//                            isGet = true;
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        if (isGet) {
-//                            mView.toMainView();
-//                        } else mView.toLoginView();
-//                    }
-//                });
-        mView.toLoginView();
+        if (mLoginModel.getSkeyFromDisk() == null) {
+            mView.toLoginView();
+        } else mView.toMainView();
     }
 }

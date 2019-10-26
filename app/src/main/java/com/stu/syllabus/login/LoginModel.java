@@ -1,7 +1,10 @@
 package com.stu.syllabus.login;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.stu.syllabus.bean.Authorize;
@@ -36,9 +39,6 @@ public class LoginModel implements ILoginModel {
 
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase sqLiteDatabase;
-
-    Retrofit businessRetrofit;
-    Retrofit oauthRetrofit;
 
     OkHttpClient receiveOauthCookie;
 
@@ -110,9 +110,29 @@ public class LoginModel implements ILoginModel {
     }
 
     @Override
-    public Observable<Skey> getSkeyFromDisk() {
-        // TODO: 2019/10/24 如果为空则去登录界面，否则进入主界面
-        return null;
+    public void saveSkeyToDisk(String skey, String refresh_key) {
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("skey", skey);
+        values.put("refresh_key", refresh_key);
+        sqLiteDatabase.insert("skey_table", null, values);
+        sqLiteDatabase.close();
+    }
+
+    @Override
+    public String getSkeyFromDisk() {
+        sqLiteDatabase = dbHelper.getReadableDatabase();
+        String sql = "select * from skey_table";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+        String skey = null;
+        String refresh_key = null;
+        while (cursor.moveToNext()) {
+            skey = cursor.getString(cursor.getColumnIndex("skey"));
+            refresh_key = cursor.getString(cursor.getColumnIndex("refresh_key"));
+            Log.d(TAG, "getSkeyFromDisk: " + skey + " " + refresh_key);
+        }
+        sqLiteDatabase.close();
+        return skey;
     }
 
     @Override

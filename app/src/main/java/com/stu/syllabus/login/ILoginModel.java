@@ -12,8 +12,9 @@ import io.reactivex.Observable;
  * 2019/10/23
  **/
 public interface ILoginModel {
-    // TODO: 2019/10/24 各种途径获得数据
-    Observable<Skey> getSkeyFromDisk();
+    void saveSkeyToDisk(String skey, String refresh_key);
+
+    String getSkeyFromDisk();
 
     Observable<Oauth> getOauthFromNet();
 
