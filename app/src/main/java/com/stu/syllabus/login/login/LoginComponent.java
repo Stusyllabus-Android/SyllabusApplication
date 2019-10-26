@@ -1,7 +1,6 @@
 package com.stu.syllabus.login.login;
 
 import com.stu.syllabus.AppComponent;
-import com.stu.syllabus.UtilModule;
 import com.stu.syllabus.di.PerActivity;
 
 import dagger.Component;

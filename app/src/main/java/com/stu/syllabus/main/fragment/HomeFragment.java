@@ -1,4 +1,4 @@
-package com.stu.syllabus.main;
+package com.stu.syllabus.main.fragment;
 
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseFragment;

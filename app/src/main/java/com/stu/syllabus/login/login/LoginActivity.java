@@ -36,7 +36,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.view{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
 
         DaggerLoginComponent.builder()
                 .appComponent(appComponent)

@@ -1,22 +1,27 @@
 package com.stu.syllabus.main;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stu.syllabus.R;
 import com.stu.syllabus.adapter.MainViewPagerAdapter;
 import com.stu.syllabus.base.BaseActivity;
+import com.stu.syllabus.main.fragment.ContactFragment;
+import com.stu.syllabus.main.fragment.HomeFragment;
+import com.stu.syllabus.main.fragment.InfoFragment;
+import com.stu.syllabus.main.fragment.PersonFragment;
+import com.stu.syllabus.main.fragment.SyllabusFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -24,25 +29,27 @@ import butterknife.BindView;
  * yuan
  * 2019/10/22
  **/
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainContract.view{
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;
     @BindView(R.id.navigation)
     BottomNavigationView bottomNavigationView;
 
-    private List<Fragment> fragmentList;
+    @Inject
+    MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragmentList = new ArrayList<>();
-        fragmentList.add(new HomeFragment());
-        fragmentList.add(new InfoFragment());
-        fragmentList.add(new SyllabusFragment());
-        fragmentList.add(new ContactFragment());
-        fragmentList.add(new PersonFragment());
-        initView();
+
+        DaggerMainComponent.builder()
+        .appComponent(appComponent)
+        .mainModule(new MainModule(this))
+        .build()
+        .inject(this);
+
+        mainPresenter.init();
     }
 
     @Override
@@ -50,12 +57,8 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    private void initView() {
-        initViewPager();
-        initBottomNavigationView();
-    }
-
-    private void initViewPager() {
+    @Override
+    public void initViewPager(List<Fragment> fragmentList) {
         viewPager.setAdapter(new MainViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentList));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -82,7 +85,8 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void initBottomNavigationView() {
+    @Override
+    public void initBottomNavigationView() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

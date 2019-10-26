@@ -1,4 +1,4 @@
-package com.stu.syllabus.main;
+package com.stu.syllabus.main.fragment;
 
 import android.util.Log;
 
