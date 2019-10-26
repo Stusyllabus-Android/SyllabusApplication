@@ -21,6 +21,7 @@ public class App extends Application {
         appComponent = DaggerAppComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .utilModule(new UtilModule(this))
+                .retrofitModule(new RetrofitModule())
                 .build();
     }
 
