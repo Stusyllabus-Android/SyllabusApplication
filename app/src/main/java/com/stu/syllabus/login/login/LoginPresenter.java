@@ -41,7 +41,7 @@ public class LoginPresenter implements LoginContract.presenter{
     }
 
     @Override
-    public void login(final String account, String password) {
+    public void login(final String account, final String password) {
 
         //TODO: 2019/10/23 调用model实现登录,成功则进入主界面
         mILoginModel.getOauthFromNet()
@@ -73,78 +73,84 @@ public class LoginPresenter implements LoginContract.presenter{
         });
 
         mILoginModel.getLoginFromNet(account, password)
-        .subscribe(new Observer<Login>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+                .subscribe(new Observer<Login>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            }
+                    }
 
-            @Override
-            public void onNext(Login login) {
-                mLogin = login;
-                Log.d(TAG, "onNext: " + "getLoginFromNet");
-                Log.d(TAG, "onNext: " + login.getCode());
-            }
+                    @Override
+                    public void onNext(Login login) {
+                        mLogin = login;
+                        Log.d(TAG, "onNext: " + "getLoginFromNet");
+                        Log.d(TAG, "onNext: " + login.getCode());
+                        if (mLogin.getCode().equals("0")) {
+                            mILoginModel.getAuthorizeCodeFromNet("code", mAauth.getClient_id(), mAauth.getState(), mAauth.getScope(), "android" )
+                                    .subscribe(new Observer<Authorize>() {
+                                        @Override
+                                        public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onError(Throwable e) {
+                                        }
 
-            }
+                                        @Override
+                                        public void onNext(Authorize authorize) {
+                                            mAuthorize = authorize;
+                                            Log.d(TAG, "onNext: " + "getAuthorizeCodeFromNet");
+                                            Log.d(TAG, "onNext: " + authorize.getAuthorization_code());
+                                            if (authorize.getCode().equals("0")) {
+                                                Log.d(TAG, "onNext: " + mAuthorize.getAuthorization_code() + " " + mAauth.getState());
+                                                mILoginModel.getSkeyFromNet(mAuthorize.getAuthorization_code(), mAauth.getState(), "android")
+                                                        .subscribe(new Observer<Skey>() {
+                                                            @Override
+                                                            public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onComplete() {
+                                                            }
 
-            }
-        });
+                                                            @Override
+                                                            public void onNext(Skey skey) {
+                                                                mSkey = skey;
+                                                                Log.d(TAG, "onNext: " + "getSkeyFromNet");
+                                                                if (!skey.getSkey().isEmpty()) mView.toMainView();
+                                                            }
 
-        mILoginModel.getAuthorizeCodeFromNet("code", mAauth.getClient_id(), mAauth.getState(), mAauth.getScope(), "android" )
-        .subscribe(new Observer<Authorize>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+                                                            @Override
+                                                            public void onError(Throwable e) {
 
-            }
+                                                            }
 
-            @Override
-            public void onNext(Authorize authorize) {
-                mAuthorize = authorize;
-                Log.d(TAG, "onNext: " + "getAuthorizeCodeFromNet");
-                Log.d(TAG, "onNext: " + authorize.getAuthorization_code());
-            }
+                                                            @Override
+                                                            public void onComplete() {
 
-            @Override
-            public void onError(Throwable e) {
+                                                            }
+                                                        });
+                                            }
+                                        }
 
-            }
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            Log.d(TAG, "onError: " + mAauth.getClient_id() + " " + mAauth.getState() + " " + mAauth.getScope());
+                                            e.printStackTrace();
+                                            Log.d(TAG, "onError: "+ "getAuthorizecodeError");
+                                        }
 
-            @Override
-            public void onComplete() {
+                                        @Override
+                                        public void onComplete() {
+                                            Log.d(TAG, "onComplete: " + "getAuthorizecodeComplete");
+                                        }
+                                    });
+                        }
+                    }
 
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
 
-        mILoginModel.getSkeyFromNet(mAuthorize.getAuthorization_code(), mAauth.getState(), "android")
-        .subscribe(new Observer<Skey>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+                    }
 
-            }
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete: " + "getLoginComplete");
+                    }
+                });
 
-            @Override
-            public void onNext(Skey skey) {
-                mSkey = skey;
-                Log.d(TAG, "onNext: " + "getSkeyFromNet");
-                Log.d(TAG, "onNext: " + skey.getSkey());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
     }
 }

@@ -10,6 +10,6 @@ import retrofit2.http.GET;
  * 2019/10/22
  **/
 public interface GetOauthApi {
-    @GET("user/get_oauth_data?from=Android")
+    @GET("user/get_oauth_data?from=android")
     Observable<Oauth> getOauth();
 }

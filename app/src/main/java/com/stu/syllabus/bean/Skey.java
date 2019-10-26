@@ -7,10 +7,10 @@ package com.stu.syllabus.bean;
 public class Skey {
     /**
      * {
-     *     "skey": "ce70c655-d444-4269-a031-30890ae54ace",
-     *     "skeyExpiresAt": "2019-10-26 22:14:24",
-     *     "refresh_key": "21bd04ab-56bd-4402-b67a-c10845bc254e",
-     *     "refreshKeyExpiresAt": "2019-11-22 22:14:24",
+     *     "skey": "4840d26a-f82e-4be1-b3a6-7956f6ffdccb",
+     *     "skeyExpiresAt": "2019-10-29 10:09:42",
+     *     "refresh_key": "9d8a3abb-ee0e-461d-a586-d5e3e75ea80d",
+     *     "refreshKeyExpiresAt": "2019-11-25 10:09:42",
      *     "code": "0"
      * }
      */
@@ -19,4 +19,12 @@ public class Skey {
     String refresh_key;
     String refreshKeyExpiresAt;
     String code;
+
+    public String getSkey() {
+        return skey;
+    }
+
+    public String getRefresh_key() {
+        return refresh_key;
+    }
 }

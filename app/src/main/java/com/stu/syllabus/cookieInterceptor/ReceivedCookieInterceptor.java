@@ -1,4 +1,4 @@
-package com.stu.syllabus.cookiesInterceptor;
+package com.stu.syllabus.cookieInterceptor;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.stu.syllabus.App;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 
@@ -17,11 +16,11 @@ import okhttp3.Response;
  * yuan
  * 2019/10/25
  **/
-public class ReceivedCookiesInterceptor implements Interceptor {
+public class ReceivedCookieInterceptor implements Interceptor {
     private String TAG = this.getClass().getSimpleName();
 
     private String fileName;
-    public ReceivedCookiesInterceptor(String fileName) {
+    public ReceivedCookieInterceptor(String fileName) {
         super();
         this.fileName = fileName;
     }

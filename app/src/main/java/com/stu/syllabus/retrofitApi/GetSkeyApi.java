@@ -12,5 +12,5 @@ import retrofit2.http.Query;
  **/
 public interface GetSkeyApi {
     @GET("user/stu_login")
-    Observable<Skey> getSkey(@Query("code") String code, @Query("state") String state, @Query("form") String form);
+    Observable<Skey> getSkey(@Query("code") String code, @Query("state") String state, @Query("from") String from);
 }

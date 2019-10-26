@@ -15,7 +15,7 @@ import retrofit2.Retrofit;
 @Module
 public class LoginModule {
     @Provides
-    ILoginModel provideLoginModel(@DataBase DataBaseHelper database, @AuthRetrofit Retrofit authRetrofit, @BusinessRetrofit Retrofit businessRetrofit) {
-        return new LoginModel(database, authRetrofit, businessRetrofit);
+    ILoginModel provideLoginModel(@DataBase DataBaseHelper database) {
+        return new LoginModel(database);
     }
 }

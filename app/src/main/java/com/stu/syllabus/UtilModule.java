@@ -1,12 +1,8 @@
 package com.stu.syllabus;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.stu.syllabus.di.DataBase;
-
-import javax.annotation.PreDestroy;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

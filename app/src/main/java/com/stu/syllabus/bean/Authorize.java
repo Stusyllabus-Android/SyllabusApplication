@@ -15,4 +15,12 @@ public class Authorize {
     String authorization_code;
     String expires_at;
     String code;
+
+    public String getAuthorization_code() {
+        return authorization_code;
+    }
+
+    public String getCode() {
+        return code;
+    }
 }

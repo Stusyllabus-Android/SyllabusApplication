@@ -1,11 +1,10 @@
-package com.stu.syllabus.cookiesInterceptor;
+package com.stu.syllabus.cookieInterceptor;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.stu.syllabus.App;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashSet;
 
@@ -17,11 +16,11 @@ import okhttp3.Response;
  * yuan
  * 2019/10/25
  **/
-public class AddCookiesInterceptor implements Interceptor {
+public class AddCookieInterceptor implements Interceptor {
     private String TAG = this.getClass().getSimpleName();
 
     private String fileName;
-    public AddCookiesInterceptor(String fileName) {
+    public AddCookieInterceptor(String fileName) {
         super();
         this.fileName = fileName;
     }

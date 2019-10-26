@@ -13,10 +13,11 @@ import java.util.List;
  **/
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
+
     List<Fragment> fragmentList;
 
-    public MainViewPagerAdapter(@NonNull FragmentManager fm, List<Fragment> fragmentList) {
-        super(fm);
+    public MainViewPagerAdapter(@NonNull FragmentManager fm, int behavior, List<Fragment> fragmentList) {
+        super(fm, behavior);
         this.fragmentList = fragmentList;
     }
 

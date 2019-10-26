@@ -15,7 +15,7 @@ public class Oauth {
      *     "code": "0"
      * }
      */
-    private String state;
+    String state;
     String client_id;
     String redirect_uri;
     String oauth_url;

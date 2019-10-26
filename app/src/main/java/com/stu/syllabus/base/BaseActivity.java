@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.stu.syllabus.App;
+import com.stu.syllabus.AppComponent;
+
 import butterknife.ButterKnife;
 
 /**
@@ -13,9 +16,12 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
     public String TAG = this.getClass().getSimpleName();
 
+    public AppComponent appComponent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appComponent = ((App) getApplication()).getAppComponent();
         setContentView(getContentView());
         ButterKnife.bind(this);
     }
