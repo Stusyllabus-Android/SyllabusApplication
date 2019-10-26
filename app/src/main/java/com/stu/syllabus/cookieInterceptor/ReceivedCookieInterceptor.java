@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.stu.syllabus.App;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 
@@ -18,6 +19,13 @@ import okhttp3.Response;
  **/
 public class ReceivedCookiesInterceptor implements Interceptor {
     private String TAG = this.getClass().getSimpleName();
+
+    private String fileName;
+    public ReceivedCookiesInterceptor(String fileName) {
+        super();
+        this.fileName = fileName;
+    }
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response originalResponse = chain.proceed(chain.request());
@@ -30,14 +38,13 @@ public class ReceivedCookiesInterceptor implements Interceptor {
                 cookies.add(header);
             }
             //保存的sharepreference文件名为cookieData
-            SharedPreferences sharedPreferences = App.getContext().getSharedPreferences("cookieData", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = App.getContext().getSharedPreferences(fileName, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            Log.d(TAG, "intercept: " + cookies.size());
+            Log.d(TAG, "intercept: 将cookie存储到" + fileName);
             editor.putStringSet("cookie", cookies);
             editor.commit();
         }
 
-        Log.d(TAG, "intercept: " + originalResponse.header("CANDY_TONG_SESSION"));
         return originalResponse;
     }
 }

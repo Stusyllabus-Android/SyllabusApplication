@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -19,8 +19,6 @@
     <style name="AppTheme.Login.BG" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/login_bg</item>
-        <item name="android:background">@drawable/login_bg</item>
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
 </resources>

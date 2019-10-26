@@ -5,8 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

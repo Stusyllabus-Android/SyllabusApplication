@@ -2,17 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="首页"/>
+        android:title="首页"
+        android:icon="@drawable/icon_home"/>
     <item
         android:id="@+id/information"
-        android:title="资讯"/>
+        android:title="资讯"
+        android:icon="@drawable/icon_information"/>
     <item
         android:id="@+id/syllabus"
-        android:title="课程表"/>
+        android:title="课程表"
+        android:icon="@drawable/icon_syllabus"/>
     <item
         android:id="@+id/contact"
-        android:title="社交"/>
+        android:title="社交"
+        android:icon="@drawable/icon_contact"/>
     <item
         android:id="@+id/person"
-        android:title="我的"/>
+        android:title="我的"
+        android:icon="@drawable/icon_person"/>
 </menu>
