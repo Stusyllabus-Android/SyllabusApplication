@@ -1,5 +1,6 @@
 package com.stu.syllabus.main;
 
+import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseFragment;
 
 /**
@@ -7,4 +8,8 @@ import com.stu.syllabus.base.BaseFragment;
  * 2019/10/22
  **/
 public class SyllabusFragment extends BaseFragment {
+    @Override
+    public int getContentView() {
+        return R.layout.fragment_syllabus;
+    }
 }
