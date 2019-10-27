@@ -32,11 +32,6 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-        setContentView(R.layout.activity_splash);//非必须
 
         DaggerSplashComponent.builder()
                 .appComponent(((App) getApplication()).getAppComponent())

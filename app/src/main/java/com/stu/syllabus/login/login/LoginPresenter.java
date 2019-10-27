@@ -42,32 +42,33 @@ public class LoginPresenter implements LoginContract.presenter{
     @Override
     public void login(final String account, final String password) {
         mILoginModel.getOauthFromNet()
-        .subscribe(new Observer<Oauth>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+                .subscribe(new Observer<Oauth>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            }
+                    }
 
-            @Override
-            public void onNext(Oauth oauth) {
-                mAauth = oauth;
-                Log.d(TAG, "onNext: " + "getOauthFromNet");
-                Log.d(TAG, "onNext: " + oauth.getState());
-                Log.d(TAG, "onNext: " + oauth.getClient_id());
-                Log.d(TAG, "onNext: " + oauth.getScope());
-                Log.d(TAG, "onNext: " + oauth.getCode());
-            }
+                    @Override
+                    public void onNext(Oauth oauth) {
+                        mAauth = oauth;
+                        Log.d(TAG, "onNext: " + "getOauthFromNet");
+                        Log.d(TAG, "onNext: " + oauth.getState());
+                        Log.d(TAG, "onNext: " + oauth.getClient_id());
+                        Log.d(TAG, "onNext: " + oauth.getScope());
+                        Log.d(TAG, "onNext: " + oauth.getCode());
+                    }
 
-            @Override
-            public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError: " + "getOauth");
+                        e.printStackTrace();
+                    }
 
-            }
+                    @Override
+                    public void onComplete() {
 
-            @Override
-            public void onComplete() {
-
-            }
-        });
+                    }
+                });
 
         mILoginModel.getLoginFromNet(account, password)
                 .subscribe(new Observer<Login>() {

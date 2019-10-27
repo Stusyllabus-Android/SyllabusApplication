@@ -19,6 +19,8 @@ import com.stu.syllabus.retrofitApi.GetSkeyApi;
 import com.stu.syllabus.retrofitApi.LoginApi;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -120,19 +122,25 @@ public class LoginModel implements ILoginModel {
     }
 
     @Override
-    public String getSkeyFromDisk() {
-        sqLiteDatabase = dbHelper.getReadableDatabase();
-        String sql = "select * from skey_table";
-        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
-        String skey = null;
-        String refresh_key = null;
-        while (cursor.moveToNext()) {
-            skey = cursor.getString(cursor.getColumnIndex("skey"));
-            refresh_key = cursor.getString(cursor.getColumnIndex("refresh_key"));
-            Log.d(TAG, "getSkeyFromDisk: " + skey + " " + refresh_key);
-        }
-        sqLiteDatabase.close();
-        return skey;
+    public Observable<String> getSkeyFromDisk() {
+        return Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                String skey = null;
+                sqLiteDatabase = dbHelper.getReadableDatabase();
+                String sql = "select * from skey_table";
+                Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+                while (cursor.moveToNext()) {
+                    skey = cursor.getString(cursor.getColumnIndex("skey"));
+                }
+                sqLiteDatabase.close();
+                if (skey == null) {
+                    skey = "Non-existent";
+                }
+                emitter.onNext(skey);
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

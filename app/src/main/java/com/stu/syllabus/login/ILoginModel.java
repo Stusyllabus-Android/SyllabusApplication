@@ -14,7 +14,7 @@ import io.reactivex.Observable;
 public interface ILoginModel {
     void saveSkeyToDisk(String skey, String refresh_key);
 
-    String getSkeyFromDisk();
+    Observable<String> getSkeyFromDisk();
 
     Observable<Oauth> getOauthFromNet();
 

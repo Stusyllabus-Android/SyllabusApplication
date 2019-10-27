@@ -32,8 +32,27 @@ public class SplashPresenter implements SplashContract.presenter {
 
     @Override
     public void init() {
-        if (mLoginModel.getSkeyFromDisk() == null) {
-            mView.toLoginView();
-        } else mView.toMainView();
+        mLoginModel.getSkeyFromDisk()
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        if (s.equals("Non-existent")) {
+                            mView.toLoginView();
+                        } else mView.toMainView();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 }
