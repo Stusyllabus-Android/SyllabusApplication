@@ -18,8 +18,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table skey_table(skey varchar(64), refresh_key varchar(64))";
-        db.execSQL(sql);
+        String createSkeyTable = "create table skey_table(skey varchar(64), refresh_key varchar(64))";
+        String createUserInfoTable = "create table user_info(account varchar(64), password varchar(64))";
+        db.execSQL(createSkeyTable);
+        db.execSQL(createUserInfoTable);
     }
 
     @Override
