@@ -19,7 +19,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".main.MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme"/>
         <activity android:name=".login.splash.SplashActivity" android:theme="@style/AppTheme.Launcher.BG"
             android:screenOrientation="portrait">
             <intent-filter>

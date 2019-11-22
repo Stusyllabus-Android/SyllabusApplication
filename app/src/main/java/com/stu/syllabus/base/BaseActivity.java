@@ -1,8 +1,11 @@
 package com.stu.syllabus.base;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
 import com.stu.syllabus.App;
 import com.stu.syllabus.AppComponent;
