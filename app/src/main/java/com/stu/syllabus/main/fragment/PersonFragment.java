@@ -1,7 +1,6 @@
 package com.stu.syllabus.main.fragment;
 
 import android.util.Log;
-
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseFragment;
 
