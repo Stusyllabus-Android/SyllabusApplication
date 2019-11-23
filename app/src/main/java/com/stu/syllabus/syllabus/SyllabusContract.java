@@ -2,6 +2,7 @@ package com.stu.syllabus.syllabus;
 
 import com.stu.syllabus.base.BasePresenter;
 import com.stu.syllabus.base.BaseView;
+import com.stu.syllabus.bean.UserInfo;
 
 /**
  * yuan
@@ -12,6 +13,6 @@ public interface SyllabusContract {
 
     }
     interface presenter extends BasePresenter {
-
+        void getUserInfoFromDisk();
     }
 }

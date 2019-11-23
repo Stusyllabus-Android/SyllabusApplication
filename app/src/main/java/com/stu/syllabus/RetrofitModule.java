@@ -20,6 +20,7 @@ import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * yuan
@@ -80,6 +81,7 @@ public class RetrofitModule {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(YIBAN_BASEURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

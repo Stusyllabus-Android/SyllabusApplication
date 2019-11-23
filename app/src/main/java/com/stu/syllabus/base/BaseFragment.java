@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.stu.syllabus.App;
-import com.stu.syllabus.AppComponent;
+import com.stu.syllabus.di.HasComponent;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -26,18 +24,6 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
     public String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
-    public AppComponent appComponent;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-//        appComponent = (App)context
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -45,6 +31,7 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getContentView(), container, false);
         unbinder = ButterKnife.bind(this, view);
         setToolBarTitle();
+        init();
         return view;
     }
     
@@ -52,9 +39,18 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void setToolBarTitle();
 
+    public void init(){
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <C> C getComponent(Class<C> componentType) {
+        return componentType.cast(((HasComponent<C>) getActivity()).getComponent());
     }
 }

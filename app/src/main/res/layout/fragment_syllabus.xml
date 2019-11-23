@@ -9,4 +9,39 @@
         android:text="课程表"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/getRequestToken"
+        android:textAllCaps="false"
+        android:text="getRequestToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/getUserInfoFromDisk"
+        android:text="getUserInfoFromDisk"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/login"
+        android:text="login"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/getToken"
+        android:text="getToken"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/getTimeTable"
+        android:text="getTimeTable"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

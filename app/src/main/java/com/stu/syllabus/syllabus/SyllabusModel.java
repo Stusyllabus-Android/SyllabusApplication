@@ -53,7 +53,6 @@ public class SyllabusModel implements ISyllabusModel {
                 }
                 sqLiteDatabase.close();
                 UserInfo userInfo = new UserInfo(account, password);
-                // TODO: 2019/11/15 好像不能发送对象 
                 emitter.onNext(userInfo);
             }
         }).subscribeOn(Schedulers.io())

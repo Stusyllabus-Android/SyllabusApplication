@@ -26,13 +26,15 @@ import butterknife.BindView;
  * yuan
  * 2019/10/22
  **/
-public class SyllabusFragment extends BaseFragment implements View.OnClickListener{
+public class SyllabusFragment extends BaseFragment implements SyllabusContract.view, View.OnClickListener{
 
     @BindView(R.id.toolBar)
     Toolbar toolbar;
 
     @BindView(R.id.getRequestToken)
     Button getGetRequestToken;
+    @BindView(R.id.getUserInfoFromDisk)
+    Button getUserInfoFromDisk;
     @BindView(R.id.login)
     Button login;
     @BindView(R.id.getToken)
@@ -56,7 +58,7 @@ public class SyllabusFragment extends BaseFragment implements View.OnClickListen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         DaggerSyllabusComponent.builder()
                 .appComponent(appComponent)
-                .syllabusModule(new SyllabusModule((SyllabusContract.view) this))
+                .syllabusModule(new SyllabusModule(this))
                 .build()
                 .inject(this);
 
@@ -73,8 +75,9 @@ public class SyllabusFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.getRequestToken: syllabusPresenter.getGetRequestToken();break;
-            case R.id.login: syllabusPresenter.login("17xyxie@stu.edu.cn", "xp782278", "stu"); break;
+            case R.id.getRequestToken: syllabusPresenter.getGetRequestToken(); break;
+            case R.id.getUserInfoFromDisk: syllabusPresenter.getUserInfoFromDisk(); break;
+            case R.id.login: syllabusPresenter.login(); break;
             case R.id.getToken: syllabusPresenter.getToken(); break;
             case R.id.getTimeTable: syllabusPresenter.getTimeTable(); break;
         }
@@ -84,5 +87,14 @@ public class SyllabusFragment extends BaseFragment implements View.OnClickListen
     public void setToolBarTitle() {
         toolbar.setTitle(R.string.syllabus);
         toolbar.setTitleTextColor(getResources().getColor(R.color.toolbarTitle));
+    }
+
+    @Override
+    public void init() {
+        getGetRequestToken.setOnClickListener(this);
+        getUserInfoFromDisk.setOnClickListener(this);
+        login.setOnClickListener(this);
+        getToken.setOnClickListener(this);
+        getTimeTable.setOnClickListener(this);
     }
 }

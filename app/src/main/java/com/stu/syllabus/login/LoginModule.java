@@ -1,12 +1,9 @@
 package com.stu.syllabus.login;
 
 import com.stu.syllabus.DataBaseHelper;
-import com.stu.syllabus.di.AuthRetrofit;
-import com.stu.syllabus.di.BusinessRetrofit;
 import com.stu.syllabus.di.DataBase;
 import dagger.Module;
 import dagger.Provides;
-import retrofit2.Retrofit;
 
 /**
  * yuan

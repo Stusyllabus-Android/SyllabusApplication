@@ -45,12 +45,41 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
     @Override
     public void init() {
 //        getTimeTableFromYiBan();
+    }
 
+    @Override
+    public void getUserInfoFromDisk() {
+        model.getUserInfoFromDisk()
+                .subscribe(new Observer<UserInfo>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserInfo userInfo) {
+                        Log.d(TAG, "onNext: " + userInfo.getAccount());
+                        Log.d(TAG, "onNext: " + userInfo.getPassword());
+                        mUserInfo = new UserInfo(userInfo.getAccount(), userInfo.getPassword());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError: ");
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     /**
      * for test
      */
+
     public void getGetRequestToken() {
         Log.d(TAG, "getGetRequestToken: ");
         model.getRequestToken()
@@ -64,8 +93,6 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
                     public void onNext(String s) {
                         Log.d(TAG, "onNext: " + s);
                         document = Jsoup.parseBodyFragment(s);
-//                        tokenEle = document.select("input").get(3);
-//                        Log.d(TAG, "onNext: " + tokenEle);
                         Element tokenEle = document.getElementsByAttributeValue("name", "__RequestVerificationToken").first();
                         Log.d(TAG, "onNext: " + tokenEle);
                         token = tokenEle.attr("value");
@@ -91,9 +118,9 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
     }
 
     //要带前一步返回的cookie进行请求
-    public void login(String email, String password, String requestToken) {
+    public void login() {
 
-        model.login(email, password, requestToken)
+        model.login(mUserInfo.getAccount() + "@stu.edu.cn", mUserInfo.getPassword(), token)
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -192,31 +219,33 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
 
     //爬取易班上的课程信息
     public void getTimeTableFromYiBan() {
+
         //获取用户的账号与密码
-        model.getUserInfoFromDisk()
-                .subscribe(new Observer<UserInfo>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+            model.getUserInfoFromDisk()
+                    .subscribe(new Observer<UserInfo>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onNext(UserInfo userInfo) {
-                        Log.d(TAG, "onNext: " + userInfo.getAccount());
-                        Log.d(TAG, "onNext: " + userInfo.getAccount());
-                        mUserInfo = userInfo;
-                    }
+                        @Override
+                        public void onNext(UserInfo userInfo) {
+                            Log.d(TAG, "onNext: " + userInfo.getAccount());
+                            Log.d(TAG, "onNext: " + userInfo.getPassword());
+                            mUserInfo = new UserInfo(userInfo.getAccount(), userInfo.getPassword());
+                        }
 
-                    @Override
-                    public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.d(TAG, "onError: ");
+                            e.printStackTrace();
+                        }
 
-                    }
+                        @Override
+                        public void onComplete() {
 
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+                        }
+                    });
 
         //获取网页token
         model.getRequestToken()

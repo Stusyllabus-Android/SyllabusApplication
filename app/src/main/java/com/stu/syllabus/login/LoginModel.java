@@ -122,6 +122,16 @@ public class LoginModel implements ILoginModel {
     }
 
     @Override
+    public void saveUserInfoToDisk(String account, String password) {
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("account", account);
+        values.put("password", password);
+        sqLiteDatabase.insert("user_info", null, values);
+        sqLiteDatabase.close();
+    }
+
+    @Override
     public Observable<String> getSkeyFromDisk() {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override

@@ -27,7 +27,6 @@ public class MainActivity extends BaseActivity implements MainContract.view, Has
     @BindView(R.id.navigation)
     BottomNavigationView bottomNavigationView;
 
-    @Inject
     MainPresenter mainPresenter;
 
     private AppComponent mAppComponent;
@@ -37,11 +36,13 @@ public class MainActivity extends BaseActivity implements MainContract.view, Has
         super.onCreate(savedInstanceState);
 
         mAppComponent = appComponent;
+
         DaggerMainComponent.builder()
                 .appComponent(appComponent)
                 .mainModule(new MainModule(this))
                 .build();
 
+        mainPresenter = new MainPresenter(this);
         mainPresenter.init();
     }
 

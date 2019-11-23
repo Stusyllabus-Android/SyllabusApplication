@@ -24,7 +24,7 @@ public class MainPresenter implements MainContract.presenter{
     MainContract.view view;
 
     List<Fragment> fragmentList;
-    @Inject
+
     public MainPresenter(MainContract.view view) {
         super();
         this.view = view;

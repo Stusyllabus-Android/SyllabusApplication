@@ -107,17 +107,23 @@ public class LoginPresenter implements LoginContract.presenter{
                                                             @Override
                                                             public void onNext(Skey skey) {
                                                                 Log.d(TAG, "onNext: " + "getSkeyFromNet");
-                                                                if (!skey.getSkey().isEmpty()) {
-                                                                    Log.d(TAG, "onNext: " + skey.getSkey());
-                                                                    Log.d(TAG, "onNext: " + "持久化skey");
-                                                                    mILoginModel.saveSkeyToDisk(skey.getSkey(), skey.getRefresh_key());
-                                                                    mView.toMainView();
+                                                                try {
+                                                                    if (skey.getSkey()!= null && !skey.getSkey().isEmpty()) {
+                                                                        Log.d(TAG, "onNext: " + skey.getSkey());
+                                                                        Log.d(TAG, "onNext: " + "持久化skey");
+                                                                        mILoginModel.saveSkeyToDisk(skey.getSkey(), skey.getRefresh_key());
+                                                                        mILoginModel.saveUserInfoToDisk(account, password);
+                                                                        mView.toMainView();
+                                                                    }
+                                                                } catch (Exception e) {
+                                                                    e.printStackTrace();
+                                                                    // TODO: 2019/11/18 空对象出错处理 
                                                                 }
                                                             }
 
                                                             @Override
                                                             public void onError(Throwable e) {
-
+                                                                e.printStackTrace();
                                                             }
 
                                                             @Override
@@ -145,7 +151,7 @@ public class LoginPresenter implements LoginContract.presenter{
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override
