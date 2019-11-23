@@ -10,9 +10,9 @@ import com.stu.syllabus.bean.UserInfo;
  **/
 public interface SyllabusContract {
     interface view extends BaseView {
-
+        void setAdapterForListView();
     }
     interface presenter extends BasePresenter {
-        void getUserInfoFromDisk();
+
     }
 }

@@ -1,10 +1,12 @@
 package com.stu.syllabus.main.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +14,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
+import com.stu.syllabus.adapter.SyllabusListViewAdapter;
 import com.stu.syllabus.base.BaseFragment;
 import com.stu.syllabus.syllabus.DaggerSyllabusComponent;
 import com.stu.syllabus.syllabus.SyllabusContract;
 import com.stu.syllabus.syllabus.SyllabusModule;
 import com.stu.syllabus.syllabus.SyllabusPresenter;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import javax.inject.Inject;
 
@@ -26,26 +30,23 @@ import butterknife.BindView;
  * yuan
  * 2019/10/22
  **/
-public class SyllabusFragment extends BaseFragment implements SyllabusContract.view, View.OnClickListener{
+public class SyllabusFragment extends BaseFragment implements SyllabusContract.view{
 
     @BindView(R.id.toolBar)
     Toolbar toolbar;
 
-    @BindView(R.id.getRequestToken)
-    Button getGetRequestToken;
-    @BindView(R.id.getUserInfoFromDisk)
-    Button getUserInfoFromDisk;
-    @BindView(R.id.login)
-    Button login;
-    @BindView(R.id.getToken)
-    Button getToken;
-    @BindView(R.id.getTimeTable)
-    Button getTimeTable;
+    @BindView(R.id.syllabusRefreshLayout)
+    PullToRefreshView pullToRefreshView;
+    @BindView(R.id.listView)
+    ListView listView;
+
+    private SyllabusListViewAdapter syllabusListViewAdapter;
 
     @Inject
     SyllabusPresenter syllabusPresenter;
 
     private AppComponent appComponent;
+    private long REFRESH_DELAY = 2000;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,9 +62,8 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 .syllabusModule(new SyllabusModule(this))
                 .build()
                 .inject(this);
-
+        pullToRefreshView.setRefreshing(true);
         syllabusPresenter.init();
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -73,14 +73,10 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.getRequestToken: syllabusPresenter.getGetRequestToken(); break;
-            case R.id.getUserInfoFromDisk: syllabusPresenter.getUserInfoFromDisk(); break;
-            case R.id.login: syllabusPresenter.login(); break;
-            case R.id.getToken: syllabusPresenter.getToken(); break;
-            case R.id.getTimeTable: syllabusPresenter.getTimeTable(); break;
-        }
+    public void setAdapterForListView() {
+        syllabusListViewAdapter = new SyllabusListViewAdapter(getContext(), R.layout.lesson_item, syllabusPresenter.getYiBanTimeTable().getTable());
+        listView.setAdapter(syllabusListViewAdapter);
+        pullToRefreshView.setRefreshing(false);
     }
 
     @Override
@@ -91,10 +87,17 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
 
     @Override
     public void init() {
-        getGetRequestToken.setOnClickListener(this);
-        getUserInfoFromDisk.setOnClickListener(this);
-        login.setOnClickListener(this);
-        getToken.setOnClickListener(this);
-        getTimeTable.setOnClickListener(this);
+        pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        syllabusPresenter.init();
+                        pullToRefreshView.setRefreshing(false);
+                    }
+                }, REFRESH_DELAY);
+            }
+        });
     }
 }

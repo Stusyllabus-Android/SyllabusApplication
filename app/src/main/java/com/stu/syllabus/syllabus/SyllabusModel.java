@@ -7,7 +7,6 @@ import com.stu.syllabus.DataBaseHelper;
 import com.stu.syllabus.bean.UserInfo;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
-import com.stu.syllabus.di.YiBanRetrofit;
 import com.stu.syllabus.retrofitApi.YiBanApi;
 
 import io.reactivex.Observable;
@@ -24,7 +23,6 @@ import retrofit2.Retrofit;
 public class SyllabusModel implements ISyllabusModel {
     private final String TAG = this.getClass().getSimpleName();
 
-    // TODO: 2019/11/12 主要是为了拿到用户的账号和密码 
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase sqLiteDatabase;
     Retrofit retrofit;
