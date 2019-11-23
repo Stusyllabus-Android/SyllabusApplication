@@ -5,6 +5,7 @@ import android.content.Context;
 import com.stu.syllabus.di.AuthRetrofit;
 import com.stu.syllabus.di.BusinessRetrofit;
 import com.stu.syllabus.di.DataBase;
+import com.stu.syllabus.di.YiBanRetrofit;
 
 import javax.inject.Singleton;
 
@@ -28,5 +29,10 @@ public interface AppComponent {
 
     @BusinessRetrofit
     Retrofit getBusinessRetrofit();
+
+    @YiBanRetrofit
+    Retrofit getYiBanRetrofit();
+
+    void inject(App app);
 
 }

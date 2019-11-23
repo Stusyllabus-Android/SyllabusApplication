@@ -27,8 +27,5 @@ public class MainModule {
     MainContract.view provideView() {
         return view;
     }
-    @Provides
-    MainModel provideMainModel(@DataBase DataBaseHelper dataBaseHelper, @AuthRetrofit Retrofit authRetrofit, @BusinessRetrofit Retrofit businessRetrofit) {
-        return new MainModel(dataBaseHelper, authRetrofit, businessRetrofit);
-    }
+
 }
