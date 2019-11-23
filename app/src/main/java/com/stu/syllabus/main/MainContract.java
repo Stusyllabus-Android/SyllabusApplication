@@ -18,9 +18,7 @@ public interface MainContract {
 
     }
     interface view extends BaseView<LoginContract.presenter> {
-        void initViewPager(List<Fragment> fragmentList);
-
-        void initBottomNavigationView();
-
+        void initBottomNavigationView(List<Fragment> fragmentList);
+        void onTabItemSelected(List<Fragment> fragmentList, int id);
     }
 }

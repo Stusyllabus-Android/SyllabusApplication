@@ -2,6 +2,7 @@ package com.stu.syllabus.main;
 
 import androidx.fragment.app.Fragment;
 
+import com.stu.syllabus.R;
 import com.stu.syllabus.main.fragment.ContactFragment;
 import com.stu.syllabus.main.fragment.HomeFragment;
 import com.stu.syllabus.main.fragment.InfoFragment;
@@ -9,6 +10,7 @@ import com.stu.syllabus.main.fragment.PersonFragment;
 import com.stu.syllabus.main.fragment.SyllabusFragment;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,16 +22,13 @@ import javax.inject.Inject;
 public class MainPresenter implements MainContract.presenter{
 
     MainContract.view view;
-    MainModel mainModel;
 
-    private List<Fragment> fragmentList;
-
+    List<Fragment> fragmentList;
     @Inject
-    public MainPresenter(MainContract.view view, MainModel mainModel) {
+    public MainPresenter(MainContract.view view) {
         super();
         this.view = view;
-        this.mainModel = mainModel;
-        fragmentList = new ArrayList<>();
+        fragmentList = new LinkedList<>();
         fragmentList.add(new HomeFragment());
         fragmentList.add(new InfoFragment());
         fragmentList.add(new SyllabusFragment());
@@ -39,7 +38,7 @@ public class MainPresenter implements MainContract.presenter{
 
     @Override
     public void init() {
-        view.initViewPager(fragmentList);
-        view.initBottomNavigationView();
+        view.onTabItemSelected(fragmentList, R.id.home);
+        view.initBottomNavigationView(fragmentList);
     }
 }
