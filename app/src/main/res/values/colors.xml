@@ -5,4 +5,10 @@
     <color name="colorAccent">#999999</color>
 
     <color name="toolbarTitle">#f5f5f5</color>
+
+    <color name="defaultLightBackground">#FAFAFA</color>
+
+    <color name="grey66Color">#666666</color>
+
+    <color name="material_white">#ffffff</color>
 </resources>

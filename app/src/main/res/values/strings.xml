@@ -5,7 +5,7 @@
     <string name="home">首页</string>
     <string name="info">资讯</string>
     <string name="syllabus">课程表</string>
-    <string name="contact">社交</string>
+    <string name="contact">动态</string>
     <string name="person">个人</string>
 
 </resources>
