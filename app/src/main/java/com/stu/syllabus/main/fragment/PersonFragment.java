@@ -1,5 +1,6 @@
 package com.stu.syllabus.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseFragment;
+import com.stu.syllabus.login.login.LoginActivity;
 import com.stu.syllabus.person.DaggerPersonComponent;
 import com.stu.syllabus.person.PersonContract;
 import com.stu.syllabus.person.PersonModule;
@@ -89,10 +91,23 @@ public class PersonFragment extends BaseFragment implements PersonContract.view 
     @OnClick({R.id.settingLayout, R.id.toPersonalActivity})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.settingLayout: startActivity(SettingActivity.getIntent(getContext()));
+            case R.id.settingLayout: startActivityForResult(SettingActivity.getIntent(getContext()), 1000);
                 getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left); break;
             case R.id.toPersonalActivity: startActivity(PersonalActivity.getIntent(getContext()));
                 getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left); break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data == null) return;
+        if (requestCode == 1000) {
+            String value = data.getStringExtra("finishMainActivity");
+            if(value.equals("finishMainActivity")){
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
+            }
         }
     }
 
