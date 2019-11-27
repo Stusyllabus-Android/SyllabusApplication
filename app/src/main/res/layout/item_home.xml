@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="@string/home_library"
+        />
+
+    <LinearLayout
+        android:layout_width="348dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp">
+
+        <ListView
+            android:id="@+id/lv_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -63,7 +63,6 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 .build()
                 .inject(this);
         pullToRefreshView.setRefreshing(true);
-        syllabusPresenter.init();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -87,6 +86,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
 
     @Override
     public void init() {
+        syllabusPresenter.init();
         pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {
