@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.stu.syllabus.R;
-import com.stu.syllabus.bean.YiBanTimeTable;
+import com.stu.syllabus.bean.OAArticle;
 
 import java.util.List;
 
@@ -20,13 +20,11 @@ import butterknife.ButterKnife;
 
 /**
  * yuan
- * 2019/11/23
+ * 2019/11/28
  **/
-public class SyllabusListViewAdapter extends ArrayAdapter<YiBanTimeTable.TableBean> {
-
+public class OAListAdapter extends ArrayAdapter<OAArticle> {
     int resourceId;
-
-    public SyllabusListViewAdapter(@NonNull Context context, int resource, List<YiBanTimeTable.TableBean> objects) {
+    public OAListAdapter(@NonNull Context context, int resource, @NonNull List<OAArticle> objects) {
         super(context, resource, objects);
         resourceId = resource;
     }
@@ -34,9 +32,9 @@ public class SyllabusListViewAdapter extends ArrayAdapter<YiBanTimeTable.TableBe
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        final YiBanTimeTable.TableBean tableBean = getItem(position);
+        OAArticle oaArticle = getItem(position);
+        ViewHolder viewHolder;
         View view;
-        final ViewHolder viewHolder;
         if (convertView != null) {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
@@ -45,25 +43,19 @@ public class SyllabusListViewAdapter extends ArrayAdapter<YiBanTimeTable.TableBe
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }
-        if (tableBean != null) {
-            viewHolder.kc_name.setText(tableBean.kcName);
-            viewHolder.xnxq_name.setText(tableBean.xnxqName);
-            viewHolder.sj_name.setText(tableBean.sjName);
-            viewHolder.ks_name.setText(tableBean.ksName);
-        }
+        viewHolder.oATitleTextView.setText(oaArticle.getTitle());
+        viewHolder.oASubTextView.setText(oaArticle.getDepartment());
+        viewHolder.oATimeTextView.setText(oaArticle.publishDate);
         return view;
     }
 
     class ViewHolder {
-
-        @BindView(R.id.kc_name)
-        TextView kc_name;
-        @BindView(R.id.xnxq_name)
-        TextView xnxq_name;
-        @BindView(R.id.sj_name)
-        TextView sj_name;
-        @BindView(R.id.ks_name)
-        TextView ks_name;
+        @BindView(R.id.oATitleTextView)
+        TextView oATitleTextView;
+        @BindView(R.id.oASubTextView)
+        TextView oASubTextView;
+        @BindView(R.id.oATimeTextView)
+        TextView oATimeTextView;
 
         public ViewHolder(View view) {
             super();
