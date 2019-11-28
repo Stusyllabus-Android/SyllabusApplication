@@ -1,5 +1,7 @@
 package com.stu.syllabus.widget;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -55,7 +57,7 @@ public abstract class BaseBottomDialog extends DialogFragment {
 
         params.dimAmount = getDimAmount();
 
-        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
 
         params.height = (getHeight() > 0) ?  getHeight() :  WindowManager.LayoutParams.WRAP_CONTENT;
 

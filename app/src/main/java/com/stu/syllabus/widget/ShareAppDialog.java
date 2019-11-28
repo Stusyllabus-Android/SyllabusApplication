@@ -47,7 +47,7 @@ public class ShareAppDialog extends BaseBottomDialog implements View.OnClickList
 
     @Override
     public int getLayoutRes() {
-        return R.layout.dialog_share;
+        return R.layout.dialog_shareapp;
     }
 
     @Override

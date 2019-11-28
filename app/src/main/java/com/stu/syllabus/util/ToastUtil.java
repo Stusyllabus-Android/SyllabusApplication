@@ -1,4 +1,4 @@
-package com.stu.syllabus;
+package com.stu.syllabus.util;
 
 import android.content.Context;
 import android.widget.Toast;

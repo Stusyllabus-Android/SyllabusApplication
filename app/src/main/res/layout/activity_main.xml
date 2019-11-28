@@ -14,9 +14,9 @@
         android:layout_weight="1"/>
 
     <View
+        android:background="#EBEDF0"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#999999"/>
+        android:layout_height="1px"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"

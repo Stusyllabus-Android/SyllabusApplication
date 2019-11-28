@@ -20,7 +20,7 @@ public class SettingPresenter implements SettingContract.presenter {
 
     @Override
     public void init() {
-
+        view.init();
     }
 
     @Override

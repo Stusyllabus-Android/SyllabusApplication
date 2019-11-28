@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import com.stu.syllabus.App;
@@ -30,6 +31,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract int getContentView();
+
+    public void setupTitleBar(Toolbar toolbar) {
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            //判断是返回键然后退出当前Activity
+            this.onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onDestroy() {

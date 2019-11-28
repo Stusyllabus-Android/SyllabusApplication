@@ -9,6 +9,7 @@ import com.stu.syllabus.base.BaseView;
  **/
 public interface SettingContract {
     interface view extends BaseView {
+        void init();
         void showShareDialog();
         void toLoginActivity();
     }

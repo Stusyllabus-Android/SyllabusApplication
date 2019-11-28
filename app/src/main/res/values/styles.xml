@@ -11,8 +11,8 @@
     <style name="AppTheme.Launcher.BG" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/launch_bg</item>
-        <item name="android:background">@drawable/launch_bg</item>
+        <item name="android:windowBackground">@drawable/temp</item>
+        <item name="android:background">@drawable/temp</item>
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
 

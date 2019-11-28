@@ -1,12 +1,16 @@
 package com.stu.syllabus.person.setting;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.stu.syllabus.App;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
 import com.stu.syllabus.widget.ShareAppDialog;
@@ -20,6 +24,8 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
 
     @BindView(R.id.toolBar)
     Toolbar toolbar;
+    @BindView(R.id.versionNameTextView)
+    TextView versionNameTextView;
 
     @Inject
     SettingPresenter settingPresenter;
@@ -34,7 +40,7 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
                 .build()
                 .inject(this);
 
-        setupTitleBar(toolbar);
+        settingPresenter.init();
     }
 
     @Override
@@ -48,7 +54,13 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
         return mIntent;
     }
 
-
+    @Override
+    public void init() {
+        Log.d(TAG, "init: " + App.versionName);
+        Log.d(TAG, "init: " + App.versionCode);
+        setupTitleBar(toolbar);
+        versionNameTextView.setText("版本" + App.versionName);
+    }
 
     @OnClick({R.id.helpAndFeedback, R.id.recommendTo, R.id.aboutUs, R.id.logout})
     public void onClick(View view) {
