@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.stu.syllabus"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -58,8 +58,12 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.12.1'
     //refreshStyle
     implementation 'com.yalantis:phoenix:1.2.3'
+<<<<<<< HEAD
     //fresco
     implementation 'com.facebook.fresco:fresco:2.0.0'
     //resource
     implementation 'com.zzhoujay.materialcolors:materialcolors:1.0.0'
+=======
+
+>>>>>>> dev_wwshe
 }
