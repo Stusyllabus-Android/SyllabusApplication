@@ -1,16 +1,15 @@
 package com.stu.syllabus.main.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
@@ -36,7 +35,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
     Toolbar toolbar;
 
     @BindView(R.id.syllabusRefreshLayout)
-    PullToRefreshView pullToRefreshView;
+    SwipeRefreshLayout syllabusRefreshLayout;
     @BindView(R.id.listView)
     ListView listView;
 
@@ -46,7 +45,6 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
     SyllabusPresenter syllabusPresenter;
 
     private AppComponent appComponent;
-    private long REFRESH_DELAY = 2000;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,7 +60,6 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 .syllabusModule(new SyllabusModule(this))
                 .build()
                 .inject(this);
-        pullToRefreshView.setRefreshing(true);
         syllabusPresenter.init();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
@@ -74,9 +71,8 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
 
     @Override
     public void setAdapterForListView() {
-        syllabusListViewAdapter = new SyllabusListViewAdapter(getContext(), R.layout.lesson_item, syllabusPresenter.getYiBanTimeTable().getTable());
+        syllabusListViewAdapter = new SyllabusListViewAdapter(getContext(), R.layout.item_lesson, syllabusPresenter.getYiBanTimeTable().getTable());
         listView.setAdapter(syllabusListViewAdapter);
-        pullToRefreshView.setRefreshing(false);
     }
 
     @Override
@@ -87,17 +83,17 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
 
     @Override
     public void init() {
-        pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+        syllabusRefreshLayout.setRefreshing(true);
+        syllabusRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                pullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        syllabusPresenter.init();
-                        pullToRefreshView.setRefreshing(false);
-                    }
-                }, REFRESH_DELAY);
+                syllabusPresenter.init();
             }
         });
+    }
+
+    @Override
+    public void isRefresh(boolean flag) {
+        syllabusRefreshLayout.setRefreshing(flag);
     }
 }

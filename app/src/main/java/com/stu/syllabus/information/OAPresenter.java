@@ -44,6 +44,7 @@ public class OAPresenter implements OAContract.presenter {
                     public void onNext(List<OAArticle> oaArticles) {
                         Log.d(TAG, "onNext: " + oaArticles.size());
                         view.showOA(oaArticles);
+                        view.isRefresh(false);
                     }
 
                     @Override

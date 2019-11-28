@@ -13,6 +13,7 @@ import java.util.List;
  **/
 public interface OAContract {
     interface view extends BaseView{
+        void isRefresh(boolean flag);
         void showOA(List<OAArticle> articleList);
     }
     interface presenter extends BasePresenter {

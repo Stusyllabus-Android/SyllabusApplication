@@ -1,6 +1,6 @@
 package com.stu.syllabus.syllabus;
 
-import com.stu.syllabus.bean.UserInfo;
+import com.stu.syllabus.bean.BaseUserInfo;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
 
@@ -12,7 +12,7 @@ import io.reactivex.Observable;
  **/
 public interface ISyllabusModel {
 
-    Observable<UserInfo> getUserInfoFromDisk();
+    Observable<BaseUserInfo> getUserInfoFromDisk();
 
     Observable<String> getRequestToken();
 

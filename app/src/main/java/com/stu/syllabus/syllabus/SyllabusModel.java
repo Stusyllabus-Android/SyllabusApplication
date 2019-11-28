@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.stu.syllabus.DataBaseHelper;
-import com.stu.syllabus.bean.UserInfo;
+import com.stu.syllabus.bean.BaseUserInfo;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
 import com.stu.syllabus.retrofitApi.YiBanApi;
@@ -36,22 +36,22 @@ public class SyllabusModel implements ISyllabusModel {
     }
 
     @Override
-    public Observable<UserInfo> getUserInfoFromDisk() {
-        return Observable.create(new ObservableOnSubscribe<UserInfo>() {
+    public Observable<BaseUserInfo> getUserInfoFromDisk() {
+        return Observable.create(new ObservableOnSubscribe<BaseUserInfo>() {
             @Override
-            public void subscribe(ObservableEmitter<UserInfo> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<BaseUserInfo> emitter) throws Exception {
                 String account = null;
                 String password = null;
                 sqLiteDatabase = dataBaseHelper.getReadableDatabase();
-                String sql = "select * from user_info";
+                String sql = "select * from user_base_info";
                 Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
                 while (cursor.moveToNext()) {
                     account = cursor.getString(cursor.getColumnIndex("account"));
                     password = cursor.getString(cursor.getColumnIndex("password"));
                 }
                 sqLiteDatabase.close();
-                UserInfo userInfo = new UserInfo(account, password);
-                emitter.onNext(userInfo);
+                BaseUserInfo baseUserInfo = new BaseUserInfo(account, password);
+                emitter.onNext(baseUserInfo);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
