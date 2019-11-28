@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author :wwshe
+ * 2019/11/28
+ */
 public class HomeItemViewAdapter extends ArrayAdapter<HomeItemsItem> {
     private List<HomeItemsItem> list_home_item;
     private LayoutInflater inflater;
@@ -29,6 +32,7 @@ public class HomeItemViewAdapter extends ArrayAdapter<HomeItemsItem> {
         super(context, resourceId, list_home_item);
         this.context = context;
         this.list_home_item = list_home_item;
+        this.resourceId = resourceId;
     }
 
     @NonNull

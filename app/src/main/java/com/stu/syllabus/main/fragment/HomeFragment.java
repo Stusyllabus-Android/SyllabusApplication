@@ -31,8 +31,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 
 /**
- * yuan
- * 2019/10/22
+ * @author wwshe
+ * 2019/11/28
  **/
 public class HomeFragment extends BaseFragment implements HomeContract.view {
 
@@ -82,51 +82,51 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
 
     @Override
     public void init() {
-        Toast.makeText(getContext(), "no!!",Toast.LENGTH_LONG).show();
         homePresenter.init();
     }
 
     @Override
     public void setAdapterForListView() {
-        Log.d("-------------","hello!!!!");
         list_home = new ArrayList<>();
         item_item = new ArrayList<>();
-        homeItem = new HomeItem();
-        homeItemsItem = new HomeItemsItem();
-
         //图书馆
+        homeItemsItem = new HomeItemsItem();
         homeItemsItem.setItem("图书检索");
         item_item.add(homeItemsItem);
+        homeItemsItem = new HomeItemsItem();
         homeItemsItem.setItem("预约研讨室");
         item_item.add(homeItemsItem);
-        Log.d("HomeFragement:item_item", item_item.toString());
+
+        homeItem = new HomeItem();
         homeItem.setFunc("图书馆");
         homeItem.setFuncItem(item_item);
         list_home.add(homeItem);
-        Log.d("HomeFragement:list_home", list_home.toString());
 
 
         //预约
+        item_item = new ArrayList<>();
+        homeItemsItem = new HomeItemsItem();
         homeItemsItem.setItem("预约场地");
         item_item.add(homeItemsItem);
+        homeItemsItem = new HomeItemsItem();
         homeItemsItem.setItem("预约教室");
         item_item.add(homeItemsItem);
+
+        homeItem = new HomeItem();
         homeItem.setFunc("预约");
         homeItem.setFuncItem(item_item);
         list_home.add(homeItem);
-        Log.d("HomeFragement:item_item", item_item.toString());
-        Log.d("HomeFragement:list_home", list_home.toString());
+
 
         //流量监控
+        item_item = new ArrayList<>();
+        homeItemsItem = new HomeItemsItem();
         homeItemsItem.setItem("查看剩余流量");
         item_item.add(homeItemsItem);
-        homeItemsItem.setItem("查看已用流量");
-        item_item.add(homeItemsItem);
+        homeItem = new HomeItem();
         homeItem.setFunc("流量监控");
         homeItem.setFuncItem(item_item);
         list_home.add(homeItem);
-        Log.d("HomeFragement:item_item", item_item.toString());
-        Log.d("HomeFragement:list_home", list_home.toString());
 
         homeLvAdapter = new HomeListViewAdapter(getContext(), R.layout.item_home, list_home);
         lv_home.setAdapter(homeLvAdapter);

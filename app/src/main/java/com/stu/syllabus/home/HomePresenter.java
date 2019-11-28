@@ -1,9 +1,11 @@
 package com.stu.syllabus.home;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
+/**
+ * @author wwshe
+ * by 2019/11/28
+ */
 public class HomePresenter implements HomeContract.presenter {
     private final String TAG = this.getClass().getSimpleName();
 
@@ -17,5 +19,6 @@ public class HomePresenter implements HomeContract.presenter {
     @Override
     public void init() {
         view.setAdapterForListView();
+
     }
 }
