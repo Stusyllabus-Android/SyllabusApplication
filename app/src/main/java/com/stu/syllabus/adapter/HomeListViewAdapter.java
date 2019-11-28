@@ -1,87 +1,74 @@
 package com.stu.syllabus.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.stu.syllabus.R;
 import com.stu.syllabus.bean.HomeItem;
 import com.stu.syllabus.bean.HomeItemsItem;
-import com.stu.syllabus.syllabus.SyllabusContract;
-
 import java.util.List;
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * 图书馆、流量监控...等分类的ListView
  */
-public class HomeListViewAdapter extends BaseAdapter{
+public class HomeListViewAdapter extends ArrayAdapter<HomeItem> {
     private List<HomeItem> list_home;
     private List<HomeItemsItem> list_home_item;
     private LayoutInflater inflater;
     private HomeItemViewAdapter homeItemViewAdapter;
     Context context;
+    int resouceId;
 
     /**
      *
-     * @param list_home: 分类list的数据：图书馆、预约、流量监控
-     * @param inflater: ？？？
-     * @param list_home_item: 每个分类的item中list数据
+     * @param context
+     * @param resourceId
+     * @param list_home
      */
-    public HomeListViewAdapter(Context context, List<HomeItem> list_home, LayoutInflater inflater) {
+    public HomeListViewAdapter(Context context, int resourceId, List<HomeItem> list_home) {
+        super(context, resourceId, list_home);
         this.list_home = list_home;
-        this.inflater = inflater;
         this.context = context;
+        this.resouceId = resourceId;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view;
         ViewHolder viewHolder;
         if (convertView != null) {
             view = convertView;
             viewHolder = (ViewHolder)view.getTag();
         } else {
-            view = inflater.inflate(R.layout.item_home,null);
+            inflater = LayoutInflater.from(getContext());
+            view = inflater.inflate(resouceId,null);
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }
         //1.让textView显示大类的名称
-        viewHolder.tv_home.setText(list_home.get(position).getFunc());
+        String text = list_home.get(position).getFunc();
+        viewHolder.tv_home.setText(text);
+        Log.d("HomelistAdapter:",text);
+
         //2.让右边的ListView显示按钮，获取view
         list_home_item = list_home.get(position).getFuncItem();
-        viewHolder.lv_home.setAdapter(new HomeItemViewAdapter(context,list_home_item, inflater));
+        Log.d("HomelistAdapter:",list_home_item.toString());
+        viewHolder.lv_home.setAdapter(new HomeItemViewAdapter(context,R.layout.item_items_home,list_home_item));
         return view;
 
     }
-
-    /*public void setAdapterForListView() {
-        homeItemViewAdapter = new HomeItemViewAdapter(context,list_home_item, inflater);
-        lv_home_item.setAdapter(homeItemViewAdapter);
-    }*/
-
 
     class ViewHolder{
         @BindView(R.id.tv_home)

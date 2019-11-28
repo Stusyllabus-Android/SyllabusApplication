@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
@@ -18,30 +19,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeItemViewAdapter extends BaseAdapter {
+public class HomeItemViewAdapter extends ArrayAdapter<HomeItemsItem> {
     private List<HomeItemsItem> list_home_item;
     private LayoutInflater inflater;
     Context context;
+    int resourceId;
 
-    public HomeItemViewAdapter(Context context, List<HomeItemsItem> list_home_item, LayoutInflater inflater) {
+    public HomeItemViewAdapter(Context context,int resourceId, List<HomeItemsItem> list_home_item) {
+        super(context, resourceId, list_home_item);
         this.context = context;
         this.list_home_item = list_home_item;
-        this.inflater = inflater;
-    }
-
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
     }
 
     @NonNull
@@ -53,11 +40,13 @@ public class HomeItemViewAdapter extends BaseAdapter {
             view = convertView;
             viewHolder = (ViewHolder)view.getTag();
         } else {
-            view = inflater.inflate(R.layout.item_items_home,null);
+            inflater = LayoutInflater.from(getContext());
+            view = inflater.inflate(resourceId,null);
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }
-        viewHolder.bt_home_item.setText((CharSequence) list_home_item.get(position));
+        String text = list_home_item.get(position).getItem();
+        viewHolder.bt_home_item.setText(text);
         return view;
     }
 
