@@ -60,11 +60,9 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 .syllabusModule(new SyllabusModule(this))
                 .build()
                 .inject(this);
-<<<<<<< HEAD
+
         syllabusPresenter.init();
-=======
-        pullToRefreshView.setRefreshing(true);
->>>>>>> dev_wwshe
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -87,13 +85,9 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
 
     @Override
     public void init() {
-<<<<<<< HEAD
         syllabusRefreshLayout.setRefreshing(true);
         syllabusRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-=======
-        syllabusPresenter.init();
-        pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
->>>>>>> dev_wwshe
+
             @Override
             public void onRefresh() {
                 syllabusPresenter.init();
