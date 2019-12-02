@@ -22,9 +22,12 @@ import com.stu.syllabus.base.BaseFragment;
 import com.stu.syllabus.bean.HomeItem;
 import com.stu.syllabus.bean.HomeItemsItem;
 import com.stu.syllabus.home.DaggerHomeComponent;
+import com.stu.syllabus.home.GlideImageLoader;
 import com.stu.syllabus.home.HomeContract;
 import com.stu.syllabus.home.HomeModule;
 import com.stu.syllabus.home.HomePresenter;
+import com.youth.banner.Banner;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -40,6 +43,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
     Toolbar toolbar;
     @BindView(R.id.lv_home)
     ListView lv_home;
+    @BindView(R.id.banner)
+    Banner banner;
 
     @Inject
     HomePresenter homePresenter;
@@ -67,6 +72,21 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
                 .build()
                 .inject(this);
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    //如果你需要考虑更好的体验，可以这么操作
+    @Override
+    public void onStart() {
+        super.onStart();
+        //开始轮播
+        banner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //结束轮播
+        banner.stopAutoPlay();
     }
 
     @Override
@@ -130,5 +150,20 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
 
         homeLvAdapter = new HomeListViewAdapter(getContext(), R.layout.item_home, list_home);
         lv_home.setAdapter(homeLvAdapter);
+    }
+
+    @Override
+    public void setBannerImages(){
+        List<Integer> images=new ArrayList<>();
+        images.add(R.drawable.three_pig);
+        images.add(R.drawable.three_cute);
+        images.add(R.drawable.three_dogs);
+
+        //设置图片加载器
+        banner.setImageLoader(new GlideImageLoader());
+        //设置图片集合
+        banner.setImages(images);
+        //banner设置方法全部调用完毕时最后调用
+        banner.start();
     }
 }

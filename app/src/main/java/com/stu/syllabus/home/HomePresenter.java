@@ -7,10 +7,7 @@ import javax.inject.Inject;
  * by 2019/11/28
  */
 public class HomePresenter implements HomeContract.presenter {
-    private final String TAG = this.getClass().getSimpleName();
-
     HomeContract.view view;
-
 
     @Inject
     public HomePresenter(HomeContract.view view){
@@ -19,6 +16,6 @@ public class HomePresenter implements HomeContract.presenter {
     @Override
     public void init() {
         view.setAdapterForListView();
-
+        view.setBannerImages();
     }
 }

@@ -61,6 +61,7 @@ public class HomeListViewAdapter extends ArrayAdapter<HomeItem> {
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }
+
         //1.让textView显示大类的名称
         String text = list_home.get(position).getFunc();
         viewHolder.tv_home.setText(text);
@@ -70,7 +71,6 @@ public class HomeListViewAdapter extends ArrayAdapter<HomeItem> {
         list_home_item = list_home.get(position).getFuncItem();
         viewHolder.lv_home.setAdapter(new HomeItemViewAdapter(context,R.layout.item_items_home,list_home_item));
         return view;
-
     }
 
     class ViewHolder{

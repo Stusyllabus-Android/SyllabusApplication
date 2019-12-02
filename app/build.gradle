@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.stu.syllabus"
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -58,5 +58,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.12.1'
     //refreshStyle
     implementation 'com.yalantis:phoenix:1.2.3'
+    //banner
+    implementation 'com.youth.banner:banner:1.4.10'
 
 }
