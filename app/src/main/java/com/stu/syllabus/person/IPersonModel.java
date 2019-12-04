@@ -10,4 +10,5 @@ import io.reactivex.Observable;
  **/
 public interface IPersonModel {
     Observable<ShowInfoBean> getUserInfoFromDisk();
+    void updateCurrentSemester(String currentSemester);
 }

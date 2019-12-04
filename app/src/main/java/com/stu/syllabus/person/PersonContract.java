@@ -9,7 +9,7 @@ import com.stu.syllabus.base.BaseView;
  **/
 public interface PersonContract {
     interface view extends BaseView {
-        void init(String id, String avatar, String nickname, String signature);
+        void init(String id, String avatar, String nickname, String signature, String currentSemester);
     }
     interface presenter extends BasePresenter {
 

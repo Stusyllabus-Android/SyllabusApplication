@@ -20,10 +20,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createSkeyTable = "create table skey_table(skey varchar(64), refresh_key varchar(64))";
         String createUserBaseInfoTable = "create table user_base_info(account varchar(64), password varchar(64))";
-        String createUserInfoTable = "create table user_info(id varchar(64), avatar varchar(64), nickname varchar(64), signature varchar(64))";
+        String createUserInfoTable = "create table user_info(id varchar(64), avatar varchar(64), nickname varchar(64), signature varchar(64), semester varchar(64))";
+        String createYiBanTable = "create table yiban_table(xnxqName varchar(64), kkbKey varchar(64), kcName varchar(64), jsName varchar(64), ksName varchar(64), sjName varchar(64))";
         db.execSQL(createSkeyTable);
         db.execSQL(createUserBaseInfoTable);
         db.execSQL(createUserInfoTable);
+        db.execSQL(createYiBanTable);
     }
 
     @Override

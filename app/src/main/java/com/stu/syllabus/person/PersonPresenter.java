@@ -29,6 +29,7 @@ public class PersonPresenter implements PersonContract.presenter {
 
     @Override
     public void init() {
+        Log.d(TAG, "init: ");
         model.getUserInfoFromDisk()
                 .subscribe(new Observer<ShowInfoBean>() {
                     @Override
@@ -38,7 +39,8 @@ public class PersonPresenter implements PersonContract.presenter {
 
                     @Override
                     public void onNext(ShowInfoBean showInfoBean) {
-                        view.init(showInfoBean.getId(), showInfoBean.getAvatar(), showInfoBean.getNickname(), showInfoBean.getSignature());
+                        view.init(showInfoBean.getId(), showInfoBean.getAvatar(), showInfoBean.getNickname(), showInfoBean.getSignature(), showInfoBean.getCurrentSemester());
+                        Log.d(TAG, "onNext: " + showInfoBean.getCurrentSemester());
                     }
 
                     @Override
@@ -51,5 +53,10 @@ public class PersonPresenter implements PersonContract.presenter {
 
                     }
                 });
+    }
+
+    public void updateCurrentSemester(String currentSemester) {
+        model.updateCurrentSemester(currentSemester);
+        init();
     }
 }

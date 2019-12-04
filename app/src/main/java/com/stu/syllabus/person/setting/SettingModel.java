@@ -23,6 +23,7 @@ public class SettingModel implements ISettingModel {
         sqLiteDatabase.delete("skey_table", null, new String[]{});
         sqLiteDatabase.delete("user_base_info", null, new String[]{});
         sqLiteDatabase.delete("user_info", null, new String[]{});
+        sqLiteDatabase.delete("yiban_table", null, new String[]{});
         sqLiteDatabase.close();
     }
 }

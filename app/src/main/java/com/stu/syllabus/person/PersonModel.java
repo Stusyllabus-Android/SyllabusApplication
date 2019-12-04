@@ -1,5 +1,6 @@
 package com.stu.syllabus.person;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,6 +38,7 @@ public class PersonModel implements IPersonModel {
                 String avatar = null;
                 String nickname = null;
                 String signature = null;
+                String semester = null;
                 sqLiteDatabase = dataBaseHelper.getReadableDatabase();
                 String sql = "select * from user_info";
                 Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
@@ -45,12 +47,22 @@ public class PersonModel implements IPersonModel {
                     avatar = cursor.getString(cursor.getColumnIndex("avatar"));
                     nickname = cursor.getString(cursor.getColumnIndex("nickname"));
                     signature = cursor.getString(cursor.getColumnIndex("signature"));
+                    semester = cursor.getString(cursor.getColumnIndex("semester"));
                 }
                 sqLiteDatabase.close();
-                ShowInfoBean infoBean = new ShowInfoBean(id, avatar, nickname, signature);
+                ShowInfoBean infoBean = new ShowInfoBean(id, avatar, nickname, signature, semester);
                 emitter.onNext(infoBean);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public void updateCurrentSemester(String currentSemester) {
+        sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("semester", currentSemester);
+        sqLiteDatabase.update("user_info", values, null, null);
+        sqLiteDatabase.close();
     }
 }
