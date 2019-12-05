@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -24,7 +25,9 @@ import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/*@author cxy
+ * by2019/12/05
+ * */
 public class OADetailActivity extends BaseActivity  {
     @BindView(R.id.oAWebView)
     WebView mOAWebView;
@@ -46,8 +49,8 @@ public class OADetailActivity extends BaseActivity  {
         webSettings.setAllowFileAccess(true);
         //设置支持缩放
         webSettings.setBuiltInZoomControls(true);
-        toolbar.setTitle("办公自动化");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.toolbarTitle));
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //显示状态栏
+
         setSupportActionBar(toolbar);//显示ToolBar
 
 //返回按钮的监听
@@ -55,7 +58,7 @@ public class OADetailActivity extends BaseActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setHomeButtonEnabled(true);
-
+        setToolBarTitle();
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         Log.i("iddd",id);
@@ -76,9 +79,13 @@ public class OADetailActivity extends BaseActivity  {
 ////        return super.onCreateView(inflater, container, savedInstanceState);
 //    }
 
+public void setToolBarTitle() {
+    toolbar.setTitle("办公自动化");
+    toolbar.setTitleTextColor(getResources().getColor(R.color.toolbarTitle));
+}
     @Override
     public int getContentView() {
-        return R.layout.fragment_oadetail;
+        return R.layout.activity_oadetail;
     }
 
 //    @Override

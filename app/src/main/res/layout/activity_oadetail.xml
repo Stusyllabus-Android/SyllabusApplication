@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    app:contentInsetStart="0dp"
+
+    app:contentInsetLeft="0dp"
+    android:clipToPadding="true"
+    >
+<!--    <include layout="@layout/fragment_toolbar_layout"/>-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        app:titleMargin="0dp"
+        app:contentInsetStart="150dp"
+        app:contentInsetLeft="150dp"
+        app:title="办公自动化"
+    />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <WebView
+            android:id="@+id/oAWebView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></WebView>
+
+
+    </ScrollView>
+
+</LinearLayout>

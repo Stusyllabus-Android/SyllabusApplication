@@ -9,7 +9,9 @@ import org.jsoup.select.Elements;
 
 import static com.stu.syllabus.util.AssetUtil.getStringFromPath;
 
-
+/*@author cxy
+* by2019/12/05
+* */
 public class OADetail {
     /* "title": "中国科学引文索引（CSCI）数据库试用通知",
     "content": "<p align='left' class='MsoNormal'>《中国科学引文索引（CSCI）》是由中国科学技术信息研究所推出的基于期刊引用的检索评价工具，囊括了2000年来我国出版的科技类和部分社科类学术期刊约9000余种，累积论文40,614,512篇，引文记录194,344,681条，是目前最完备的中文论文引文库。</p><p align='left' class='MsoNormal'><b>访问链接：<a href='http://www.lib.stu.edu.cn/database/1423'>http://www.lib.stu.edu.cn/database/1423</a> </b></p><p align='left' class='MsoNormal'>试用结束日期： 2020年 2 月 29日</p><p align='left' class='MsoNormal'></p><p align='left' class='MsoNormal'>欢迎广大师生读者积极使用！试用评价和意见请反馈至图书馆学科服务部，Tel：86503247，Email：<a href='mailto:lqxie@stu.edu.cn'>lqxie@stu.edu.cn</a> </p><p align='left' class='MsoNormal'></p><p align='right' class='MsoNormal'>图书馆</p><p align='right' class='MsoNormal'>2019年11 月27日</p>",
