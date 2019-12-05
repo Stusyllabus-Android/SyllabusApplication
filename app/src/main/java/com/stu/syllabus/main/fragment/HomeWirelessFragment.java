@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.stu.syllabus.R;
 import com.stu.syllabus.adapter.HomeRecyclerViewAdapter;
-import com.stu.syllabus.main.MainActivity;
+import com.stu.syllabus.wirelessData.WirelessActivity;
 
 import java.util.ArrayList;
 import java.util.List;
