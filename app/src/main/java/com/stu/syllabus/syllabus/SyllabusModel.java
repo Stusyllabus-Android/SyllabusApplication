@@ -11,6 +11,7 @@ import com.stu.syllabus.bean.ShowLessonBean;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
 import com.stu.syllabus.retrofitApi.YiBanApi;
+import com.stu.syllabus.util.ColorUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -160,7 +161,6 @@ public class SyllabusModel implements ISyllabusModel {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    // TODO: 2019/12/4 对数据的筛选与转换应该在model类进行
     @Override
     public List<YiBanTimeTable.TableBean> filterTables(List<YiBanTimeTable.TableBean> tableBeanList, String currentSemester) {
         List<YiBanTimeTable.TableBean> currentTables = new LinkedList<>();
@@ -200,6 +200,7 @@ public class SyllabusModel implements ISyllabusModel {
 
         for (int i = 0; i < currentTables.size(); i++) {
             String[] time = currentTables.get(i).getSjName().split("，");
+            if (time.length == 1) continue; //网络课程不进行显示
             String duration = null;
             ShowLessonBean.DaysBean daysBean = new ShowLessonBean.DaysBean();
             for (int j = 0; j < time.length; j++) {
@@ -211,6 +212,7 @@ public class SyllabusModel implements ISyllabusModel {
 //                    Log.d(TAG, "convertTablesToLessons: " + time[j]);
                     int indexOfSectionBeginBound = time[j].indexOf("(");
                     int indexOfSectionEndBound = time[j].indexOf(")");
+                    if (indexOfSectionBeginBound >= indexOfSectionEndBound) continue; //军事训练和理论课返回的数据不规范
 //                    Log.d(TAG, "convertTablesToLessons: " + indexOfSectionBound);
 //                    Log.d(TAG, "convertTablesToLessons: " + time[j].substring(0, 2));
 //                    Log.d(TAG, "convertTablesToLessons:" + time[j] + time[j].charAt(indexOfSectionBeginBound + 1));
@@ -249,7 +251,8 @@ public class SyllabusModel implements ISyllabusModel {
                     }
                 }
             }
-            ShowLessonBean showLessonBean = new ShowLessonBean(currentTables.get(i).kcName, String.valueOf(currentTables.get(i).getKkbKey()), currentTables.get(i).getJsName(), currentTables.get(i).getJsName(), duration, daysBean, "0");
+            int indexOfKcName = currentTables.get(i).getKcName().indexOf(']'); //去掉课程名前方括号中的内容
+            ShowLessonBean showLessonBean = new ShowLessonBean(currentTables.get(i).kcName.substring(indexOfKcName + 1), String.valueOf(currentTables.get(i).getKkbKey()), currentTables.get(i).getJsName(), currentTables.get(i).getKsName(), duration, daysBean, "0");
             lessonBeanList.add(showLessonBean);
         }
         return lessonBeanList;

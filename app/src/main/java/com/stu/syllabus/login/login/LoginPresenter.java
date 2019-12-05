@@ -111,7 +111,7 @@ public class LoginPresenter implements LoginContract.presenter{
                                                                                                         //一些持久化操作
                                                                                                         mILoginModel.saveSkeyToDisk(skey.getSkey(), skey.getRefresh_key());
                                                                                                         mILoginModel.saveUserBaseInfoToDisk(account, password);
-                                                                                                        mILoginModel.saveUserInfoToDisk(account, userInfo.getData().getUser().getInfo().getAvatar(), userInfo.getData().getUser().getInfo().getNickname(), userInfo.getData().getUser().getInfo().getSignature());
+                                                                                                        mILoginModel.saveUserInfoToDisk(account, userInfo.getData().getUser().getInfo().getAvatar(), userInfo.getData().getUser().getInfo().getNickname(), userInfo.getData().getUser().getInfo().getSignature(), "Non-existent");
                                                                                                         mView.toMainView();
                                                                                                     }
 

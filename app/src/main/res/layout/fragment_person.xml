@@ -35,25 +35,22 @@
                 android:id="@+id/nicknameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="昵称（限长）"
                 android:textColor="#1F2229"
                 android:textSize="22sp" />
             <TextView
                 android:id="@+id/idTextView"
-                android:text="账号：17sfyuan"
                 android:textColor="#989DA7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/signatureTextView"
+                android:layout_below="@+id/nicknameAndId"
+                android:layout_toRightOf="@id/headImageDraweeView"
+                android:text="个性签名为空"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/signatureTextView"
-            android:layout_below="@+id/nicknameAndId"
-            android:layout_toRightOf="@id/headImageDraweeView"
-            android:text="个性签名为空"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
         <RelativeLayout
             android:layout_centerVertical="true"
@@ -108,6 +105,14 @@
             android:textColor="#060911"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/semesterIcon"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/semesterTextView"
+            android:textSize="16sp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

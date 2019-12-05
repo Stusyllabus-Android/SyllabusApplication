@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/addLesson"
+        android:title="添加课程"/>
+    <item android:id="@+id/deleteLesson"
+        android:title="删除课程"/>
+    <item android:id="@+id/shareSyllabus"
+        android:title="分享课表"/>
+    <item android:id="@+id/setWapPaper"
+        android:title="设置壁纸"/>
+</menu>

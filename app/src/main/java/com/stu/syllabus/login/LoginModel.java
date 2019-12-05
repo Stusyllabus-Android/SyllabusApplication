@@ -141,13 +141,14 @@ public class LoginModel implements ILoginModel {
     }
 
     @Override
-    public void saveUserInfoToDisk(String id, String avatar, String nickname, String signature) {
+    public void saveUserInfoToDisk(String id, String avatar, String nickname, String signature, String semester) {
         sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("id", id);
         values.put("avatar", avatar);
         values.put("nickname", nickname);
         values.put("signature", signature);
+        values.put("semester", semester);
         sqLiteDatabase.insert("user_info", null, values);
         sqLiteDatabase.close();
     }

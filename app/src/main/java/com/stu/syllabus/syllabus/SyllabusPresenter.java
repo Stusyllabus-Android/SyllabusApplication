@@ -3,8 +3,10 @@ package com.stu.syllabus.syllabus;
 import android.util.Log;
 
 import com.stu.syllabus.bean.BaseUserInfo;
+import com.stu.syllabus.bean.ShowLessonBean;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
+import com.stu.syllabus.util.ToastUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,6 +14,7 @@ import org.jsoup.nodes.Element;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,9 +34,12 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
 
     BaseUserInfo mBaseUserInfo;
     YiBanToken mYiBanToken;
-    YiBanTimeTable mYiBanTimeTable;
     Document document;
     String token;
+    String currentSemester;
+    List<YiBanTimeTable.TableBean> allTables;
+    List<YiBanTimeTable.TableBean> currentTables;
+    List<ShowLessonBean> lessonBeanList;
 
 
     @Inject
@@ -41,19 +47,48 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
         super();
         this.view = view;
         this.model = model;
+        allTables = new LinkedList<>();
+        currentTables = new LinkedList<>();
+        lessonBeanList = new LinkedList<>();
     }
 
     @Override
     public void init() {
-        getTimeTableFromYiBan();
-    }
+        Log.d(TAG, "init: ");
+        if (currentSemester == null || currentSemester.equals("Non-existent")) return;
+        model.getYiBanTableFromDisk()
+                .subscribe(new Observer<List<YiBanTimeTable.TableBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-    public YiBanTimeTable getYiBanTimeTable() {
-        return mYiBanTimeTable;
+                    }
+
+                    @Override
+                    public void onNext(List<YiBanTimeTable.TableBean> tableBeanList) {
+//                        Log.d(TAG, "onNext: tableBeans.size" + tableBeanList.size());
+                        if (tableBeanList == null || tableBeanList.size() <= 1) getTimeTableFromNet();
+                        else {
+                            allTables = tableBeanList;
+                            currentTables = model.filterTables(allTables, currentSemester);
+                            Log.d(TAG, "onNext: currentTables" + currentTables.size());
+                            view.showSyllabus(model.convertTablesToLessons(currentTables));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete: getTableFromDisk");
+                    }
+                });
     }
 
     //爬取易班上的课程信息
-    public void getTimeTableFromYiBan() {
+    public void getTimeTableFromNet() {
         model.getUserInfoFromDisk()
                 .subscribe(new Observer<BaseUserInfo>() {
                     @Override
@@ -127,8 +162,8 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
 
                                                                                     @Override
                                                                                     public void onNext(YiBanTimeTable timeTable) {
-                                                                                        List<YiBanTimeTable.TableBean> tableBeanList = timeTable.getTable();
-                                                                                        for (YiBanTimeTable.TableBean tableBean : tableBeanList) {
+                                                                                        allTables = timeTable.getTable();
+                                                                                        for (YiBanTimeTable.TableBean tableBean : allTables) {
                                                                                             Log.d(TAG, "onNext: " + tableBean.getJsName());
                                                                                             Log.d(TAG, "onNext: " + tableBean.getKcName());
                                                                                             Log.d(TAG, "onNext: " + tableBean.getKsName());
@@ -136,8 +171,13 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
                                                                                             Log.d(TAG, "onNext: " + tableBean.getXnxqName());
                                                                                             Log.d(TAG, "onNext: " + tableBean.getKkbKey());
                                                                                         }
-                                                                                        mYiBanTimeTable = timeTable;
+                                                                                        //持久化课程
+                                                                                        for (int i = 0; i < allTables.size(); i++) {
+                                                                                            model.saveYiBanTableToDisk(allTables.get(i));
+                                                                                        }
                                                                                         Log.d(TAG, "onNext: " + timeTable);
+                                                                                        currentTables = model.filterTables(allTables, currentSemester);
+                                                                                        view.showSyllabus(model.convertTablesToLessons(currentTables));
                                                                                     }
 
                                                                                     @Override
@@ -149,8 +189,6 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
                                                                                     @Override
                                                                                     public void onComplete() {
                                                                                         Log.d(TAG, "onComplete: getTimeTable");
-                                                                                        view.setAdapterForListView();
-                                                                                        view.isRefresh(false);
                                                                                     }
                                                                                 });
                                                                     }
@@ -207,4 +245,37 @@ public class SyllabusPresenter implements SyllabusContract.presenter {
                 });
 
     }
+
+    public String getCurrentSemester() {
+        model.getCurrentSemesterFromDisk()
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        currentSemester = s;
+                        if (currentSemester == null || currentSemester.equals("") || currentSemester.equals("Non-existent")) {
+                            view.showMsg("当前学期未设置 \n 请前往个人页面设置当前学期");
+                            return;
+                        }
+                        init();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //为什么执行不到呢
+                        Log.d(TAG, "onComplete: " + currentSemester);
+                    }
+                });
+        return currentSemester;
+    }
+
 }

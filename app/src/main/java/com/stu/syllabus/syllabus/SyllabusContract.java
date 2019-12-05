@@ -2,6 +2,9 @@ package com.stu.syllabus.syllabus;
 
 import com.stu.syllabus.base.BasePresenter;
 import com.stu.syllabus.base.BaseView;
+import com.stu.syllabus.bean.ShowLessonBean;
+
+import java.util.List;
 
 /**
  * yuan
@@ -9,8 +12,8 @@ import com.stu.syllabus.base.BaseView;
  **/
 public interface SyllabusContract {
     interface view extends BaseView {
-        void isRefresh(boolean flag);
-        void setAdapterForListView();
+        void showSyllabus(List<ShowLessonBean> lessonBeanList);
+        void showMsg(String message);
     }
     interface presenter extends BasePresenter {
 

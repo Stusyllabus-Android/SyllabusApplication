@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#ff3300</color>
     <color name="colorAccent">#999999</color>
 
+    <color name="gridColor">#402b2b2b</color>
+
     <color name="toolbarTitle">#f5f5f5</color>
 
     <color name="defaultLightBackground">#FAFAFA</color>
@@ -11,4 +13,6 @@
     <color name="grey66Color">#666666</color>
 
     <color name="material_white">#ffffff</color>
+
+    <color name="defaultShowColor">#999999</color>
 </resources>

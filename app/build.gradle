@@ -62,4 +62,7 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:2.0.0'
     //resource
     implementation 'com.zzhoujay.materialcolors:materialcolors:1.0.0'
+    //widget
+    implementation 'com.contrarywind:Android-PickerView:4.1.5'
+    implementation 'com.balysv:material-ripple:1.0.2'
 }

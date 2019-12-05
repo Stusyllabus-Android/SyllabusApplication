@@ -17,7 +17,7 @@ public interface ILoginModel {
 
     void saveUserBaseInfoToDisk(String account, String password);
 
-    void saveUserInfoToDisk(String id, String avatar, String nickname, String signature);
+    void saveUserInfoToDisk(String id, String avatar, String nickname, String signature, String semester);
 
     Observable<String> getSkeyFromDisk();
 
