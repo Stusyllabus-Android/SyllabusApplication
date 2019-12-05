@@ -1,32 +1,33 @@
 package com.stu.syllabus.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.stu.syllabus.R;
-
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
+public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
 
     List<Object> contents;
+    private int item_position;
+    RecyclerView parent;
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
 
-    public HomeRecyclerViewAdapter(List<Object> contents) {
+    public HomeRecyclerViewAdapter(List<Object> contents, RecyclerView parent) {
         this.contents = contents;
+        this.parent = parent;
     }
 
     @Override
@@ -57,23 +58,29 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     @Override
     public void onBindViewHolder(final HomeRecyclerViewAdapter.ViewHolder holder, final int position) {
+        item_position = position;
         holder.tv_card.setText(contents.get(position).toString());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                newClickListener(holder,position);
-            }
-        });
+        holder.cardView.setOnClickListener(this);
     }
 
-    public void newClickListener(ViewHolder holder, int position){
-        //这里写上获取text信息，然后判断，在进入功能面
-        if(holder.tv_card.getText().equals("流量监控")){
-            holder.tv_card.setText("hello");
-        }else if (holder.tv_card.getText().equals("hello")) {
-            holder.tv_card.setText("流量监控");
+    @Override
+    public void onClick(View view) {
+        //程序执行到此，会去执行具体实现的onItemClick()方法
+        if (onItemClickListener!=null){
+            onItemClickListener.onItemClick(parent,view,item_position,contents.get(item_position).toString());
         }
+    }
+    private OnItemClickListener onItemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
 
+    /**
+     * 定义接口
+     */
+    public interface OnItemClickListener{
+        //参数（父组件，当前单击的View,单击的View的位置，数据）
+        void onItemClick(RecyclerView parent,View view, int position, String data);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

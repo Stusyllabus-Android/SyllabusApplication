@@ -1,9 +1,11 @@
 package com.stu.syllabus.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.stu.syllabus.R;
 import com.stu.syllabus.adapter.HomeRecyclerViewAdapter;
+import com.stu.syllabus.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +57,18 @@ public class HomeWirelessFragment  extends Fragment {
 
         List<Object> items = new ArrayList<>();
         items.add("流量监控");
-        mRecyclerView.setAdapter(new HomeRecyclerViewAdapter(items));
+
+        HomeRecyclerViewAdapter rvAdapter = new HomeRecyclerViewAdapter(items,mRecyclerView);
+        rvAdapter.setOnItemClickListener(new HomeRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerView parent, View view, int position, String data) {
+                if(data.equals("流量监控")){
+                    Intent intent = new Intent(getActivity(), WirelessActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        mRecyclerView.setAdapter(rvAdapter);
 
     }
 }

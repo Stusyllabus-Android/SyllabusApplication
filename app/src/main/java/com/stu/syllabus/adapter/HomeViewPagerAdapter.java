@@ -11,7 +11,6 @@ import com.stu.syllabus.main.fragment.HomeWirelessFragment;
 
 public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
 
-
     public HomeViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }

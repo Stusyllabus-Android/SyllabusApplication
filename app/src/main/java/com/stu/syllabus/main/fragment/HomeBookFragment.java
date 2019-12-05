@@ -55,7 +55,7 @@ public class HomeBookFragment extends Fragment {
         List<Object> items = new ArrayList<>();
         items.add("教室预约");
         items.add("SLC预约");
-        mRecyclerView.setAdapter(new HomeRecyclerViewAdapter(items));
+        mRecyclerView.setAdapter(new HomeRecyclerViewAdapter(items, mRecyclerView));
 
     }
 }
