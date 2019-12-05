@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
@@ -136,6 +137,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
         showDate();
         showTime();
         initGridLayout();
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         currentSemester = syllabusPresenter.getCurrentSemester();
         gridLayout.setColumnCount(7);
         gridLayout.setRowCount(13);
@@ -355,7 +357,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
             case R.id.addLesson: ToastUtil.showShort(getContext(), "添加课表"); break;
             case R.id.deleteLesson: ToastUtil.showShort(getContext(), "删除课表"); break;
             case R.id.shareSyllabus: ToastUtil.showShort(getContext(), "分享课表"); break;
-            case R.id.setWapPaper: ToastUtil.showShort(getContext(), "设置壁纸"); break;
+            case R.id.setWallPaper: ToastUtil.showShort(getContext(), "设置壁纸"); break;
         }
         return super.onOptionsItemSelected(item);
     }

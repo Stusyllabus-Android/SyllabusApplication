@@ -11,4 +11,9 @@
     <string name="home_wireless_data">查看流量</string>
     <string name="home_book">预约</string>
 
+    <style name="SyllabusMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:popupBackground">@color/defaultLightBackground</item>
+    </style>
+
 </resources>

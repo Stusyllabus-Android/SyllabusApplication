@@ -18,7 +18,7 @@
         android:gravity="center_vertical"
         android:theme="@style/AppTheme.PopupOverlay"
         app:titleTextColor="@android:color/white"
-        app:menu="@menu/syllabus_menu">
+        app:popupTheme="@style/SyllabusMenu">
 
         <LinearLayout
             android:id="@+id/weekTitleLayout"
@@ -77,5 +77,9 @@
                     android:layout_height="match_parent"/>
         </LinearLayout>
     </ScrollView>
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/syllabusViewPager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
 
 </LinearLayout>
