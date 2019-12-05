@@ -15,7 +15,7 @@ import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
 import com.stu.syllabus.adapter.SyllabusListViewAdapter;
 import com.stu.syllabus.base.BaseFragment;
-import com.stu.syllabus.syllabus.DaggerSyllabusComponent;
+import com.stu.syllabus.syllabus .DaggerSyllabusComponent;
 import com.stu.syllabus.syllabus.SyllabusContract;
 import com.stu.syllabus.syllabus.SyllabusModule;
 import com.stu.syllabus.syllabus.SyllabusPresenter;

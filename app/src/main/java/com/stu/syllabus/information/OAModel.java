@@ -18,9 +18,12 @@ public class OAModel implements IOAModel {
 
     GetOAArticleAPi getOAArticleAPi;
 
+
+
     public OAModel(Retrofit retrofit) {
         super();
         getOAArticleAPi = retrofit.create(GetOAArticleAPi.class);
+
     }
 
     @Override
@@ -29,4 +32,8 @@ public class OAModel implements IOAModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+
+
+
 }

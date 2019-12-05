@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.stu.syllabus.di.AuthRetrofit;
 import com.stu.syllabus.di.BusinessRetrofit;
+import com.stu.syllabus.di.OADetailRetrofit;
 import com.stu.syllabus.di.YiBanRetrofit;
 
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,7 @@ public class RetrofitModule {
     private final String OAUTH_BASEURL = "http://139.199.224.230:7001/";
     private final String BUSINESS_BASEURL = "http://139.199.224.230:7002/";
     private final String YIBAN_BASEURL = "https://yiban.stu.edu.cn/";
-
+    private final String OADETAIL_BASEURL ="http://oauth.candycute.cn:7001/";
     CookieCache cookieCache;
     CookieJar cookieJar;
 
@@ -82,6 +83,16 @@ public class RetrofitModule {
                 .client(okHttpClient)
                 .baseUrl(YIBAN_BASEURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+    @Provides
+    @OADetailRetrofit
+    Retrofit provideOAdetailRetrofit() {
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(OADETAIL_BASEURL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
