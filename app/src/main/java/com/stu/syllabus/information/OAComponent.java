@@ -2,7 +2,10 @@ package com.stu.syllabus.information;
 
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.di.PerActivity;
+import com.stu.syllabus.di.PerFragment;
 import com.stu.syllabus.main.fragment.InfoFragment;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -14,4 +17,5 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class, modules = OAModule.class)
 public interface OAComponent {
     void inject(InfoFragment infoFragment);
+
 }

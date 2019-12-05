@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
  * 2019/11/28
  **/
 public class OAListAdapter extends ArrayAdapter<OAArticle> {
+   public static OAArticle oaArticle;
     int resourceId;
     public OAListAdapter(@NonNull Context context, int resource, @NonNull List<OAArticle> objects) {
         super(context, resource, objects);
@@ -32,7 +33,7 @@ public class OAListAdapter extends ArrayAdapter<OAArticle> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        OAArticle oaArticle = getItem(position);
+        oaArticle = getItem(position);
         ViewHolder viewHolder;
         View view;
         if (convertView != null) {
