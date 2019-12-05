@@ -1,26 +1,22 @@
 package com.stu.syllabus.main.fragment;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
-import com.stu.syllabus.adapter.HomeListViewAdapter;
+import com.stu.syllabus.adapter.HomeViewPagerAdapter;
 import com.stu.syllabus.base.BaseFragment;
-import com.stu.syllabus.bean.HomeItem;
-import com.stu.syllabus.bean.HomeItemsItem;
 import com.stu.syllabus.home.DaggerHomeComponent;
 import com.stu.syllabus.home.GlideImageLoader;
 import com.stu.syllabus.home.HomeContract;
@@ -41,21 +37,18 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
 
     @BindView(R.id.toolBar)
     Toolbar toolbar;
-    @BindView(R.id.lv_home)
-    ListView lv_home;
     @BindView(R.id.banner)
     Banner banner;
+    @BindView(R.id.materialViewPager)
+    MaterialViewPager mViewPager;
 
     @Inject
     HomePresenter homePresenter;
 
     private AppComponent appComponent;
 
-    private HomeListViewAdapter homeLvAdapter;
-    List<HomeItem> list_home; //home页面的list
-    List<HomeItemsItem> item_item;  //上面list中每一项对应的功能list
-    HomeItem homeItem;
-    HomeItemsItem homeItemsItem;
+    private HomeViewPagerAdapter homeViewPagerAdapter;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,53 +98,24 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
         homePresenter.init();
     }
 
+    //ViewPager
     @Override
-    public void setAdapterForListView() {
-        list_home = new ArrayList<>();
-        item_item = new ArrayList<>();
-        //图书馆
-        homeItemsItem = new HomeItemsItem();
-        homeItemsItem.setItem("图书检索");
-        item_item.add(homeItemsItem);
-        homeItemsItem = new HomeItemsItem();
-        homeItemsItem.setItem("预约研讨室");
-        item_item.add(homeItemsItem);
+    public void setAdapterForViewPager() {
+        homeViewPagerAdapter = new HomeViewPagerAdapter(getFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mViewPager.getViewPager().setAdapter(homeViewPagerAdapter);
 
-        homeItem = new HomeItem();
-        homeItem.setFunc("图书馆");
-        homeItem.setFuncItem(item_item);
-        list_home.add(homeItem);
+        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+            @Override
+            public HeaderDesign getHeaderDesign(int page) {
+                return null;
+            }
+        });
 
-
-        //预约
-        item_item = new ArrayList<>();
-        homeItemsItem = new HomeItemsItem();
-        homeItemsItem.setItem("预约场地");
-        item_item.add(homeItemsItem);
-        homeItemsItem = new HomeItemsItem();
-        homeItemsItem.setItem("预约教室");
-        item_item.add(homeItemsItem);
-
-        homeItem = new HomeItem();
-        homeItem.setFunc("预约");
-        homeItem.setFuncItem(item_item);
-        list_home.add(homeItem);
-
-
-        //流量监控
-        item_item = new ArrayList<>();
-        homeItemsItem = new HomeItemsItem();
-        homeItemsItem.setItem("查看剩余流量");
-        item_item.add(homeItemsItem);
-        homeItem = new HomeItem();
-        homeItem.setFunc("流量监控");
-        homeItem.setFuncItem(item_item);
-        list_home.add(homeItem);
-
-        homeLvAdapter = new HomeListViewAdapter(getContext(), R.layout.item_home, list_home);
-        lv_home.setAdapter(homeLvAdapter);
+        mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
+        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
     }
 
+    //轮播图
     @Override
     public void setBannerImages(){
         List<Integer> images=new ArrayList<>();
@@ -166,4 +130,5 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
         //banner设置方法全部调用完毕时最后调用
         banner.start();
     }
+
 }

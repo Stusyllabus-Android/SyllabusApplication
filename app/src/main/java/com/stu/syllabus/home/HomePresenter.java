@@ -15,7 +15,8 @@ public class HomePresenter implements HomeContract.presenter {
     }
     @Override
     public void init() {
-        view.setAdapterForListView();
+//        view.setAdapterForListView();
+        view.setAdapterForViewPager();
         view.setBannerImages();
     }
 }

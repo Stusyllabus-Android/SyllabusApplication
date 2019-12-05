@@ -9,7 +9,7 @@ import com.stu.syllabus.base.BaseView;
  */
 public interface HomeContract {
     interface view extends BaseView {
-        void setAdapterForListView();
+        void setAdapterForViewPager();
         void setBannerImages();
     }
     interface presenter extends BasePresenter {
