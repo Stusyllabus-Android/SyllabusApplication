@@ -4,6 +4,7 @@ import com.stu.syllabus.bean.Authorize;
 import com.stu.syllabus.bean.Login;
 import com.stu.syllabus.bean.Oauth;
 import com.stu.syllabus.bean.Skey;
+import com.stu.syllabus.bean.UserInfo;
 
 import io.reactivex.Observable;
 
@@ -14,7 +15,9 @@ import io.reactivex.Observable;
 public interface ILoginModel {
     void saveSkeyToDisk(String skey, String refresh_key);
 
-    void saveUserInfoToDisk(String account, String password);
+    void saveUserBaseInfoToDisk(String account, String password);
+
+    void saveUserInfoToDisk(String id, String avatar, String nickname, String signature, String semester);
 
     Observable<String> getSkeyFromDisk();
 
@@ -25,5 +28,7 @@ public interface ILoginModel {
     Observable<Authorize> getAuthorizeCodeFromNet(String response_type, String client_id, String state, String scope, String from);
 
     Observable<Skey> getSkeyFromNet(String code, String state, String from);
+
+    Observable<UserInfo> getUserInfoFromNet(String skey, String url, String method, String from);
 
 }

@@ -11,8 +11,8 @@
     <style name="AppTheme.Launcher.BG" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/launch_bg</item>
-        <item name="android:background">@drawable/launch_bg</item>
+        <item name="android:windowBackground">@drawable/temp</item>
+        <item name="android:background">@drawable/temp</item>
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
 
@@ -21,4 +21,31 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/material_white</item>
+        <item name="actionMenuTextColor">@color/material_white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="drawerArrowStyle">@style/left_Drawer_Arrow_Style</item>
+    </style>
+
+    <style name="left_Drawer_Arrow_Style" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <!--bottom dialog 里面的-->
+    <style name="BottomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialog.AnimationStyle</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="BottomDialog.AnimationStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_to_bottom</item>
+    </style>
+
 </resources>

@@ -3,14 +3,19 @@
 
     <!--fragment名-->
     <string name="home">首页</string>
-    <string name="info">资讯</string>
+    <string name="info">OA</string>
     <string name="syllabus">课程表</string>
-    <string name="contact">社交</string>
+    <string name="contact">动态</string>
     <string name="person">个人</string>
     <string name="home_library">图书馆</string>
     <string name="home_wireless_data">流量监控</string>
     <string name="wireless">查看流量</string>
 
     <string name="home_book">预约</string>
+
+    <style name="SyllabusMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:popupBackground">@color/defaultLightBackground</item>
+    </style>
 
 </resources>

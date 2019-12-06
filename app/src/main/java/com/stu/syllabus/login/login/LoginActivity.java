@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.stu.syllabus.ToastUtil;
+import com.stu.syllabus.util.ToastUtil;
 import com.stu.syllabus.main.MainActivity;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
@@ -14,7 +14,6 @@ import com.stu.syllabus.base.BaseActivity;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

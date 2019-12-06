@@ -65,4 +65,11 @@ dependencies {
     implementation 'com.github.florent37:materialviewpager:1.2.3'
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.jpardogo.materialtabstrip:library:1.1.0'
+    //fresco
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+    //resource
+    implementation 'com.zzhoujay.materialcolors:materialcolors:1.0.0'
+    //widget
+    implementation 'com.contrarywind:Android-PickerView:4.1.5'
+    implementation 'com.balysv:material-ripple:1.0.2'
 }

@@ -4,19 +4,20 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.stu.syllabus.bean.Authorize;
 import com.stu.syllabus.bean.Login;
 import com.stu.syllabus.bean.Oauth;
 import com.stu.syllabus.bean.Skey;
+import com.stu.syllabus.bean.UserInfo;
 import com.stu.syllabus.cookieInterceptor.AddCookieInterceptor;
 import com.stu.syllabus.cookieInterceptor.ReceivedCookieInterceptor;
 import com.stu.syllabus.retrofitApi.GetAuthorizeCodeApi;
 import com.stu.syllabus.retrofitApi.GetOauthApi;
 import com.stu.syllabus.retrofitApi.GetSkeyApi;
 import com.stu.syllabus.retrofitApi.LoginApi;
+import com.stu.syllabus.retrofitApi.OperateUserInfoApi;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -38,6 +39,7 @@ public class LoginModel implements ILoginModel {
     LoginApi loginApi;
     GetAuthorizeCodeApi getAuthorizeCodeApi;
     GetSkeyApi getSkeyApi;
+    OperateUserInfoApi operateUserInfoApi;
 
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase sqLiteDatabase;
@@ -109,6 +111,13 @@ public class LoginModel implements ILoginModel {
             .client(addTwoCookies)
             .build()
             .create(GetSkeyApi.class);
+
+        operateUserInfoApi = new Retrofit.Builder()
+                .baseUrl("http://139.199.224.230:7002/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(OperateUserInfoApi.class);
     }
 
     @Override
@@ -122,11 +131,24 @@ public class LoginModel implements ILoginModel {
     }
 
     @Override
-    public void saveUserInfoToDisk(String account, String password) {
+    public void saveUserBaseInfoToDisk(String account, String password) {
         sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("account", account);
         values.put("password", password);
+        sqLiteDatabase.insert("user_base_info", null, values);
+        sqLiteDatabase.close();
+    }
+
+    @Override
+    public void saveUserInfoToDisk(String id, String avatar, String nickname, String signature, String semester) {
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("id", id);
+        values.put("avatar", avatar);
+        values.put("nickname", nickname);
+        values.put("signature", signature);
+        values.put("semester", semester);
         sqLiteDatabase.insert("user_info", null, values);
         sqLiteDatabase.close();
     }
@@ -181,4 +203,10 @@ public class LoginModel implements ILoginModel {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    @Override
+    public Observable<UserInfo> getUserInfoFromNet(String skey, String url, String method, String from) {
+        return operateUserInfoApi.getUserInfo(skey, url, method, from)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

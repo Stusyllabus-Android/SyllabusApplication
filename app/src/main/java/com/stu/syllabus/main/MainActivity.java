@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -90,5 +91,11 @@ public class MainActivity extends BaseActivity implements MainContract.view, Has
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected: ");
+        return false;
     }
 }

@@ -1,8 +1,11 @@
 package com.stu.syllabus.syllabus;
 
-import com.stu.syllabus.bean.UserInfo;
+import com.stu.syllabus.bean.BaseUserInfo;
+import com.stu.syllabus.bean.ShowLessonBean;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -12,7 +15,7 @@ import io.reactivex.Observable;
  **/
 public interface ISyllabusModel {
 
-    Observable<UserInfo> getUserInfoFromDisk();
+    Observable<BaseUserInfo> getUserInfoFromDisk();
 
     Observable<String> getRequestToken();
 
@@ -21,5 +24,15 @@ public interface ISyllabusModel {
     Observable<YiBanToken> getToken();
 
     Observable<YiBanTimeTable> getTimeTable(long vid, long timestamp, String app, String nonce, String token);
+
+    Observable<String> getCurrentSemesterFromDisk();
+
+    void saveYiBanTableToDisk(YiBanTimeTable.TableBean tableBean);
+
+    Observable<List<YiBanTimeTable.TableBean>> getYiBanTableFromDisk();
+
+    List<YiBanTimeTable.TableBean> filterTables(List<YiBanTimeTable.TableBean> tableBeanList, String currentSemester);
+
+    List<ShowLessonBean> convertTablesToLessons(List<YiBanTimeTable.TableBean> currentTables);
 
 }

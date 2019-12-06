@@ -39,6 +39,16 @@ public class YiBanTimeTable {
         @SerializedName("sj_name")
         public String sjName;
 
+        public TableBean(String xnxqName, int kkbKey, String kcName, String jsName, String ksName, String sjName) {
+            super();
+            this.xnxqName = xnxqName;
+            this.kkbKey = kkbKey;
+            this.kcName = kcName;
+            this.jsName = jsName;
+            this.ksName = ksName;
+            this.sjName = sjName;
+        }
+
         public String getXnxqName() {
             return xnxqName;
         }
