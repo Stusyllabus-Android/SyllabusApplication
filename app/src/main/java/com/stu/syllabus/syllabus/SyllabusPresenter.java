@@ -6,7 +6,6 @@ import com.stu.syllabus.bean.BaseUserInfo;
 import com.stu.syllabus.bean.ShowLessonBean;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
-import com.stu.syllabus.util.ToastUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

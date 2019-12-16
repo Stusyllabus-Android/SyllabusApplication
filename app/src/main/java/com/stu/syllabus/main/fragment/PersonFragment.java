@@ -180,6 +180,7 @@ public class PersonFragment extends BaseFragment implements PersonContract.view 
         if (!signature.isEmpty() && signature != null) {
             signatureTextView.setText(signature);
         }
+
         if (currentSemester.equals("Non-existent")) {
             semesterTextView.setText("未设置当前学期");
         } else semesterTextView.setText(currentSemester);

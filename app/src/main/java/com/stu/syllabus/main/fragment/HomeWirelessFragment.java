@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.stu.syllabus.R;
 import com.stu.syllabus.adapter.HomeRecyclerViewAdapter;
-import com.stu.syllabus.wirelessData.WirelessActivity;
+import com.stu.syllabus.home.wirelessData.WirelessActivity;
 
 import java.util.ArrayList;
 import java.util.List;

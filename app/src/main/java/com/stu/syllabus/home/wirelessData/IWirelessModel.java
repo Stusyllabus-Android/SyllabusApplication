@@ -1,4 +1,4 @@
-package com.stu.syllabus.wirelessData;
+package com.stu.syllabus.home.wirelessData;
 
 
 import com.stu.syllabus.bean.WirelessInfo;

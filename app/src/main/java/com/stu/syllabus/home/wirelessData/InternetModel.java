@@ -1,4 +1,4 @@
-package com.stu.syllabus.wirelessData;
+package com.stu.syllabus.home.wirelessData;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -102,6 +102,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
     @Override
     public void setAdapterForViewPager() {
         homeViewPagerAdapter = new HomeViewPagerAdapter(getFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mViewPager.getToolbar().setVisibility(View.INVISIBLE);
         mViewPager.getViewPager().setAdapter(homeViewPagerAdapter);
 
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {

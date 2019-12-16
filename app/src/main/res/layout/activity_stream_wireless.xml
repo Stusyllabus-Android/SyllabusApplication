@@ -1,11 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/fragment_toolbar_layout"/>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:text="@string/home_wireless_data"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/material_white"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/usernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="校园网账号"
+                android:padding="8dp"
+                android:paddingLeft="32dp"
+                android:singleLine="true"
+                android:textSize="16sp"/>
+
+            <ImageButton
+                android:id="@+id/switchAccountButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/colorPrimary"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_switch_account"
+                android:tint="@color/material_white"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/defaultShowColor"/>
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="校园网密码"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:paddingLeft="32dp"
+            android:singleLine="true"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/isRememberCheckBox"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住登录状态"
+            android:textColor="@color/defaultShowColor"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="登录"
+            android:textColor="@color/material_white"
+            android:textSize="16sp"
+            fbutton:cornerRadius="2dp"
+            android:background="@color/colorPrimary"
+            fbutton:shadowColor="@color/material_black"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="1dp"/>
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="注销"
+            android:textColor="@color/material_white"
+            android:textSize="16sp"
+            android:background="@color/colorPrimary"
+            fbutton:cornerRadius="2dp"
+            fbutton:shadowColor="@color/defaultShowColor"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Switch
+            android:id="@+id/openInternetLoginSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="实时流量监控"
+            android:textColor="@color/material_black"/>
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/internetInfoCardView"
