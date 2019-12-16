@@ -177,7 +177,7 @@ public class PersonFragment extends BaseFragment implements PersonContract.view 
         idTextView.setText("账号：" + id);
         headImageDraweeView.setImageURI(avatar);
         nicknameTextView.setText(nickname);
-        if (!signature.isEmpty() && signature != null) {
+        if (signature != null && !signature.isEmpty()) {
             signatureTextView.setText(signature);
         }
 
