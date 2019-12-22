@@ -1,4 +1,4 @@
-package com.stu.syllabus.syllabus;
+package com.stu.syllabus.syllabus.syllabus;
 
 import com.stu.syllabus.base.BasePresenter;
 import com.stu.syllabus.base.BaseView;
@@ -8,12 +8,12 @@ import java.util.List;
 
 /**
  * yuan
- * 2019/11/12
+ * 2019/12/22
  **/
 public interface SyllabusContract {
     interface view extends BaseView {
-        void showSyllabus(List<ShowLessonBean> lessonBeanList);
-        void showMsg(String message);
+        void showMsg(String msg);
+        void showSyllabus(List<ShowLessonBean> lessonBeans);
     }
     interface presenter extends BasePresenter {
 

@@ -1,4 +1,4 @@
-package com.stu.syllabus.syllabus;
+package com.stu.syllabus.syllabus.syllabus;
 
 import com.stu.syllabus.DataBaseHelper;
 import com.stu.syllabus.di.DataBase;
@@ -10,11 +10,10 @@ import retrofit2.Retrofit;
 
 /**
  * yuan
- * 2019/11/12
+ * 2019/12/22
  **/
 @Module
 public class SyllabusModule {
-
     SyllabusContract.view view;
 
     public SyllabusModule(SyllabusContract.view view) {

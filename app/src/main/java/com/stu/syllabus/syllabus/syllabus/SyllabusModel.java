@@ -1,4 +1,4 @@
-package com.stu.syllabus.syllabus;
+package com.stu.syllabus.syllabus.syllabus;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -11,7 +11,7 @@ import com.stu.syllabus.bean.ShowLessonBean;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
 import com.stu.syllabus.retrofitApi.YiBanApi;
-import com.stu.syllabus.util.ColorUtil;
+import com.stu.syllabus.syllabus.syllabus.ISyllabusModel;
 
 import java.util.LinkedList;
 import java.util.List;

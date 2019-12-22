@@ -1,4 +1,4 @@
-package com.stu.syllabus.syllabus;
+package com.stu.syllabus.syllabus.syllabus;
 
 import android.util.Log;
 
@@ -6,7 +6,7 @@ import com.stu.syllabus.bean.BaseUserInfo;
 import com.stu.syllabus.bean.ShowLessonBean;
 import com.stu.syllabus.bean.YiBanTimeTable;
 import com.stu.syllabus.bean.YiBanToken;
-import com.stu.syllabus.util.ToastUtil;
+import com.stu.syllabus.syllabus.syllabusmain.SyllabusMainContract;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,7 +26,7 @@ import io.reactivex.disposables.Disposable;
  * yuan
  * 2019/11/12
  **/
-public class SyllabusPresenter implements SyllabusContract.presenter {
+public class SyllabusPresenter implements SyllabusMainContract.presenter {
     private final String TAG = this.getClass().getSimpleName();
 
     SyllabusContract.view view;

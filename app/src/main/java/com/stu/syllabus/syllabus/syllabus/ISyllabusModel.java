@@ -1,4 +1,4 @@
-package com.stu.syllabus.syllabus;
+package com.stu.syllabus.syllabus.syllabus;
 
 import com.stu.syllabus.bean.BaseUserInfo;
 import com.stu.syllabus.bean.ShowLessonBean;
