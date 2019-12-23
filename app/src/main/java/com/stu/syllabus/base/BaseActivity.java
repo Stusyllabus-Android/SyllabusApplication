@@ -28,9 +28,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         appComponent = ((App) getApplication()).getAppComponent();
         setContentView(getContentView());
         ButterKnife.bind(this);
+        init();
     }
 
     protected abstract int getContentView();
+
+    protected void init() {
+
+    }
 
     public void setupTitleBar(Toolbar toolbar) {
         toolbar.setTitle("");
