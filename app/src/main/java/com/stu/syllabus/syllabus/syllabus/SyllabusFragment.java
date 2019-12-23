@@ -1,5 +1,6 @@
 package com.stu.syllabus.syllabus.syllabus;
 
+import android.app.Activity;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseFragment;
 import com.stu.syllabus.bean.ShowLessonBean;
+import com.stu.syllabus.syllabus.lessoninfo.LessonInfoActivity;
 import com.stu.syllabus.util.ColorUtil;
 import com.stu.syllabus.util.ToastUtil;
 
@@ -33,7 +35,7 @@ import butterknife.BindView;
  * yuan
  * 2019/12/22
  **/
-public class SyllabusFragment extends BaseFragment implements SyllabusContract.view{
+public class SyllabusFragment extends BaseFragment implements SyllabusContract.view {
     private String TAG = this.getClass().getSimpleName();
 
     @BindView(R.id.dateLinearLayout)
@@ -45,6 +47,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
     TextView mTopBlankView;
 
     private AppComponent appComponent;
+    private Activity mActivity;
 
     @Inject
     SyllabusPresenter syllabusPresenter;
@@ -69,6 +72,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
         super.onCreate(savedInstanceState);
         appComponent = this.getComponent(AppComponent.class);
         weekIndex = getArguments().getInt("WEEK") + 1;
+        mActivity = getActivity();
     }
 
     @Nullable
@@ -171,7 +175,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 13; j++) {
                 LinearLayout lessonLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.lesson_grid, null, false);
-                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonRipple);
+                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonInfoRipple);
                 TextView lessonTextView = (TextView) lessonLinearLayout.findViewById(R.id.lessonTextView);
                 lessonLinearLayout.setVisibility(View.INVISIBLE);
                 lessonRippleLayout.setEnabled(false);
@@ -194,7 +198,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
 
         // 遍历转换格式后的课程并添加至格子
         int i = 0;
-        for (ShowLessonBean showLessonBean : lessonBeanList) {
+        for (final ShowLessonBean showLessonBean : lessonBeanList) {
             showLessonBean.setBgColor(ColorUtil.bgColors[i++ % ColorUtil.bgColors.length]);
             String[] week = showLessonBean.getDuration().split("-");
             int startWeek = Integer.parseInt(week[0]);
@@ -210,7 +214,15 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 Log.d(TAG, "showSyllabus: 周一" + showLessonBean.getDays().getW1());
                 String[] time = showLessonBean.getDays().getW1().split("-");
                 final LinearLayout lessonLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.lesson_grid, null, false);
-                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonRipple);
+                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonInfoRipple);
+                lessonRippleLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                                showLessonBean.getTeacher(), days));
+                    }
+                });
                 TextView lessonTextView = (TextView) lessonLinearLayout.findViewById(R.id.lessonTextView);
                 lessonTextView.setText(showLessonBean.getName() + "\n@" + showLessonBean.getRoom());
                 lessonTextView.setWidth(gridWidth);
@@ -227,7 +239,15 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 Log.d(TAG, "showSyllabus: 周二" + showLessonBean.getDays().getW2());
                 String[] time = showLessonBean.getDays().getW2().split("-");
                 final LinearLayout lessonLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.lesson_grid, null, false);
-                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonRipple);
+                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonInfoRipple);
+                lessonRippleLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                                showLessonBean.getTeacher(), days));
+                    }
+                });
                 TextView lessonTextView = (TextView) lessonLinearLayout.findViewById(R.id.lessonTextView);
                 lessonTextView.setText(showLessonBean.getName() + "\n@" + showLessonBean.getRoom());
                 Log.d(TAG, "showSyllabus: " + showLessonBean.getRoom());
@@ -245,7 +265,15 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 Log.d(TAG, "showSyllabus: 周三" + showLessonBean.getDays().getW3());
                 String[] time = showLessonBean.getDays().getW3().split("-");
                 final LinearLayout lessonLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.lesson_grid, null, false);
-                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonRipple);
+                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonInfoRipple);
+                lessonRippleLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                                showLessonBean.getTeacher(), days));
+                    }
+                });
                 TextView lessonTextView = (TextView) lessonLinearLayout.findViewById(R.id.lessonTextView);
                 lessonTextView.setText(showLessonBean.getName() + "\n@" + showLessonBean.getRoom());
                 lessonTextView.setWidth(gridWidth);
@@ -262,7 +290,15 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 Log.d(TAG, "showSyllabus: 周四" + showLessonBean.getDays().getW4());
                 String[] time = showLessonBean.getDays().getW4().split("-");
                 final LinearLayout lessonLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.lesson_grid, null, false);
-                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonRipple);
+                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonInfoRipple);
+                lessonRippleLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                                showLessonBean.getTeacher(), days));
+                    }
+                });
                 TextView lessonTextView = (TextView) lessonLinearLayout.findViewById(R.id.lessonTextView);
                 lessonTextView.setText(showLessonBean.getName() + "\n@" + showLessonBean.getRoom());
                 lessonTextView.setWidth(gridWidth);
@@ -279,7 +315,15 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                 Log.d(TAG, "showSyllabus: 周五" + showLessonBean.getDays().getW5());
                 String[] time = showLessonBean.getDays().getW5().split("-");
                 final LinearLayout lessonLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.lesson_grid, null, false);
-                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonRipple);
+                MaterialRippleLayout lessonRippleLayout = (MaterialRippleLayout) lessonLinearLayout.findViewById(R.id.lessonInfoRipple);
+                lessonRippleLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                                showLessonBean.getTeacher(), days));
+                    }
+                });
                 TextView lessonTextView = (TextView) lessonLinearLayout.findViewById(R.id.lessonTextView);
                 lessonTextView.setText(showLessonBean.getName() + "\n@" + showLessonBean.getRoom());
                 lessonTextView.setWidth(gridWidth);

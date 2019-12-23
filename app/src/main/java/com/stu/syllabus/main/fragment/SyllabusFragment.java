@@ -36,6 +36,7 @@ import butterknife.BindView;
 /**
  * yuan
  * 2019/10/22
+ * SyllabusFragment对应着syllabus包中的syllabusmain包
  **/
 public class SyllabusFragment extends BaseFragment implements SyllabusMainContract.view{
 
@@ -146,12 +147,16 @@ public class SyllabusFragment extends BaseFragment implements SyllabusMainContra
         inflater.inflate(R.menu.syllabus_menu, menu);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addLesson: ToastUtil.showShort(getContext(), "添加课表"); break;
             case R.id.deleteLesson: ToastUtil.showShort(getContext(), "删除课表"); break;
             case R.id.shareSyllabus: ToastUtil.showShort(getContext(), "分享课表"); break;
+            case R.id.showLessonTime: ToastUtil.showShort(getContext(), "上课时间"); break;
+            case R.id.showExaminationTime: ToastUtil.showShort(getContext(), "考试时间"); break;
             case R.id.setWallPaper: ToastUtil.showShort(getContext(), "设置壁纸"); break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.stu.syllabus">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- for mta statistics, not necessary -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".App"
@@ -14,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".person.setting.HelpAndFeedbackActivity"></activity>
+        <activity android:name=".syllabus.lessoninfo.LessonInfoActivity"></activity>
+        <activity android:name=".person.setting.HelpAndFeedbackActivity" />
         <activity android:name=".person.setting.AboutActivity" />
         <activity android:name=".person.personal.PersonalActivity" />
         <activity android:name=".person.setting.SettingActivity" />
