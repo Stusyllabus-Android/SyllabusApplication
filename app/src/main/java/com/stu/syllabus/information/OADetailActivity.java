@@ -13,8 +13,7 @@ import android.webkit.WebView;
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
-import com.stu.syllabus.base.BaseOAActivity;
-import com.stu.syllabus.bean.OADetail;
+
 
 import javax.inject.Inject;
 import android.webkit.WebViewClient;
@@ -34,21 +33,27 @@ public class OADetailActivity extends BaseActivity  {
     @BindView(R.id.toolBar)
     Toolbar toolbar;
     private AppComponent appComponent;
-    Call<OADetail> oadetail;
-//    @Inject
-//    OADetailPresenter oadetailPresenter;
+
+
     String id;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        appComponent = this.getComponent(AppComponent.class);
+
         WebSettings webSettings = mOAWebView.getSettings();
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setUseWideViewPort(true);//设置webview推荐使用的窗口
+        webSettings.setLoadWithOverviewMode(true);//设置webview加载的页面的模式
+        webSettings.setDisplayZoomControls(false);//隐藏webview缩放按钮
+        webSettings.setJavaScriptEnabled(true); // 设置支持javascript脚本
+        webSettings.setAllowFileAccess(true); // 允许访问文件
+        webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
+        webSettings.setSupportZoom(true); // 支持缩放
+//自适应屏幕
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//适应屏幕，内容将自动缩放
         //设置WebView属性，能够执行Javascript脚本
         webSettings.setJavaScriptEnabled(true);
-        //设置可以访问文件
-        webSettings.setAllowFileAccess(true);
-        //设置支持缩放
-        webSettings.setBuiltInZoomControls(true);
+
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //显示状态栏
 
         setSupportActionBar(toolbar);//显示ToolBar
@@ -65,19 +70,7 @@ public class OADetailActivity extends BaseActivity  {
         String url= " http://oa.stu.edu.cn/page/maint/template/news/newstemplateprotal.jsp?templatetype=1&templateid=3&docid="+id;
         mOAWebView.loadUrl(url);
     }
-//
-//    @Nullable
-//    public View onCreatView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//
-////        DaggerOADetailComponent.builder()
-//////                .appComponent(appComponent)
-////                .oADetailModule(new OADetailModule(this))
-////                .build()
-////                .inject(this);
-////
-////        oadetailPresenter.init();
-////        return super.onCreateView(inflater, container, savedInstanceState);
-//    }
+
 
 public void setToolBarTitle() {
     toolbar.setTitle("办公自动化");
@@ -88,26 +81,8 @@ public void setToolBarTitle() {
         return R.layout.activity_oadetail;
     }
 
-//    @Override
-//    public void setToolBarTitle() {
-//        toolbar.setTitle("办公自动化");
-//        toolbar.setTitleTextColor(getResources().getColor(R.color.toolbarTitle));
-//    }
-//    @Override
-//    public void init() {
-//        super.init();
-//
-//    }
-
-//    @Override
-//    protected Object getActivity() {
-//        return null;
-//    }
 
 
-    //    @Override
-    public void showDetail(Call<OADetail> oadetail) {
 
-    }
 
 }
