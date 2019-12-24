@@ -219,7 +219,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                     @Override
                     public void onClick(View v) {
                         String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
-                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getBgColor(), showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
                                 showLessonBean.getTeacher(), days));
                     }
                 });
@@ -244,7 +244,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                     @Override
                     public void onClick(View v) {
                         String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
-                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getBgColor(), showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
                                 showLessonBean.getTeacher(), days));
                     }
                 });
@@ -270,7 +270,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                     @Override
                     public void onClick(View v) {
                         String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
-                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getBgColor(), showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
                                 showLessonBean.getTeacher(), days));
                     }
                 });
@@ -295,7 +295,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                     @Override
                     public void onClick(View v) {
                         String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
-                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getBgColor(), showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
                                 showLessonBean.getTeacher(), days));
                     }
                 });
@@ -320,7 +320,7 @@ public class SyllabusFragment extends BaseFragment implements SyllabusContract.v
                     @Override
                     public void onClick(View v) {
                         String days = showLessonBean.getDuration() + "周\n" + showLessonBean.getDays().toString();
-                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
+                        mActivity.startActivity(LessonInfoActivity.getIntent(mActivity, showLessonBean.getBgColor(), showLessonBean.getName(), showLessonBean.getId(), showLessonBean.getCredit(), showLessonBean.getRoom(),
                                 showLessonBean.getTeacher(), days));
                     }
                 });

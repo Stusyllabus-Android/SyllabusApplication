@@ -22,6 +22,11 @@
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
 
+    <style name="AppTheme.Fullscreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/material_white</item>
         <item name="android:textColorPrimary">@color/menuText</item>
@@ -29,7 +34,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
 
     <!--bottom dialog-->
     <style name="BottomDialog" parent="@android:style/Theme.Dialog">

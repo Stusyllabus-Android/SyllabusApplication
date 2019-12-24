@@ -69,9 +69,12 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
     @OnClick({R.id.helpAndFeedback, R.id.recommendTo, R.id.aboutUs, R.id.logout})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.helpAndFeedback: startActivity(HelpAndFeedbackActivity.getIntent(this));break;
+//            case R.id.helpAndFeedback: startActivity(HelpAndFeedbackActivity.getIntent(this));break;
+            case R.id.helpAndFeedback: ToastUtil.showShort(this, "暂未开发"); break;
             case R.id.recommendTo: settingPresenter.recommendTo(); break;
-            case R.id.aboutUs: startActivity(AboutActivity.getIntent(this));break;
+            case R.id.aboutUs: startActivity(AboutActivity.getIntent(this));
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                break;
             case R.id.logout: settingPresenter.logout(); break;
         }
     }
@@ -89,8 +92,8 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
     }
 
     private void share(int scene) {
-        ShareWXUtil.shareUrl("https://fir.im/stusyllabuspie", "汕学派", "汕学派",
-                BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), scene
+        ShareWXUtil.shareUrl("https://fir.im/stusyllabuspie", "汕学派", "汕学派APP下载链接",
+                BitmapFactory.decodeResource(getResources(), R.mipmap.logo), scene
         );
     }
 

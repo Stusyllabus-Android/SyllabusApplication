@@ -15,6 +15,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
 import com.stu.syllabus.person.PersonModule;
+import com.stu.syllabus.util.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -72,7 +73,9 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
         headImageView.setImageURI(avatar);
         accountTextView.setText(account);
         nicknameTextView.setText(nickname);
-        signatureTextView.setText(signature);
+        if (signature != null && !signature.isEmpty()) {
+            signatureTextView.setText(signature);
+        }
     }
 
     public static Intent getIntent(Context context) {
@@ -90,8 +93,9 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
 
     @Override
     public void toChangeAct(Intent intent) {
-        startActivity(intent);
-        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        ToastUtil.showShort(this, "暂未开发");
+//        startActivity(intent);
+//        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
     @Override

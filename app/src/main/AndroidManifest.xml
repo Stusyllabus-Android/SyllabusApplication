@@ -20,7 +20,9 @@
         <activity android:name=".person.personal.UpdateSignatureActivity"></activity>
         <activity android:name=".person.personal.UpdateNicknameActivity" />
         <activity android:name=".person.personal.UpdateAvatarActivity" />
-        <activity android:name=".syllabus.lessoninfo.LessonInfoActivity" />
+        <activity android:name=".syllabus.lessoninfo.LessonInfoActivity"
+            android:theme="@style/AppTheme.Fullscreen"
+            android:screenOrientation="portrait"/>
         <activity android:name=".person.setting.HelpAndFeedbackActivity" />
         <activity android:name=".person.setting.AboutActivity" />
         <activity android:name=".person.personal.PersonalActivity" />

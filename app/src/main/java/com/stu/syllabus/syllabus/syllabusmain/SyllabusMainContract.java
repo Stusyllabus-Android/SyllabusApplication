@@ -9,6 +9,8 @@ import com.stu.syllabus.base.BaseView;
  **/
 public interface SyllabusMainContract {
     interface view extends BaseView {
+        void changeWallPaper();
+
         void showMsg(String message);
     }
     interface presenter extends BasePresenter {

@@ -147,8 +147,6 @@ public class SyllabusFragment extends BaseFragment implements SyllabusMainContra
         inflater.inflate(R.menu.syllabus_menu, menu);
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -160,6 +158,11 @@ public class SyllabusFragment extends BaseFragment implements SyllabusMainContra
             case R.id.setWallPaper: ToastUtil.showShort(getContext(), "设置壁纸"); break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void changeWallPaper() {
+
     }
 
     @Override

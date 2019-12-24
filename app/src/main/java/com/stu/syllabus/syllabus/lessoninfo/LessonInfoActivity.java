@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.stu.syllabus.R;
@@ -16,6 +18,8 @@ import butterknife.BindView;
 
 public class LessonInfoActivity extends BaseActivity {
 
+    @BindView(R.id.wrap_container)
+    LinearLayout wrapContainer;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.lessonName)
@@ -30,7 +34,10 @@ public class LessonInfoActivity extends BaseActivity {
     TextView teacherTextView;
     @BindView(R.id.lessonTime)
     TextView timeTextView;
+    @BindView(R.id.toClassmatesAct)
+    Button toClassMatesAct;
 
+    private int color;
     private String name;
     private String id;
     private String credit;
@@ -41,6 +48,7 @@ public class LessonInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
+        color = intent.getIntExtra("color", 0);
         name = intent.getStringExtra("name");
         id = intent.getStringExtra("id");
         credit = intent.getStringExtra("credit");
@@ -60,6 +68,8 @@ public class LessonInfoActivity extends BaseActivity {
         classroomTextView.setText(classroom);
         teacherTextView.setText(teacher);
         timeTextView.setText(days);
+        wrapContainer.setBackgroundColor(getResources().getColor(color));
+        toClassMatesAct.setBackgroundColor(getResources().getColor(color));
     }
 
     @Override
@@ -72,8 +82,9 @@ public class LessonInfoActivity extends BaseActivity {
         super.setupTitleBar(toolbar);
     }
 
-    public static Intent getIntent(Context context, String name, String id, String credit, String classroom, String teacher, String days) {
+    public static Intent getIntent(Context context, int color, String name, String id, String credit, String classroom, String teacher, String days) {
         Intent intent = new Intent(context, LessonInfoActivity.class);
+        intent.putExtra("color", color);
         intent.putExtra("name", name);
         intent.putExtra("id", id);
         intent.putExtra("credit", credit);

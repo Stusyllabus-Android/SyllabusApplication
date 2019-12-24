@@ -267,9 +267,9 @@
             app:mrl_rippleRoundedCorners="4dp">
 
             <Button
+                android:id="@+id/toClassmatesAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
                 android:elevation="8dp"
                 android:text="查看班级同学"
                 android:textColor="@color/material_white"

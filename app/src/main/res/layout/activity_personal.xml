@@ -37,7 +37,7 @@
         <TextView
             android:text="头像"
             android:layout_centerVertical="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/material_textBlack_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -53,8 +53,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:background="@drawable/bg_logo"
                 android:padding="1dp"
                 fresco:roundAsCircle="true"/>
@@ -80,7 +80,7 @@
         <TextView
             android:text="账号"
             android:layout_centerVertical="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/material_textBlack_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -93,6 +93,7 @@
             <TextView
                 android:id="@+id/accountTextView"
                 android:text="17sfyuan"
+                android:textSize="18sp"
                 android:textColor="@color/material_textBlack_secondaryText"
                 android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
@@ -115,7 +116,7 @@
         <TextView
             android:text="昵称"
             android:layout_centerVertical="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/material_textBlack_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -128,6 +129,7 @@
             <TextView
                 android:id="@+id/nicknameTextView"
                 android:text="Jarvis Yuen"
+                android:textSize="18sp"
                 android:textColor="@color/material_textBlack_secondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -154,7 +156,7 @@
         <TextView
             android:text="个性签名"
             android:layout_centerVertical="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/material_textBlack_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -166,7 +168,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/signatureTextView"
-                android:text="很有个性的签名"
+                android:text="个性签名为空"
                 android:textColor="@color/material_textBlack_secondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
