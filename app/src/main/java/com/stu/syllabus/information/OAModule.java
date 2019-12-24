@@ -15,29 +15,7 @@ import retrofit2.Retrofit;
  * yuan
  * 2019/11/28
  **/
-//@Module
-//public class OAModule {
-//    private OAContract.view view;
-//    private int mPosition;
-//    public OAModule(OAContract.view view, int position) {
-//        super();
-//        this.view = view;
-//        mPosition = position;
-//    }
-//
-//    @PerFragment
-//    @Provides
-//    int providePosition() {
-//        return mPosition;
-//    }
-//
-//
-//    @PerFragment
-//    @Provides
-//    OAContract.view provideView() {
-//        return view;
-//    }
-//}
+
 @Module
 public class OAModule {
     private OAContract.view view;

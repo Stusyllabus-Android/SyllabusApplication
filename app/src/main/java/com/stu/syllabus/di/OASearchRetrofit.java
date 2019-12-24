@@ -7,6 +7,6 @@ import javax.inject.Qualifier;
 
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OADetailRetrofit {
+public @interface OASearchRetrofit {
 
 }

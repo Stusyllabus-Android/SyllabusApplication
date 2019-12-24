@@ -5,17 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.stu.syllabus.AppComponent;
@@ -25,10 +26,10 @@ import com.stu.syllabus.base.BaseFragment;
 import com.stu.syllabus.bean.OAArticle;
 import com.stu.syllabus.information.DaggerOAComponent;
 import com.stu.syllabus.information.OAContract;
-//import com.stu.syllabus.information.OADetailFragment;
 import com.stu.syllabus.information.OADetailActivity;
 import com.stu.syllabus.information.OAModule;
 import com.stu.syllabus.information.OAPresenter;
+import com.stu.syllabus.information.OASearch;
 
 import java.util.List;
 
@@ -57,8 +58,10 @@ public class InfoFragment extends BaseFragment implements OAContract.view {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         appComponent = this.getComponent(AppComponent.class);
-
+        setHasOptionsMenu(true);
     }
+
+
 
     @Nullable
     @Override
@@ -78,7 +81,7 @@ public class InfoFragment extends BaseFragment implements OAContract.view {
         return R.layout.fragment_info;
     }
 
-    @Override
+
     public void init() {
         super.init();
         oaRefreshLayout.setRefreshing(true);
@@ -89,35 +92,34 @@ public class InfoFragment extends BaseFragment implements OAContract.view {
             }
         });
 
-
     }
 
     @Override
     public void setToolBarTitle() {
         toolbar.setTitle(R.string.info);
         toolbar.setTitleTextColor(getResources().getColor(R.color.toolbarTitle));
+        toolbar.inflateMenu(R.menu.oa_menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_1:
+                        Intent intent1 =new Intent();
+                         intent1.setClass(getActivity(), OASearch.class);
+                         startActivity(intent1);
+                        break;
+
+            }
+                return true;
+        }});
     }
 
     @Override
     public void showOA(List<OAArticle> oaArticleList) {
         listView.setAdapter(new OAListAdapter(getContext(), R.layout.item_oa, oaArticleList));
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @SuppressLint("ResourceType")
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //获取fragment的实例
-//                Fragment fragment=new Fragment();
-//                //获取Fragment的管理器
-//                FragmentManager fragmentManager=getChildFragmentManager();
-//                //开启fragment的事物,在这个对象里进行fragment的增删替换等操作。
-//                FragmentTransaction ft=fragmentManager.beginTransaction();
-//                //跳转到fragment，第一个参数为所要替换的位置id，第二个参数是替换后的fragment
-//                ft.replace(R.layout.fragment_oadetail,OADetailFragment);
-//                //提交事物
-//                ft.commit();
-//            }
+
              String b;
 
             @Override
@@ -148,7 +150,6 @@ public class InfoFragment extends BaseFragment implements OAContract.view {
                     }}
 
                 intent.putExtra("id",b);//获取点击item的id
-                Log.i("c1234531", b);
                 intent.setClass(getActivity(), OADetailActivity.class);
                 startActivity(intent);
             }
@@ -156,13 +157,9 @@ public class InfoFragment extends BaseFragment implements OAContract.view {
     }
 
 
-
     @Override
     public void isRefresh(boolean flag) {
         oaRefreshLayout.setRefreshing(flag);
     }
-
-
-
 
 }

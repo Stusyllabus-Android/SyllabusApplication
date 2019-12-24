@@ -1,8 +1,8 @@
-package com.stu.syllabus.information;
+package com.stu.syllabus.information.search;
 
 import android.util.Log;
 
-import com.stu.syllabus.bean.OAArticle;
+import com.stu.syllabus.bean.OASearchBean;
 
 import java.util.List;
 
@@ -10,37 +10,35 @@ import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-
-/**
- * yuan
- * 2019/11/28
- **/
-public class OAPresenter implements OAContract.presenter {
+/*@author cxy
+ * by2019/12/24
+ * */
+public class OASearchPresenter {
     private String TAG = this.getClass().getSimpleName();
 
-    OAContract.view view;
-    IOAModel model;
+    OASearchContract.view view;
+    IOASearchModel model;
 
     @Inject
-    public OAPresenter(OAContract.view view, IOAModel model) {
+    public OASearchPresenter(OASearchContract.view view, IOASearchModel model) {
         super();
         this.view = view;
         this.model = model;
     }
 
-    @Override
-    public void init() {
-        model.getOAArticle(0, 100, 0)
-                .subscribe(new Observer<List<OAArticle>>() {
+
+    public void init(String keyword) {
+        model.getOASearch(keyword, 0, 30)
+                .subscribe(new Observer<List<OASearchBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.i(TAG, "onSub " );
                     }
 
                     @Override
-                    public void onNext(List<OAArticle> oaArticles) {
-                        Log.d(TAG, "onNext: " + oaArticles.size());
-                        view.showOA(oaArticles);
+                    public void onNext(List<OASearchBean> oasearchbean) {
+                        Log.d(TAG, "onNext: " + oasearchbean.size());
+                        view.showOASearch(oasearchbean);
                         view.isRefresh(false);
                     }
 
@@ -52,7 +50,7 @@ public class OAPresenter implements OAContract.presenter {
 
                     @Override
                     public void onComplete() {
-
+                        Log.i(TAG, "o: " );
                     }
                 });
     }
