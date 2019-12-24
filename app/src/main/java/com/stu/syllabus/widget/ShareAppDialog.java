@@ -1,6 +1,8 @@
 package com.stu.syllabus.widget;
 
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.stu.syllabus.R;
@@ -10,12 +12,12 @@ import com.stu.syllabus.R;
  * 2019/11/25
  **/
 public class ShareAppDialog extends BaseBottomDialog implements View.OnClickListener {
+    private String TAG = this.getClass().getSimpleName();
 
     RelativeLayout shareToWechat;
     RelativeLayout shareToMoment;
-    RelativeLayout shareToQQ;
-    RelativeLayout shareToQQZone;
     RelativeLayout copyLink;
+    LinearLayout cancelLinearLayout;
 
     OnShareSelectCallBack onShareSelectCallBack;
 
@@ -26,12 +28,10 @@ public class ShareAppDialog extends BaseBottomDialog implements View.OnClickList
                 onShareSelectCallBack.onShareSelect(0);
             } else if (v.getId() == R.id.shareToMoment) {
                 onShareSelectCallBack.onShareSelect(1);
-            } else if (v.getId() == R.id.shareToQQ) {
+            } else if (v.getId() == R.id.copyLink){
                 onShareSelectCallBack.onShareSelect(2);
-            } else if (v.getId() == R.id.shareToQQZone) {
-                onShareSelectCallBack.onShareSelect(3);
-            } else {
-                onShareSelectCallBack.onShareSelect(4);
+            } else if (v.getId() == R.id.cancelLinearLayout) {
+                this.dismiss();
             }
         }
         this.dismiss();
@@ -42,7 +42,7 @@ public class ShareAppDialog extends BaseBottomDialog implements View.OnClickList
     }
 
     public OnShareSelectCallBack setOnShareSelectCallBack(OnShareSelectCallBack onShareSelectCallBack) {
-        return onShareSelectCallBack;
+        return this.onShareSelectCallBack = onShareSelectCallBack;
     }
 
     @Override
@@ -54,14 +54,12 @@ public class ShareAppDialog extends BaseBottomDialog implements View.OnClickList
     public void bindView(View view) {
         shareToWechat = view.findViewById(R.id.shareToWechat);
         shareToMoment = view.findViewById(R.id.shareToMoment);
-        shareToQQ = view.findViewById(R.id.shareToQQ);
-        shareToQQZone = view.findViewById(R.id.shareToQQZone);
         copyLink = view.findViewById(R.id.copyLink);
+        cancelLinearLayout = view.findViewById(R.id.cancelLinearLayout);
 
         shareToWechat.setOnClickListener(this);
         shareToMoment.setOnClickListener(this);
-        shareToQQ.setOnClickListener(this);
-        shareToQQZone.setOnClickListener(this);
         copyLink.setOnClickListener(this);
+        cancelLinearLayout.setOnClickListener(this);
     }
 }

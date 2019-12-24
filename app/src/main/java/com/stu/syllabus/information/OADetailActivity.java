@@ -40,6 +40,8 @@ public class OADetailActivity extends BaseActivity  {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setupTitleBar(toolbar);
+
         WebSettings webSettings = mOAWebView.getSettings();
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setUseWideViewPort(true);//设置webview推荐使用的窗口
@@ -49,21 +51,11 @@ public class OADetailActivity extends BaseActivity  {
         webSettings.setAllowFileAccess(true); // 允许访问文件
         webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
         webSettings.setSupportZoom(true); // 支持缩放
-//自适应屏幕
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//适应屏幕，内容将自动缩放
         //设置WebView属性，能够执行Javascript脚本
         webSettings.setJavaScriptEnabled(true);
-
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //显示状态栏
-
-        setSupportActionBar(toolbar);//显示ToolBar
-
-//返回按钮的监听
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回按钮的监听
         getSupportActionBar().setHomeButtonEnabled(true);
-        setToolBarTitle();
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         Log.i("iddd",id);
@@ -71,11 +63,6 @@ public class OADetailActivity extends BaseActivity  {
         mOAWebView.loadUrl(url);
     }
 
-
-public void setToolBarTitle() {
-    toolbar.setTitle("办公自动化");
-    toolbar.setTitleTextColor(getResources().getColor(R.color.toolbarTitle));
-}
     @Override
     public int getContentView() {
         return R.layout.activity_oadetail;

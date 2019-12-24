@@ -2,37 +2,43 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    app:contentInsetStart="0dp"
+    android:clipToPadding="true" >
 
-    app:contentInsetLeft="0dp"
-    android:clipToPadding="true"
-    >
-<!--    <include layout="@layout/fragment_toolbar_layout"/>-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        app:titleMargin="0dp"
-        app:contentInsetStart="150dp"
-        app:contentInsetLeft="150dp"
-        app:title="办公自动化"
-    />
+        android:background="?attr/colorPrimary"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        android:gravity="center_vertical"
+        android:theme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="办公自动化"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <WebView
             android:id="@+id/oAWebView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></WebView>
-
 
     </ScrollView>
 

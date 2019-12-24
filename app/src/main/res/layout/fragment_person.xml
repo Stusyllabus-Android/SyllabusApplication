@@ -13,7 +13,7 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/headImageDraweeView"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/logo"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_centerVertical="true"
