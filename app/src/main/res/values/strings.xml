@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SyllabusApplication</string>
+    <string name="app_name">汕学派beta</string>
 
     <!--fragment名-->
     <string name="home">首页</string>

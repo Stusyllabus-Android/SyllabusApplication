@@ -54,9 +54,9 @@ public class WireService extends Service {
             builder.setProgress(100, (int) progress, false)
                     .setContentTitle(mStreamInfo.getName() + "已用: " +
                             String.format("%.2f%%", progress))
-                    .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentText("已用" + mStreamInfo.getNowStream() + "，总共" + mStreamInfo
                             .getAllStream() + "。状态" + mStreamInfo.getState())
+                    .setSmallIcon(R.mipmap.logo)
                     .setContentIntent(contentIntent)
                     .setWhen(System.currentTimeMillis());
             //以下两道注释可被manager代替
@@ -70,7 +70,7 @@ public class WireService extends Service {
             NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             Notification.Builder builder = new Notification.Builder(this.getApplicationContext());
             builder.setContentTitle("网络状态")
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.logo)
                     .setContentText("没连接到校园网")
                     .setContentIntent(contentIntent)
                     .setWhen(System.currentTimeMillis());
@@ -83,7 +83,7 @@ public class WireService extends Service {
 
             builder.setContentTitle("网络状态")
                     .setContentIntent(contentIntent)
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.logo)
                     .setContentText("没登录校园网流量验证")
                     .setWhen(System.currentTimeMillis());
             Notification notification = builder.build();

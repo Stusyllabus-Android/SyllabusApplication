@@ -13,4 +13,5 @@ import io.reactivex.Observable;
 public interface IOAModel {
 
     Observable<List<OAArticle>> getOAArticle(int row_start, int row_end, int subcompany_id);
+
 }

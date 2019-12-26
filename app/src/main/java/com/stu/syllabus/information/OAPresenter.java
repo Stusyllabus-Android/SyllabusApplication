@@ -1,10 +1,7 @@
 package com.stu.syllabus.information;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.stu.syllabus.R;
-import com.stu.syllabus.adapter.OAListAdapter;
 import com.stu.syllabus.bean.OAArticle;
 
 import java.util.List;
@@ -37,7 +34,7 @@ public class OAPresenter implements OAContract.presenter {
                 .subscribe(new Observer<List<OAArticle>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        Log.i(TAG, "onSub " );
                     }
 
                     @Override

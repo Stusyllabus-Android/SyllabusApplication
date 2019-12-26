@@ -50,6 +50,9 @@ public class PersonModel implements IPersonModel {
                     semester = cursor.getString(cursor.getColumnIndex("semester"));
                 }
                 sqLiteDatabase.close();
+                if (semester == null) {
+                    semester = "Non-existent";
+                }
                 ShowInfoBean infoBean = new ShowInfoBean(id, avatar, nickname, signature, semester);
                 emitter.onNext(infoBean);
             }

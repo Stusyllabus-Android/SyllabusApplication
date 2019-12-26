@@ -15,4 +15,7 @@
     <color name="material_white">#ffffff</color>
 
     <color name="defaultShowColor">#999999</color>
+
+    <color name="menuBackground">#DBD9D8</color>
+    <color name="menuText">#191919</color>
 </resources>

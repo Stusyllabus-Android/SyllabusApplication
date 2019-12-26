@@ -3,6 +3,7 @@ package com.stu.syllabus.person.setting;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,9 @@ import androidx.appcompat.widget.Toolbar;
 import com.stu.syllabus.App;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
+import com.stu.syllabus.util.ClipboardUtil;
+import com.stu.syllabus.util.ShareWXUtil;
+import com.stu.syllabus.util.ToastUtil;
 import com.stu.syllabus.widget.ShareAppDialog;
 
 import javax.inject.Inject;
@@ -65,9 +69,12 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
     @OnClick({R.id.helpAndFeedback, R.id.recommendTo, R.id.aboutUs, R.id.logout})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.helpAndFeedback: startActivity(HelpAndFeedbackActivity.getIntent(this));break;
+//            case R.id.helpAndFeedback: startActivity(HelpAndFeedbackActivity.getIntent(this));break;
+            case R.id.helpAndFeedback: ToastUtil.showShort(this, "暂未开发"); break;
             case R.id.recommendTo: settingPresenter.recommendTo(); break;
-            case R.id.aboutUs: startActivity(AboutActivity.getIntent(this));break;
+            case R.id.aboutUs: startActivity(AboutActivity.getIntent(this));
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                break;
             case R.id.logout: settingPresenter.logout(); break;
         }
     }
@@ -85,12 +92,21 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
     }
 
     private void share(int scene) {
-
+        ShareWXUtil.shareUrl("https://fir.im/stusyllabuspie", "汕学派", "汕学派APP下载链接",
+                BitmapFactory.decodeResource(getResources(), R.mipmap.logo), scene
+        );
     }
 
     @Override
     public void onShareSelect(int position) {
-        // TODO: 2019/11/26 点击分享 
+        if (position == 0) {
+            share(0);
+        } else if (position == 1) {
+            share(1);
+        } else if (position == 2) {
+            ClipboardUtil.copyToClipboard("https://fir.im/stusyllabuspie");
+            ToastUtil.showShort(this, "已复制下载链接到剪贴板");
+        }
     }
 
     @Override
@@ -100,7 +116,6 @@ public class SettingActivity extends BaseActivity implements SettingContract.vie
         setResult(1000, intent);
         this.finish();
     }
-
 
     @Override
     public void finish() {

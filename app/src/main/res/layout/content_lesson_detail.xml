@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailContentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultLightBackground"
+    android:orientation="vertical"
+    android:paddingBottom="32dp"
+    android:paddingTop="32dp">
+
+    <LinearLayout
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_id_lesson"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+        </LinearLayout>
+        <TextView
+            android:text="班号"
+            android:textSize="16sp"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/defaultShowColor"/>
+
+        <TextView
+            android:id="@+id/lessonID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/material_textBlack_black"
+            android:background="@null"
+            android:textSize="16sp"
+            tools:text="000000"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/defaultLightBackground"/>
+
+    <LinearLayout
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_credit_lesson"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+        </LinearLayout>
+        <TextView
+            android:text="学分"
+            android:textSize="16sp"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/defaultShowColor"/>
+        <TextView
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/lessonCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/material_textBlack_black"
+            android:background="@null"
+            android:textSize="16sp"
+            tools:text="2"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/defaultLightBackground"/>
+
+
+    <LinearLayout
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_place_lesson"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+        </LinearLayout>
+        <TextView
+            android:text="教室"
+            android:textSize="16sp"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/defaultShowColor"/>
+        <TextView
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/lessonClassroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/material_textBlack_black"
+            android:background="@null"
+            android:textSize="16sp"
+            tools:text="E888"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/defaultLightBackground"/>
+
+    <LinearLayout
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_teacher_lesson"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+        </LinearLayout>
+        <TextView
+            android:text="教师"
+            android:textSize="16sp"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/defaultShowColor"/>
+        <TextView
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/lessonTeacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/material_textBlack_black"
+            android:background="@null"
+            android:textSize="16sp"
+            tools:text="于津"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/defaultLightBackground"/>
+
+    <LinearLayout
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_time_lesson"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+        </LinearLayout>
+        <TextView
+            android:text="时间"
+            android:textSize="16sp"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/defaultShowColor"/>
+        <TextView
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/lessonTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/material_textBlack_black"
+            android:background="@null"
+            android:textSize="16sp"
+            tools:text="3-18周 周一34"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/defaultLightBackground"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp">
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:id="@+id/showClassMateButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mrl_rippleAlpha="0.1"
+            app:mrl_rippleColor="#000000"
+            app:mrl_rippleDuration="500"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleRoundedCorners="4dp">
+
+            <Button
+                android:id="@+id/toClassmatesAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                android:text="查看班级同学"
+                android:textColor="@color/material_white"
+                android:textSize="16sp"
+                tools:targetApi="lollipop"/>
+
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </FrameLayout>
+
+
+</LinearLayout>

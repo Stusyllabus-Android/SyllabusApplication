@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <com.balysv.materialripple.MaterialRippleLayout
-        android:id="@+id/lessonRipple"
+        android:id="@+id/lessonInfoRipple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:transitionName="lesson_grid"

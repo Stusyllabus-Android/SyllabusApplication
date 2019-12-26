@@ -11,8 +11,8 @@
     <style name="AppTheme.Launcher.BG" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/temp</item>
-        <item name="android:background">@drawable/temp</item>
+<!--        <item name="android:windowBackground">@drawable/retemp</item>-->
+<!--        <item name="android:background">@drawable/retemp</item>-->
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
 
@@ -22,19 +22,20 @@
         <item name="android:windowAnimationStyle">@android:anim/fade_out</item>
     </style>
 
+    <style name="AppTheme.Fullscreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/material_white</item>
-        <item name="actionMenuTextColor">@color/material_white</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="drawerArrowStyle">@style/left_Drawer_Arrow_Style</item>
+        <item name="android:textColorPrimary">@color/menuText</item>
+        <item name="android:colorBackground">@color/menuBackground</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="left_Drawer_Arrow_Style" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">@android:color/white</item>
-    </style>
-
-    <!--bottom dialog 里面的-->
+    <!--bottom dialog-->
     <style name="BottomDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowTitleStyle">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>

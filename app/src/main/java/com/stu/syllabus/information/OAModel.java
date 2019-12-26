@@ -1,6 +1,7 @@
 package com.stu.syllabus.information;
 
 import com.stu.syllabus.bean.OAArticle;
+import com.stu.syllabus.bean.OASearchBean;
 import com.stu.syllabus.retrofitApi.GetOAArticleAPi;
 
 import java.util.List;
@@ -29,4 +30,5 @@ public class OAModel implements IOAModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 }

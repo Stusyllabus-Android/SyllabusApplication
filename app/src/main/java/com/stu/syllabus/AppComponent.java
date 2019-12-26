@@ -6,6 +6,7 @@ import com.stu.syllabus.di.AuthRetrofit;
 import com.stu.syllabus.di.BusinessRetrofit;
 import com.stu.syllabus.di.DataBase;
 import com.stu.syllabus.di.WirelessRetrofit;
+import com.stu.syllabus.di.OASearchRetrofit;
 import com.stu.syllabus.di.YiBanRetrofit;
 
 import javax.inject.Singleton;
@@ -36,6 +37,8 @@ public interface AppComponent {
 
     @WirelessRetrofit
     Retrofit getWirelessRetrofit();
+    @OASearchRetrofit
+    Retrofit getOASearchRetrofit();
 
     void inject(App app);
 

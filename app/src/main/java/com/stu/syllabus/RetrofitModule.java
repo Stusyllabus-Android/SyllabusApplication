@@ -1,6 +1,5 @@
 package com.stu.syllabus;
 
-
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.CookieCache;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -8,6 +7,7 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.stu.syllabus.di.AuthRetrofit;
 import com.stu.syllabus.di.BusinessRetrofit;
+import com.stu.syllabus.di.OASearchRetrofit;
 import com.stu.syllabus.di.YiBanRetrofit;
 import com.stu.syllabus.di.WirelessRetrofit;
 
@@ -34,6 +34,7 @@ public class RetrofitModule {
     private final String YIBAN_BASEURL = "https://yiban.stu.edu.cn/";
     private final String WIRELESS_BASEURL = "http://1.1.1.2/ac_portal/";
 
+    private final String OASEARCH_BASEURL ="http://oauth.candycute.cn:7001/";
     CookieCache cookieCache;
     CookieJar cookieJar;
 
@@ -86,7 +87,6 @@ public class RetrofitModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
     @Provides
     @WirelessRetrofit
     Retrofit provideWirelessRetrofit(){
@@ -99,5 +99,14 @@ public class RetrofitModule {
                 .build();
     }
 
-
+    @Provides
+    @OASearchRetrofit
+    Retrofit provideAuthSearchRetrofit() {
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(OASEARCH_BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 }

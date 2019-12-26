@@ -1,5 +1,7 @@
 package com.stu.syllabus.bean;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -189,6 +191,33 @@ public class ShowLessonBean {
 
         public void setW6(String w6) {
             this.w6 = w6;
+        }
+
+        @Override
+        public String toString() {
+            StringBuffer str = new StringBuffer();
+            if (getW0()!= null) {
+                str.append("周日 " + getW0() + "\n");
+            }
+            if (getW1()!= null) {
+                str.append("周一 " + getW1() + "\n");
+            }
+            if (getW2()!= null) {
+                str.append("周二 " + getW2() + "\n");
+            }
+            if (getW3()!= null) {
+                str.append("周三 " + getW3() + "\n");
+            }
+            if (getW4()!= null) {
+                str.append("周四 " + getW4() + "\n");
+            }
+            if (getW5()!= null) {
+                str.append("周五 " + getW5() + "\n");
+            }
+            if (getW6()!= null) {
+                str.append("周六 " + getW6() + "\n");
+            }
+            return str.toString();
         }
     }
 }
