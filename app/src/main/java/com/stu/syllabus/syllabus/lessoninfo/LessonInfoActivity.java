@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
 import com.stu.syllabus.bean.ShowLessonBean;
+import com.stu.syllabus.syllabus.classmates.ClassmatesActivity;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class LessonInfoActivity extends BaseActivity {
 
@@ -77,9 +80,11 @@ public class LessonInfoActivity extends BaseActivity {
         return R.layout.activity_lesson_info;
     }
 
-    @Override
-    public void setupTitleBar(Toolbar toolbar) {
-        super.setupTitleBar(toolbar);
+    @OnClick(R.id.toClassmatesAct)
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.toClassmatesAct: startActivity(ClassmatesActivity.getIntent(this, Long.parseLong(id))); break;
+        }
     }
 
     public static Intent getIntent(Context context, int color, String name, String id, String credit, String classroom, String teacher, String days) {

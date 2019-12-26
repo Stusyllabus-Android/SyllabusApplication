@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.stu.syllabus">
-
     <!-- for mta statistics, not necessary -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<!--    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>-->
 
     <application
         android:name=".App"
@@ -18,12 +16,14 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".person.personal.UpdateSignatureActivity"></activity>
+        <activity android:name=".syllabus.classmates.ClassmatesActivity"></activity>
+        <activity android:name=".person.personal.UpdateSignatureActivity" />
         <activity android:name=".person.personal.UpdateNicknameActivity" />
         <activity android:name=".person.personal.UpdateAvatarActivity" />
-        <activity android:name=".syllabus.lessoninfo.LessonInfoActivity"
-            android:theme="@style/AppTheme.Fullscreen"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".syllabus.lessoninfo.LessonInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
         <activity android:name=".person.setting.HelpAndFeedbackActivity" />
         <activity android:name=".person.setting.AboutActivity" />
         <activity android:name=".person.personal.PersonalActivity" />
@@ -47,12 +47,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".information.OADetailActivity"
+        <activity
+            android:name=".information.OADetailActivity"
             android:screenOrientation="portrait" />
-
-    <activity android:name=".information.OASearch"
-        android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".information.OASearch"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
