@@ -1,6 +1,7 @@
 package com.stu.syllabus.main.fragment;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerTabStrip;
+import androidx.viewpager.widget.ViewPager;
 
-import com.github.florent37.materialviewpager.MaterialViewPager;
-import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.stu.syllabus.AppComponent;
 import com.stu.syllabus.R;
 import com.stu.syllabus.adapter.HomeViewPagerAdapter;
@@ -39,8 +41,11 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
     Toolbar toolbar;
     @BindView(R.id.banner)
     Banner banner;
-    @BindView(R.id.materialViewPager)
-    MaterialViewPager mViewPager;
+    @BindView(R.id.viewPager)
+//    MaterialViewPager mViewPager;
+    ViewPager mViewPager;
+    @BindView(R.id.pagerTabStrip)
+    PagerTabStrip pagerTabStrip;
 
     @Inject
     HomePresenter homePresenter;
@@ -48,6 +53,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
     private AppComponent appComponent;
 
     private HomeViewPagerAdapter homeViewPagerAdapter;
+    private FragmentManager manager;
 
 
     @Override
@@ -64,6 +70,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
                 .homeModule(new HomeModule(this))
                 .build()
                 .inject(this);
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -84,6 +91,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
 
     @Override
     public int getContentView() {
+        manager = this.getFragmentManager();
         return R.layout.fragment_home;
     }
 
@@ -101,28 +109,22 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
     //ViewPager
     @Override
     public void setAdapterForViewPager() {
-        homeViewPagerAdapter = new HomeViewPagerAdapter(getFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        mViewPager.getToolbar().setVisibility(View.INVISIBLE);
-        mViewPager.getViewPager().setAdapter(homeViewPagerAdapter);
+        homeViewPagerAdapter = new HomeViewPagerAdapter(manager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mViewPager.setAdapter(homeViewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(mViewPager.getAdapter().getCount());
+        pagerTabStrip.setTextSpacing(0);
+        pagerTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        pagerTabStrip.setTabIndicatorColor(0xffffff);
 
-        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
-            @Override
-            public HeaderDesign getHeaderDesign(int page) {
-                return null;
-            }
-        });
-
-        mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
-        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
     }
 
     //轮播图
     @Override
     public void setBannerImages(){
         List<Integer> images=new ArrayList<>();
-        images.add(R.drawable.three_pig);
-        images.add(R.drawable.three_cute);
-        images.add(R.drawable.three_dogs);
+        images.add(R.drawable.pic_school3);
+        images.add(R.drawable.pic_school1);
+        images.add(R.drawable.pic_school2);
 
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());

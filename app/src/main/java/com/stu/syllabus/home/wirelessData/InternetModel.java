@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import com.google.gson.reflect.TypeToken;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.stu.syllabus.App;
+import com.stu.syllabus.RetrofitModule;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class InternetModel {
@@ -36,11 +38,15 @@ public class InternetModel {
     public static final String EXTRA_IS_OPEN_INTERNET = "isOpen";
 
     private InternetModel() {
+//        mRetrofit = RetrofitModule.provideWirelessRetrofit();//替换
+
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("http://1.1.1.2/ac_portal/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         mSharedPreferences = App.getContext().getSharedPreferences("Internet", Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
@@ -50,6 +56,8 @@ public class InternetModel {
         if (loginAccountsString.trim().isEmpty()) {
             mLoginAccounts = new ArrayList<>();
         } else {
+            //有待改进
+
             mLoginAccounts = GsonUtil.getDefault().fromJson(
                     loginAccountsString, new TypeToken<List<LoginAccount>>() {
                     }.getType()

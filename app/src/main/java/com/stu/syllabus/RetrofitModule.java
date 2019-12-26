@@ -1,16 +1,15 @@
 package com.stu.syllabus;
 
-import android.app.Application;
 
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.CookieCache;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.stu.syllabus.di.AuthRetrofit;
 import com.stu.syllabus.di.BusinessRetrofit;
 import com.stu.syllabus.di.YiBanRetrofit;
+import com.stu.syllabus.di.WirelessRetrofit;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +32,7 @@ public class RetrofitModule {
     private final String OAUTH_BASEURL = "http://139.199.224.230:7001/";
     private final String BUSINESS_BASEURL = "http://139.199.224.230:7002/";
     private final String YIBAN_BASEURL = "https://yiban.stu.edu.cn/";
+    private final String WIRELESS_BASEURL = "http://1.1.1.2/ac_portal/";
 
     CookieCache cookieCache;
     CookieJar cookieJar;
@@ -86,4 +86,18 @@ public class RetrofitModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+
+    @Provides
+    @WirelessRetrofit
+    Retrofit provideWirelessRetrofit(){
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(WIRELESS_BASEURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+
 }

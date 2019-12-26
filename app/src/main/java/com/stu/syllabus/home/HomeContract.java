@@ -13,6 +13,5 @@ public interface HomeContract {
         void setBannerImages();
     }
     interface presenter extends BasePresenter {
-
     }
 }

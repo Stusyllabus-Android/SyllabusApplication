@@ -22,8 +22,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     private int item_position;
     RecyclerView parent;
 
-    static final int TYPE_HEADER = 0;
-    static final int TYPE_CELL = 1;
+    /*static final int TYPE_HEADER = 0;
+    static final int TYPE_CELL = 1;*/
 
     public HomeRecyclerViewAdapter(List<Object> contents, RecyclerView parent) {
         this.contents = contents;
@@ -32,12 +32,14 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     @Override
     public int getItemViewType(int position) {
-        switch (position) {
+        /*switch (position) {
             case 0:
                 return TYPE_HEADER;
             default:
                 return TYPE_CELL;
-        }
+        }*/
+        super.getItemViewType(position);
+        return 1;
     }
 
     @Override

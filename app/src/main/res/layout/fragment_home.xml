@@ -8,12 +8,12 @@
     android:layout_height="wrap_content">
 
     <include layout="@layout/fragment_toolbar_layout"/>
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:background="@color/cardview_light_background"
-        >
+        >-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,22 +38,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
                 android:orientation="vertical">
-                <com.github.florent37.materialviewpager.MaterialViewPager
-                    android:id="@+id/materialViewPager"
+
+                <!--<com.github.florent37.materialviewpager.MaterialViewPager
+                    android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:viewpager_headerAlpha="1.0"
                     app:viewpager_parallaxHeaderFactor="1.5"
                     app:viewpager_headerAdditionalHeight="20dp"
                     app:viewpager_animatedHeaderImage="false"
-                    app:viewpager_hideToolbarAndTitle="true"
-                    />
+                    app:viewpager_hideToolbarAndTitle="true">
+                </com.github.florent37.materialviewpager.MaterialViewPager>
+-->
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:viewpager_headerAlpha="1.0"
+                    app:viewpager_parallaxHeaderFactor="1.5"
+                    app:viewpager_headerAdditionalHeight="20dp"
+                    app:viewpager_animatedHeaderImage="false"
+                    app:viewpager_hideToolbarAndTitle="true">
+                    <androidx.viewpager.widget.PagerTabStrip
+                        android:id="@+id/pagerTabStrip"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/toolbar_height"/>
+
+                </androidx.viewpager.widget.ViewPager>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+<!--    </ScrollView>-->
 
 
 </LinearLayout>

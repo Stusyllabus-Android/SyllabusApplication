@@ -2,6 +2,7 @@ package com.stu.syllabus.main.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,6 @@ import butterknife.ButterKnife;
 
 public class HomeWirelessFragment  extends Fragment {
 
-    private static final boolean GRID_LAYOUT = false;
-
     @BindView(R.id.recyclerView_wireless)
     RecyclerView mRecyclerView;
 
@@ -41,14 +40,17 @@ public class HomeWirelessFragment  extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        Log.d("HomeWirelessFragment---", "onViewCreated");
+        super.onViewCreated(view, savedInstanceState);
 
-        if (GRID_LAYOUT) {
-            mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        } else {
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("HomeWirelessFragment---", "onStart");
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//getActivity?
         mRecyclerView.setHasFixedSize(true);
 
         //Use this now
@@ -56,8 +58,8 @@ public class HomeWirelessFragment  extends Fragment {
 
         List<Object> items = new ArrayList<>();
         items.add("流量监控");
-
         HomeRecyclerViewAdapter rvAdapter = new HomeRecyclerViewAdapter(items,mRecyclerView);
+
         rvAdapter.setOnItemClickListener(new HomeRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position, String data) {
@@ -68,6 +70,5 @@ public class HomeWirelessFragment  extends Fragment {
             }
         });
         mRecyclerView.setAdapter(rvAdapter);
-
     }
 }

@@ -8,4 +8,5 @@ import io.reactivex.Observable;
 public interface IWirelessModel {
 
     Observable<WirelessInfo> getWirelessInfo();
+
 }

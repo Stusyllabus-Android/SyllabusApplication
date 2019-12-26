@@ -39,6 +39,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.wirelessData.WirelessActivity" />
+
+        <service android:name=".home.wirelessData.StreamService" />
+        <service android:name=".home.wirelessData.WireService" />
     </application>
 
 </manifest>

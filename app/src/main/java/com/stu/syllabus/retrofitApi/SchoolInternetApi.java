@@ -1,6 +1,8 @@
 package com.stu.syllabus.retrofitApi;
 
 
+import com.stu.syllabus.bean.WireLoginInfo;
+
 import io.reactivex.Observable;
 import retrofit2.http.POST;
 

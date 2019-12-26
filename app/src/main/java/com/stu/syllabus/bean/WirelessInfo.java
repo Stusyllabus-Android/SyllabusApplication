@@ -21,7 +21,6 @@ public class WirelessInfo implements Serializable {
 
     private WirelessInfo() {
     }
-    private boolean success;
 
     private String name;
 
@@ -33,13 +32,6 @@ public class WirelessInfo implements Serializable {
 
     private String state;
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
 
     public String getName() {
         return name;

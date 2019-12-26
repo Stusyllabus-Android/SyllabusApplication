@@ -4,12 +4,16 @@
     xmlns:fbutton="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/material_white">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
         android:layout_height="@dimen/toolbar_height"
         android:layout_width="match_parent"
+        android:clipToPadding="true"
         android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.PopupOverlay"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -29,13 +33,13 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="32dp"
-        android:background="@color/material_white"
         android:orientation="vertical"
         android:padding="8dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <EditText
                 android:id="@+id/usernameEditText"
@@ -43,13 +47,13 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:gravity="center"
-                android:hint="校园网账号"
+                android:hint="校园账号"
                 android:padding="8dp"
                 android:paddingLeft="32dp"
                 android:singleLine="true"
                 android:textSize="16sp"/>
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/switchAccountButton"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -59,21 +63,23 @@
                 android:padding="2dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_switch_account"
-                android:tint="@color/material_white"/>
+                android:tint="@color/material_white"/>-->
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
             android:background="@color/defaultShowColor"/>
 
         <EditText
             android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@null"
             android:gravity="center"
-            android:hint="校园网密码"
+            android:hint="校园密码"
             android:inputType="textPassword"
             android:padding="8dp"
             android:paddingLeft="32dp"
@@ -96,6 +102,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="记住登录状态"
             android:textColor="@color/defaultShowColor"
             android:textSize="14sp"/>
@@ -103,18 +110,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:orientation="horizontal"
+        android:layout_gravity="center"
         android:padding="8dp">
 
         <Button
             android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_margin="8dp"
-            android:layout_weight="1"
             android:text="登录"
             android:textColor="@color/material_white"
             android:textSize="16sp"
@@ -126,15 +133,14 @@
 
         <Button
             android:id="@+id/logoutButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_margin="8dp"
-            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
             android:text="注销"
             android:textColor="@color/material_white"
             android:textSize="16sp"
-            android:background="@color/colorPrimary"
             fbutton:cornerRadius="2dp"
             fbutton:shadowColor="@color/defaultShowColor"
             fbutton:shadowEnabled="true"
@@ -143,20 +149,32 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Switch
+        <cn.icheny.view.CySwitch
             android:id="@+id/openInternetLoginSwitch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:borderColorChecked="@android:color/holo_red_dark"
+            app:borderColorUnchecked="@android:color/darker_gray"
+            app:borderWidth="0dp"
+            app:isChecked="true"
+            app:sliderColorUnchecked="#FFFFFF"
+            app:sliderHeight="50dp"
+            app:sliderRadius="0dp"
+            app:sliderWidth="20dp"
+            app:viewRadius="0dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="实时流量监控"
+            android:textSize="15dp"
             android:textColor="@color/material_black"/>
 
     </LinearLayout>
