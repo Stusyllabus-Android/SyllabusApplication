@@ -12,7 +12,7 @@
         android:layout_height="120dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/headImageDraweeView"
+            android:id="@+id/contract_headImage"
             android:src="@mipmap/logo"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -25,14 +25,14 @@
 
         <LinearLayout
             android:id="@+id/nicknameAndId"
-            android:layout_toRightOf="@id/headImageDraweeView"
+            android:layout_toRightOf="@id/contract_headImage"
             android:orientation="vertical"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/nicknameTextView"
+                android:id="@+id/contract_nicknameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#1F2229"
@@ -45,7 +45,7 @@
             <TextView
                 android:id="@+id/signatureTextView"
                 android:layout_below="@+id/nicknameAndId"
-                android:layout_toRightOf="@id/headImageDraweeView"
+                android:layout_toRightOf="@id/contract_headImage"
                 android:text="个性签名为空"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"

@@ -1,40 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_rv_contact"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <include layout="@layout/fragment_toolbar_layout"/>
-    <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/rv_contact"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/gallery_bucket_list_item_normal_color"
-        />
-    <!--<RelativeLayout
-        android:id="@+id/first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="8dp">
-
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="#ffffff"
+    >
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/headImageDraweeView"
+            android:id="@+id/contract_headImage"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:src="@drawable/icon_contact"
             app:roundAsCircle="true"/>
 
         <TextView
-            android:id="@+id/nicknameTextView"
+            android:id="@+id/contract_nicknameTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="4dp"
-            android:layout_toRightOf="@+id/headImageDraweeView"
+            android:layout_toRightOf="@+id/contract_headImage"
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="?attr/colorPrimary"
@@ -44,13 +32,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/contentTextView"
-            android:layout_below="@+id/nicknameTextView"
+            android:layout_above="@+id/contract_contentTv"
+            android:layout_below="@+id/contract_nicknameTV"
             android:layout_marginRight="8dp"
-            android:layout_toRightOf="@+id/headImageDraweeView">
+            android:layout_toRightOf="@+id/contract_headImage"
+            >
 
             <TextView
-                android:id="@+id/postInfoTextView"
+                android:id="@+id/contract_postTimeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
@@ -63,13 +52,13 @@
                 tools:text="2019-12-25 17:58:20"/>
 
             <TextView
-                android:id="@+id/postDeviceTextView"
+                android:id="@+id/contract_postDeviceTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="6dp"
-                android:layout_toRightOf="@+id/postInfoTextView"
+                android:layout_toRightOf="@+id/contract_postTimeTv"
                 android:ellipsize="end"
                 android:gravity="top|right"
                 android:singleLine="true"
@@ -78,21 +67,25 @@
                 tools:text="匿名"/>
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/contentTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headImageDraweeView"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            android:textColor="@color/material_textBlack_text"
-            tools:text="Merry Christmas"/>
+    <TextView
+        android:id="@+id/contract_contentTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contract_headImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/material_textBlack_text"
+        android:textSize="14sp"
+        tools:text="Merry Christmas" />
 
-        <View
+    <View
             android:id="@+id/horDivLine"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_below="@+id/contentTextView"
+            android:layout_below="@+id/contract_contentTv"
             android:layout_marginTop="8dp"
             android:background="@color/defaultShowColor"/>
 
@@ -118,7 +111,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/zanTextView"
+                    android:id="@+id/contract_zanTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -136,7 +129,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/commentTextView"
+                    android:id="@+id/contract_commentTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -145,7 +138,4 @@
                     android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
-
-    </RelativeLayout>-->
-
-</LinearLayout>
+</RelativeLayout>

@@ -32,7 +32,6 @@ import com.stu.syllabus.person.personal.PersonalActivity;
 import com.stu.syllabus.person.setting.SettingActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -49,9 +48,9 @@ public class PersonFragment extends BaseFragment implements PersonContract.view 
     Toolbar toolbar;
     @BindView(R.id.settingLayout)
     RelativeLayout settingLayout;
-    @BindView(R.id.headImageDraweeView)
+    @BindView(R.id.contract_headImage)
     SimpleDraweeView headImageDraweeView;
-    @BindView(R.id.nicknameTextView)
+    @BindView(R.id.contract_nicknameTV)
     TextView nicknameTextView;
     @BindView(R.id.idTextView)
     TextView idTextView;

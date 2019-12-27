@@ -4,17 +4,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
-import com.stu.syllabus.person.PersonModule;
 import com.stu.syllabus.util.ToastUtil;
 
 import javax.inject.Inject;
@@ -27,13 +24,13 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
     Toolbar toolbar;
     @BindView(R.id.toChangeAvatar)
     RelativeLayout toChangeAvatar;
-    @BindView(R.id.headImageDraweeView)
+    @BindView(R.id.contract_headImage)
     SimpleDraweeView headImageView;
     @BindView(R.id.accountTextView)
     TextView accountTextView;
     @BindView(R.id.toChangeNickName)
     RelativeLayout toChangeNickName;
-    @BindView(R.id.nicknameTextView)
+    @BindView(R.id.contract_nicknameTV)
     TextView nicknameTextView;
     @BindView(R.id.toChangeSignature)
     RelativeLayout toChangeSignature;
