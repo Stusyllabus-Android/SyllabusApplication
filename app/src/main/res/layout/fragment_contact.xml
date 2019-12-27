@@ -1,12 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/fragment_toolbar_layout"/>
 
-    <TextView
-        android:text="程序员很忙，该功能暂未开发"
+    <RelativeLayout
+        android:id="@+id/first"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/headImageDraweeView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:roundAsCircle="true"/>
+
+        <TextView
+            android:id="@+id/nicknameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/headImageDraweeView"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp"
+            tools:text="匿名"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/contentTextView"
+            android:layout_below="@+id/nicknameTextView"
+            android:layout_marginRight="8dp"
+            android:layout_toRightOf="@+id/headImageDraweeView">
+
+            <TextView
+                android:id="@+id/postInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="top"
+                android:singleLine="true"
+                android:textColor="@color/defaultShowColor"
+                android:textSize="12sp"
+                tools:text="2019-12-25 17:58:20"/>
+
+            <TextView
+                android:id="@+id/postDeviceTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/postInfoTextView"
+                android:ellipsize="end"
+                android:gravity="top|right"
+                android:singleLine="true"
+                android:textColor="@color/defaultShowColor"
+                android:textSize="10sp"
+                tools:text="匿名"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/contentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headImageDraweeView"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/material_textBlack_text"
+            tools:text="Merry Christmas"/>
+
+        <View
+            android:id="@+id/horDivLine"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/contentTextView"
+            android:layout_marginTop="8dp"
+            android:background="@color/defaultShowColor"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="24dp"
+            android:layout_below="@+id/horDivLine"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@color/defaultShowColor"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/horDivLine">
+
+            <LinearLayout
+                android:id="@+id/thumbUpLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/zanTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="赞[0]"
+                    android:textColor="@color/defaultShowColor"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/commentLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/commentTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="评论[0]"
+                    android:textColor="@color/defaultShowColor"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>
