@@ -263,6 +263,8 @@ public class WirelessActivity extends BaseActivity implements WirelessContract.v
                             account.password = password;
                             InternetModel.getInstance().addAccount(account);
                         }*/
+                        Toast.makeText(WirelessActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
@@ -349,11 +351,11 @@ public class WirelessActivity extends BaseActivity implements WirelessContract.v
 
                     @Override
                     public void onNext(Object o) {
-//                        Toast.makeText(WirelessActivity.this, loginInfo.getMsg(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WirelessActivity.this, "登录成功",Toast.LENGTH_SHORT).show();
 //                        SnackbarUtil.ShortSnackbar(mLoginButton, loginInfo.getMsg(), SnackbarUtil.Info).show();
+
                     }
-                })
-                ;
+                });
 
     }
 

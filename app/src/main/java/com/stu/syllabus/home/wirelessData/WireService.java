@@ -64,7 +64,7 @@ public class WireService extends Service {
 //          startForeground(101, notification);
 
             notifyManager.notify(101, builder.build());
-            Log.e("ServiceTest", "已连接");
+            Log.d("ServiceTest", "已连接");
         }
         if (type == WirelessInfo.TYPE_UN_CONNECT) {
             NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

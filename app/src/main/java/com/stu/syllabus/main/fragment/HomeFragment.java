@@ -42,7 +42,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.view {
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.viewPager)
-//    MaterialViewPager mViewPager;
     ViewPager mViewPager;
     @BindView(R.id.pagerTabStrip)
     PagerTabStrip pagerTabStrip;

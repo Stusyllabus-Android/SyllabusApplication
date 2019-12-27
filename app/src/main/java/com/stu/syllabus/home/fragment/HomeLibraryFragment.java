@@ -1,4 +1,4 @@
-package com.stu.syllabus.main.fragment;
+package com.stu.syllabus.home.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

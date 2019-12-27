@@ -1,6 +1,5 @@
 package com.stu.syllabus.adapter;
 
-import android.content.Context;
 import android.os.Parcelable;
 import android.util.Log;
 
@@ -8,11 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
-import com.stu.syllabus.main.fragment.HomeBookFragment;
-import com.stu.syllabus.main.fragment.HomeLibraryFragment;
-import com.stu.syllabus.main.fragment.HomeWirelessFragment;
+import com.stu.syllabus.home.fragment.HomeBookFragment;
+import com.stu.syllabus.home.fragment.HomeLibraryFragment;
+import com.stu.syllabus.home.fragment.HomeWirelessFragment;
 
 public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
 
