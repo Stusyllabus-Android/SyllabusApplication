@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -28,161 +28,150 @@
             android:textSize="20sp"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
-        android:id="@+id/toChangeAvatar"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="头像"
-            android:layout_centerVertical="true"
-            android:textSize="18sp"
-            android:textColor="@color/material_textBlack_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/headImageDraweeView"
-                android:src="@mipmap/logo"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_centerVertical="true"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/bg_logo"
-                android:padding="1dp"
-                fresco:roundAsCircle="true"/>
-            <ImageView
-                android:src="@drawable/icon_in"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </RelativeLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/headImageDraweeView"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolBar"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_headimage"
+        android:padding="1dp"
+        fresco:roundAsCircle="true"/>
 
-    <View
-        android:background="#EBEDF0"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_margin="8dp"/>
-
-    <RelativeLayout
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="5dp"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+id/headImageDraweeView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="账号"
-            android:layout_centerVertical="true"
-            android:textSize="18sp"
-            android:textColor="@color/material_textBlack_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/accountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="账号　"
+                android:textColor="@color/defaultShowColor"
+                android:textSize="16sp"/>
+
+            <TextView
                 android:text="17sfyuan"
-                android:textSize="18sp"
-                android:textColor="@color/material_textBlack_secondaryText"
-                android:layout_marginRight="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:id="@+id/accountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColorHint="?attr/colorPrimary"
+                android:textSize="16sp"/>
         </LinearLayout>
-    </RelativeLayout>
 
-    <View
-        android:background="#EBEDF0"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_margin="8dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="8dp"
+            android:background="@color/defaultShowColor"/>
 
-    <RelativeLayout
-        android:id="@+id/toChangeNickName"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="昵称"
-            android:layout_centerVertical="true"
-            android:textSize="18sp"
-            android:textColor="@color/material_textBlack_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/nicknameTextView"
-                android:text="Jarvis Yuen"
-                android:textSize="18sp"
-                android:textColor="@color/material_textBlack_secondaryText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:src="@drawable/icon_in"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="昵称　"
+                android:textColor="@color/defaultShowColor"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/nicknameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="起一个响当当的不超过15个字的昵称"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:textColorHint="?attr/colorPrimary"
+                android:textSize="16sp"/>
         </LinearLayout>
-    </RelativeLayout>
 
-    <View
-        android:background="#EBEDF0"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_margin="8dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="8dp"
+            android:background="@color/defaultShowColor"/>
 
-    <RelativeLayout
-        android:id="@+id/toChangeSignature"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="个性签名"
-            android:layout_centerVertical="true"
-            android:textSize="18sp"
-            android:textColor="@color/material_textBlack_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/signatureTextView"
-                android:text="个性签名为空"
-                android:textColor="@color/material_textBlack_secondaryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:src="@drawable/icon_in"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
-    <View
-        android:background="#EBEDF0"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_margin="8dp"/>
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="签名　"
+                android:textColor="@color/defaultShowColor"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/signatureEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="说一下你的心情"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColorHint="?attr/colorPrimary"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="8dp"
+            android:background="@color/defaultShowColor"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cancelFAButton"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_above="@+id/sureFAButton"
+        android:src="@drawable/icon_cancel"
+        android:background="?attr/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sureFAButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/icon_sure"
+        android:background="?attr/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

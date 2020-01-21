@@ -87,9 +87,15 @@ public class PersonFragment extends BaseFragment implements PersonContract.view 
                 .build()
                 .inject(this);
 
-        personPresenter.init();
+//        personPresenter.init();
 
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        personPresenter.init();
     }
 
     @Override

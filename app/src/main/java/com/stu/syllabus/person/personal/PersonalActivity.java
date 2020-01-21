@@ -6,12 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
 import com.stu.syllabus.person.PersonModule;
@@ -20,25 +24,28 @@ import com.stu.syllabus.util.ToastUtil;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class PersonalActivity extends BaseActivity implements PersonalContract.view, View.OnClickListener{
+public class PersonalActivity extends BaseActivity implements PersonalContract.view{
 
     @BindView(R.id.toolBar)
     Toolbar toolbar;
-    @BindView(R.id.toChangeAvatar)
-    RelativeLayout toChangeAvatar;
     @BindView(R.id.headImageDraweeView)
     SimpleDraweeView headImageView;
     @BindView(R.id.accountTextView)
     TextView accountTextView;
-    @BindView(R.id.toChangeNickName)
-    RelativeLayout toChangeNickName;
-    @BindView(R.id.nicknameTextView)
-    TextView nicknameTextView;
-    @BindView(R.id.toChangeSignature)
-    RelativeLayout toChangeSignature;
-    @BindView(R.id.signatureTextView)
-    TextView signatureTextView;
+    @BindView(R.id.nicknameEditText)
+    EditText nicknameEditText;
+    @BindView(R.id.signatureEditText)
+    EditText signatureEditText;
+    @BindView(R.id.cancelFAButton)
+    FloatingActionButton cancelFAButton;
+    @BindView(R.id.sureFAButton)
+    FloatingActionButton sureFAButton;
+
+    private String avatar;
+    private String signature;
+    private String nickname;
 
     @Inject
     PersonalPresenter personalPresenter;
@@ -51,7 +58,14 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
                 .personalModule(new PersonalModule(this))
                 .build()
                 .inject(this);
+//        personalPresenter.init();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         personalPresenter.init();
+        Log.d(TAG, "onStart: ");
     }
 
     @Override
@@ -63,39 +77,36 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
     protected void init() {
         super.init();
         setupTitleBar(toolbar);
-        toChangeAvatar.setOnClickListener(this);
-        toChangeNickName.setOnClickListener(this);
-        toChangeSignature.setOnClickListener(this);
     }
 
     @Override
     public void loadInfo(String avatar, String account, String nickname, String signature) {
+        this.avatar = avatar;
+        this.nickname = nickname;
+        this.signature = signature;
         headImageView.setImageURI(avatar);
         accountTextView.setText(account);
-        nicknameTextView.setText(nickname);
+        nicknameEditText.setText(nickname);
         if (signature != null && !signature.isEmpty()) {
-            signatureTextView.setText(signature);
+            signatureEditText.setText(signature);
+        }
+    }
+
+    @OnClick({R.id.cancelFAButton, R.id.sureFAButton})
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.cancelFAButton: finish(); break;
+            case R.id.sureFAButton:
+                if (nickname.equals(nicknameEditText.getText().toString()))
+                    nickname = null;
+                if (signature.equals(signatureEditText.getText().toString()))
+                    signature = null;
+                personalPresenter.updateUserInfo(avatar, nickname, signature); break;
         }
     }
 
     public static Intent getIntent(Context context) {
         return new Intent(context, PersonalActivity.class);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.toChangeAvatar: toChangeAct(new Intent(this, UpdateAvatarActivity.class)); break;
-            case R.id.toChangeNickName: toChangeAct(new Intent(this, UpdateNicknameActivity.class)); break;
-            case R.id.toChangeSignature: toChangeAct(new Intent(this, UpdateSignatureActivity.class)); break;
-        }
-    }
-
-    @Override
-    public void toChangeAct(Intent intent) {
-        ToastUtil.showShort(this, "暂未开发");
-//        startActivity(intent);
-//        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
     @Override

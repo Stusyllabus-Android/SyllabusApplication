@@ -17,9 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".syllabus.classmates.ClassmatesActivity"></activity>
-        <activity android:name=".person.personal.UpdateSignatureActivity" />
-        <activity android:name=".person.personal.UpdateNicknameActivity" />
-        <activity android:name=".person.personal.UpdateAvatarActivity" />
         <activity
             android:name=".syllabus.lessoninfo.LessonInfoActivity"
             android:screenOrientation="portrait"
