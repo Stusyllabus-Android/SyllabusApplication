@@ -11,6 +11,8 @@ import io.reactivex.Observable;
  **/
 public interface IPersonalModel {
 
+    void saveUserInfoToDisk(String avatar, String nickname, String signature);
+
     Observable<ShowInfoBean> getUserInfoFromDisk();
 
     Observable<PostUserInfoResult> updateAvatar(String avatar);

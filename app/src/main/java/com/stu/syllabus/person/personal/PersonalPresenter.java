@@ -1,5 +1,7 @@
 package com.stu.syllabus.person.personal;
 
+import android.util.Log;
+
 import com.stu.syllabus.bean.PostUserInfoResult;
 import com.stu.syllabus.bean.ShowInfoBean;
 import com.stu.syllabus.person.PersonContract;
@@ -14,6 +16,8 @@ import io.reactivex.disposables.Disposable;
  * 2019/12/23
  **/
 public class PersonalPresenter implements PersonalContract.presenter {
+
+    private final String TAG = this.getClass().getSimpleName();
 
     PersonalContract.view view;
     IPersonalModel personalModel;
@@ -53,8 +57,31 @@ public class PersonalPresenter implements PersonalContract.presenter {
 
     @Override
     public void updateUserInfo(String avatar, String nickname, String signature) {
+        // TODO: 2020/2/6 改一下更新接口为三个参数
+        Log.d(TAG, "updateUserInfo: " + avatar + " " + nickname + " " + signature);
         if (avatar != null) {
-            // TODO: 2020/1/21 更新头像
+            personalModel.updateAvatar(avatar)
+                    .subscribe(new Observer<PostUserInfoResult>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(PostUserInfoResult postUserInfoResult) {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
         }
         if (nickname != null) {
             personalModel.updateNickname(nickname)
@@ -96,7 +123,7 @@ public class PersonalPresenter implements PersonalContract.presenter {
 
                         @Override
                         public void onError(Throwable e) {
-
+                            Log.d(TAG, "onError: ");
                         }
 
                         @Override
@@ -105,6 +132,8 @@ public class PersonalPresenter implements PersonalContract.presenter {
                         }
                     });
         }
+
+        personalModel.saveUserInfoToDisk(avatar, nickname, signature);
     }
 
 }

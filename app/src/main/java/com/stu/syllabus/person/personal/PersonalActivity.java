@@ -1,37 +1,48 @@
 package com.stu.syllabus.person.personal;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.stu.syllabus.R;
 import com.stu.syllabus.base.BaseActivity;
-import com.stu.syllabus.person.PersonModule;
 import com.stu.syllabus.util.ToastUtil;
+import com.stu.syllabus.widget.GlideLoader;
+import com.yancy.imageselector.ImageConfig;
+import com.yancy.imageselector.ImageSelector;
+import com.yancy.imageselector.ImageSelectorActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.finalteam.rxgalleryfinal.RxGalleryFinal;
+import cn.finalteam.rxgalleryfinal.imageloader.ImageLoaderType;
+import cn.finalteam.rxgalleryfinal.rxbus.RxBusResultDisposable;
+import cn.finalteam.rxgalleryfinal.rxbus.event.BaseResultEvent;
 
 public class PersonalActivity extends BaseActivity implements PersonalContract.view{
 
     @BindView(R.id.toolBar)
     Toolbar toolbar;
     @BindView(R.id.headImageDraweeView)
-    SimpleDraweeView headImageView;
+    ImageView headImageView;
     @BindView(R.id.accountTextView)
     TextView accountTextView;
     @BindView(R.id.nicknameEditText)
@@ -58,14 +69,7 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
                 .personalModule(new PersonalModule(this))
                 .build()
                 .inject(this);
-//        personalPresenter.init();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         personalPresenter.init();
-        Log.d(TAG, "onStart: ");
     }
 
     @Override
@@ -84,7 +88,7 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
         this.avatar = avatar;
         this.nickname = nickname;
         this.signature = signature;
-        headImageView.setImageURI(avatar);
+        Glide.with(this).load(avatar).into(headImageView);
         accountTextView.setText(account);
         nicknameEditText.setText(nickname);
         if (signature != null && !signature.isEmpty()) {
@@ -92,11 +96,29 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
         }
     }
 
-    @OnClick({R.id.cancelFAButton, R.id.sureFAButton})
+    @OnClick({R.id.headImageDraweeView, R.id.cancelFAButton, R.id.sureFAButton})
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.headImageDraweeView:
+                ImageConfig imageConfig
+                        = new ImageConfig.Builder(new GlideLoader())
+                        .steepToolBarColor(getResources().getColor(R.color.colorPrimaryDark))
+                        .titleBgColor(getResources().getColor(R.color.colorPrimary))
+                        .titleSubmitTextColor(getResources().getColor(R.color.material_textWhite_text))
+                        .titleTextColor(getResources().getColor(R.color.material_textWhite_text))
+                        .crop(1, 1, 500, 500)
+                        // 开启单选   （默认为多选）
+                        .singleSelect()
+                        // 开启拍照功能 （默认关闭）
+                        .showCamera()
+                        // 拍照后存放的图片路径（默认 /temp/picture） （会自动创建）
+                        .filePath("/ImageSelector/Pictures")
+                        .build();
+                ImageSelector.open(this, imageConfig);
+                break;
             case R.id.cancelFAButton: finish(); break;
             case R.id.sureFAButton:
+                Log.d(TAG, "onClick: ");
                 if (nickname.equals(nicknameEditText.getText().toString()))
                     nickname = null;
                 if (signature.equals(signatureEditText.getText().toString()))
@@ -107,6 +129,15 @@ public class PersonalActivity extends BaseActivity implements PersonalContract.v
 
     public static Intent getIntent(Context context) {
         return new Intent(context, PersonalActivity.class);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ImageSelector.IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            List<String> list = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
+            headImageView.setImageURI(Uri.parse(list.get(0)));
+        }
     }
 
     @Override

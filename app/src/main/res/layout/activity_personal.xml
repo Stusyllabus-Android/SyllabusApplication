@@ -28,14 +28,16 @@
             android:textSize="20sp"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/headImageDraweeView"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:src="@mipmap/logo"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/toolBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bg_headimage"
         android:padding="1dp"
         fresco:roundAsCircle="true"/>
 

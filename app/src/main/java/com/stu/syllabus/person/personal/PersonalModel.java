@@ -1,5 +1,6 @@
 package com.stu.syllabus.person.personal;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -57,6 +58,17 @@ public class PersonalModel implements IPersonalModel{
         }
         sqLiteDatabase.close();
         Log.d(TAG, "getSkeyFromDisk: " + skey);
+    }
+
+    @Override
+    public void saveUserInfoToDisk(String avatar, String nickname, String signature) {
+        sqLiteDatabase = dataBaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("avatar", avatar);
+        values.put("nickname", nickname);
+        values.put("signature", signature);
+        sqLiteDatabase.insert("user_info", null, values);
+        sqLiteDatabase.close();
     }
 
     @Override
