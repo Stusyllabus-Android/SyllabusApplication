@@ -1,5 +1,6 @@
 package com.stu.syllabus.person.personal;
 
+import com.stu.syllabus.bean.PostUserInfoResult;
 import com.stu.syllabus.bean.ShowInfoBean;
 
 import io.reactivex.Observable;
@@ -10,11 +11,13 @@ import io.reactivex.Observable;
  **/
 public interface IPersonalModel {
 
+    void saveUserInfoToDisk(String avatar, String nickname, String signature);
+
     Observable<ShowInfoBean> getUserInfoFromDisk();
 
-    Observable<String> updateAvatar();
+    Observable<PostUserInfoResult> updateAvatar(String avatar);
 
-    Observable<String> updateNickname();
+    Observable<PostUserInfoResult> updateNickname(String nickname);
 
-    Observable<String> updateSignature();
+    Observable<PostUserInfoResult> updateSignature(String signature);
 }

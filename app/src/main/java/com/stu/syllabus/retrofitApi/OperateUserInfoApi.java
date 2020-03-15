@@ -25,15 +25,15 @@ public interface OperateUserInfoApi {
     //修改头像
     @FormUrlEncoded
     @POST(SUFFIX_URL)
-    Observable<PostUserInfoResult> postAvatar(@Header("skey") String skey, @Field("url") String url, @Field("method") String method, @Field("from") String from, @Field("avatar_url") String avatar);
+    Observable<PostUserInfoResult> updateAvatar(@Header("skey") String skey, @Field("url") String url, @Field("method") String method, @Field("from") String from, @Field("avatar_url") String avatar);
 
     //修改昵称
     @FormUrlEncoded
     @POST(SUFFIX_URL)
-    Observable<PostUserInfoResult> postNickname(@Header("skey") String skey, @Field("url") String url, @Field("method") String method, @Field("from") String from, @Field("new_nickname") String nickname);
+    Observable<PostUserInfoResult> updateNickname(@Header("skey") String skey, @Field("url") String url, @Field("method") String method, @Field("from") String from, @Field("new_nickname") String nickname);
 
     //修改个性签名
     @FormUrlEncoded
     @POST(SUFFIX_URL)
-    Observable<PostUserInfoResult> postSignature(@Header("skey") String skey, @Field("url") String url, @Field("method") String method, @Field("from") String from, @Field("new_signature") String signature);
+    Observable<PostUserInfoResult> updateSignature(@Header("skey") String skey, @Field("url") String url, @Field("method") String method, @Field("from") String from, @Field("new_signature") String signature);
 }

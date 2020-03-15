@@ -46,7 +46,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     public void toLoginView() {
         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
         SplashActivity.this.finish();
     }
 
@@ -54,7 +56,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     public void toMainView() {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
         SplashActivity.this.finish();
     }
 }

@@ -12,9 +12,8 @@ import com.stu.syllabus.base.BaseView;
 public interface PersonalContract {
     interface view extends BaseView {
         void loadInfo(String avatar, String account, String nickname, String signature);
-        void toChangeAct(Intent intent);
     }
     interface presenter extends BasePresenter {
-
+        void updateUserInfo(String avatar, String nickname, String signature);
     }
 }
